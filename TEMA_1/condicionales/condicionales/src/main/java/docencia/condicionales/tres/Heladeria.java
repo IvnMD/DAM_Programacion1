@@ -76,7 +76,7 @@ public class Heladeria {
                 default: System.out.println("Error de entrada, intentelo de nuevo.");
                     break;
             }
-        } while (salidaMenu = false);
+        } while (salidaMenu == false);
         System.out.println("Gracias por su visita.");
         sc.close();
     }

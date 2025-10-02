@@ -65,7 +65,7 @@ public class CajeroDos {
                 }
                 break;
             case 4:
-                System.out.println("Gracias por usar el cajero automático.");
+                System.out.println("Gracias por usar el cajero automático. Hasta luego!");
                 break;
             default:
                 System.out.println("Opción no válida.");

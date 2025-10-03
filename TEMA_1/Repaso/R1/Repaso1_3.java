@@ -15,16 +15,13 @@ public class Repaso1_3 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("\nIntroduce un tu numbre y devolvere la primera letra: ");
-        char inicial = ' ';
-        inicial = sc.next();
+        System.out.println("\nIntroduce un tu nombre y devolvere la primera letra: ");
+        String nombre = sc.next();
+        char inicial = nombre.charAt(0);
 
-        System.out.println();
+        System.out.println("La primera letra es: " + inicial);
 
-
-
+        sc.close();
     }
-
-
 
 }

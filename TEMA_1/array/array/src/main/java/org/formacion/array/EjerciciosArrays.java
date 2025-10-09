@@ -72,9 +72,9 @@ public class EjerciciosArrays {
         int tamanio = array.length;
         int[] rotar = new int [tamanio];
 
-        if (k > tamanio){
-            int tamanio //! PROBAR A HACER UN FOR QUE IETERE EL NUMERO DE VECES QUE SUPERA K A LENGTH CON UN CONTADOR
-        }
+        // if (k > tamanio){
+        //     int tamanio //! PROBAR A HACER UN FOR QUE IETERE EL NUMERO DE VECES QUE SUPERA K A LENGTH CON UN CONTADOR
+        // }
 
         for (int posicion = 0; posicion < tamanio; posicion++){
             int indice = posicion +k;
@@ -96,7 +96,22 @@ public class EjerciciosArrays {
      * @return sub array
      */
     public static int[] rebanada(int[] array, int i, int j) {
-        return null;
+        if (i <0 ){
+            return null;
+        }
+        if (j >= array.length) {
+            return null;
+        }
+        if (i >= j){
+            return null;
+        }
+        int tamanyo = j-i;
+        int[] resultado = new int[tamanyo];
+        for (int k=0; k<tamanyo; k++){
+            resultado[k] = array[k+i];
+        }
+
+        return resultado;
     }
 
     /**
@@ -105,7 +120,14 @@ public class EjerciciosArrays {
      * @return suma de los numeros pares
      */
     public static int sumaPares(int[] array) {
-        return 0;
+        int suma = 0;
+
+        for (int i = 0; i < array.length; i++){
+            if (array[i] % 2  == 0){
+                suma += array[i];
+            }
+        }
+        return suma;
     }
 
     /**
@@ -114,7 +136,13 @@ public class EjerciciosArrays {
      * @return
      */
     public static int[] swapExtremos(int[] array) {
-        return null;
+        int auxiliar = 0;
+
+        auxiliar = array[array.length -1];
+        array [array.length-1] = array [0];
+        array[0] = auxiliar;
+
+        return array;
     }
 
     /**
@@ -124,10 +152,25 @@ public class EjerciciosArrays {
      * @return array con valores comunes
      */
     public static int[] interseccion(int[] primerArray, int[] segundoArray) {
+        int tamanyo = primerArray.length;
+        int[] tercerArray = new int [tamanyo];
+        int tamanyoFuturo = 0;
+ 
+        for (int i = 0; i < primerArray.length; i++){
+            for (int j = 0; j < segundoArray.length; j++){ //!conseguimos la interseccion
+                if (primerArray[i] == segundoArray[j]){
+                    tamanyoFuturo ++;
+                    tercerArray[j] = primerArray[i];
 
-        return null;
+                }  
+            }
+        }
+        int [] cuartoArray = new int [tamanyoFuturo]; //! conseguir que solo imprima la interseccion sin 0's
+        for (int k = 0; k < cuartoArray.length; k++){
+            cuartoArray[k] = tercerArray[k];
+        }
+        return cuartoArray;
     }
-
     /**
      * Elementos que están en un array u otro, pero no en ambos.
      * @param arrayA
@@ -135,8 +178,28 @@ public class EjerciciosArrays {
      * @return array con la diferencia simetrica
      */
     public static int[] difSim(int[] arrayA, int[] arrayB) {
-        return null;
+        int tamanyo = arrayA.length;
+        int[] tercerArray = new int [tamanyo];
+        int tamanyoFuturo = 0;
+ 
+        for (int i = 0; i < arrayA.length; i++){
+           tercerArray [i]  = arrayA[i];
+           
+            for (int j = 0; j < arrayB.length; j++){ //!conseguimos la interseccion
+                if (arrayA[i] != tercerArray[j]){
+                    tamanyoFuturo ++;
+                    tercerArray[i] = arrayA[i];
+
+                }  
+            }
+        }
+        int [] cuartoArray = new int [tamanyoFuturo]; //! conseguir que solo imprima la interseccion sin 0's
+        for (int k = 0; k < cuartoArray.length; k++){
+            cuartoArray[k] = tercerArray[k];
+        }
+        return tercerArray;
     }
+
 
     /**
      * Comprueba si un array es palindromo.
@@ -181,7 +244,7 @@ public static void main(String[] args) {
         System.out.println("Invertir: " + Arrays.toString(EjerciciosArrays.invertir(new int[]{1,2,3,4})));
 
         System.out.println("Pares de calcetines: " + EjerciciosArrays.paresCalcetines(new String[]{"rojo","azul","rojo","rojo","azul"}, "rojo"));
-
+palabra
         // System.out.println("Playlist sin repetidos: " + Arrays.toString(EjerciciosArrays.sinRepetidos(new String[]{"A","B","A","C","B"})));
 
         System.out.println("Rotación del carrusel: " + Arrays.toString(EjerciciosArrays.rotar(new int[]{1,2,3,4,5}, 2)));

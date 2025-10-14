@@ -178,25 +178,38 @@ public class EjerciciosArrays {
      * @return array con la diferencia simetrica
      */
     public static int[] difSim(int[] arrayA, int[] arrayB) {
-        int tamanyo = arrayA.length;
-        int[] tercerArray = new int [tamanyo];
+        int tamanyo1 = arrayA.length;
+        int tamanyo2 = arrayB.length;
+        int[] tercerArray = new int [tamanyo2];
+        if (tamanyo1 > tamanyo2) {
+        int[] tercerArray = new int [tamanyo1];
+        }
         int tamanyoFuturo = 0;
  
         for (int i = 0; i < arrayA.length; i++){
-           tercerArray [i]  = arrayA[i];
-           
+            tercerArray[i] = arrayA[i];
+            System.out.println("debug 1 - "+tercerArray[i] +"-" + tamanyoFuturo);
             for (int j = 0; j < arrayB.length; j++){ //!conseguimos la interseccion
-                if (arrayA[i] != tercerArray[j]){
+                if (arrayA[i] != arrayB[j]){
                     tamanyoFuturo ++;
-                    tercerArray[i] = arrayA[i];
-
-                }  
+                    tercerArray[j] = arrayB [j];
+                    System.out.println("debug 2 - "+tercerArray[j]+"-" +  tamanyoFuturo);
+                }
             }
         }
-        int [] cuartoArray = new int [tamanyoFuturo]; //! conseguir que solo imprima la interseccion sin 0's
-        for (int k = 0; k < cuartoArray.length; k++){
-            cuartoArray[k] = tercerArray[k];
-        }
+           
+        //     for (int j = 0; j < arrayB.length; j++){ //!conseguimos la interseccion
+        //         if (arrayB[i] != tercerArray[j]){
+        //             tamanyoFuturo ++;
+        //             tercerArray[i] = arrayA[i];
+
+        //         }  
+        //     }
+        // }
+        // int [] cuartoArray = new int [tamanyoFuturo]; //! conseguir que solo imprima la interseccion sin 0's
+        // for (int k = 0; k < cuartoArray.length; k++){
+        //     cuartoArray[k] = tercerArray[k];
+        // }
         return tercerArray;
     }
 
@@ -244,7 +257,7 @@ public static void main(String[] args) {
         System.out.println("Invertir: " + Arrays.toString(EjerciciosArrays.invertir(new int[]{1,2,3,4})));
 
         System.out.println("Pares de calcetines: " + EjerciciosArrays.paresCalcetines(new String[]{"rojo","azul","rojo","rojo","azul"}, "rojo"));
-palabra
+
         // System.out.println("Playlist sin repetidos: " + Arrays.toString(EjerciciosArrays.sinRepetidos(new String[]{"A","B","A","C","B"})));
 
         System.out.println("Rotación del carrusel: " + Arrays.toString(EjerciciosArrays.rotar(new int[]{1,2,3,4,5}, 2)));

@@ -1,6 +1,6 @@
 package org.formacion.array;
 
-import java.util.*;
+import java.util.Arrays;
 
 public class EjerciciosArrays {
 
@@ -39,27 +39,43 @@ public class EjerciciosArrays {
     }
 
 
-    // /**
-    //  * Quita duplicados manteniendo el primer ejemplar.
-    //  * @param playlist
-    //  * @return playlist sin duplicados
-    //  */
-    // public static String[] sinRepetidos(String[] playlist) {
-    //     int tamanyo = playlist.length;
-    //     String[] nueva = new String[tamanyo];
-    //     for (int i = 0; i < tamanyo; i++){
-    //         String cancion = playList[i];
-    //         for (int j = 0; j < nueva.length; j++){
-    //             if (cancion != null && cancion.equals(nueva[j])){
-    //                 play[j] = cancion;
-    //             }
-    //             if(play[j] != cancion) {
-    //                 play[j] = cancion;
-    //             }
-    //         }                             //! SIN RESOLVER
-    //     }
-    //     return nueva;
-    // }
+    /**
+     * Quita duplicados manteniendo el primer ejemplar.
+     * @param playlist
+     * @return playlist sin duplicados
+     */
+    public static String[] sinRepetidos(String[] playlist) {
+        // Array temporal del mismo tamaño que la playlist original
+        String[] nueva = new String[playlist.length];
+        int contador = 0; // cuenta cuántas canciones únicas llevamos
+    
+        for (int i = 0; i < playlist.length; i++) {
+            String cancion = playlist[i];
+            boolean repetida = false;
+    
+            // comprobamos si ya la hemos añadido antes
+            for (int j = 0; j < contador; j++) {
+                if (nueva[j].equals(cancion)) {
+                    repetida = true;
+                    break;
+                }
+            }
+    
+            // si no está repetida, la añadimos al array nuevo
+            if (!repetida) {
+                nueva[contador] = cancion;
+                contador++;
+            }
+        }
+    
+        // ahora creamos un array del tamaño justo
+        String[] resultado = new String[contador];
+        for (int i = 0; i < contador; i++) {
+            resultado[i] = nueva[i];
+        }
+    
+        return resultado;
+    }
 
 
     /**
@@ -73,7 +89,7 @@ public class EjerciciosArrays {
         int[] rotar = new int [tamanio];
 
         // if (k > tamanio){
-        //     int tamanio //! PROBAR A HACER UN FOR QUE IETERE EL NUMERO DE VECES QUE SUPERA K A LENGTH CON UN CONTADOR
+        //     int tamanio //! PROBAR A HACER UN FOR QUE ITERE EL NUMERO DE VECES QUE SUPERA K A LENGTH CON UN CONTADOR
         // }
 
         for (int posicion = 0; posicion < tamanio; posicion++){
@@ -171,51 +187,58 @@ public class EjerciciosArrays {
         }
         return cuartoArray;
     }
+
     /**
      * Elementos que están en un array u otro, pero no en ambos.
      * @param arrayA
      * @param arrayB
      * @return array con la diferencia simetrica
      */
-    // public static int[] difSim(int[] arrayA, int[] arrayB) {
-    //     int tamanyo1 = arrayA.length;
-    //     int tamanyo2 = arrayB.length;
-    //     int[] tercerArray = new int [tamanyo2];
-    //     if (tamanyo1 > tamanyo2) {
-    //     int[] tercerArray = new int [tamanyo1];
-    //     }
-    //     int tamanyoFuturo = 0;
- 
-    //     for (int i = 0; i < arrayA.length; i++){
-    //         tercerArray[i] = arrayA[i];
-    //         System.out.println("debug 1 - "+tercerArray[i] +"-" + tamanyoFuturo);
-    //         for (int j = 0; j < arrayB.length; j++){ //!conseguimos la interseccion
-    //             if (arrayA[i] != arrayB[j]){
-    //                 tamanyoFuturo ++;
-    //                 tercerArray[j] = arrayB [j];
-    //                 System.out.println("debug 2 - "+tercerArray[j]+"-" +  tamanyoFuturo);
-    //             }
-    //         }
-    //     }
-           
-        //     for (int j = 0; j < arrayB.length; j++){ //!conseguimos la interseccion
-        //         if (arrayB[i] != tercerArray[j]){
-        //             tamanyoFuturo ++;
-        //             tercerArray[i] = arrayA[i];
 
-        //         }  
-        //     }
-        // }
-        // int [] cuartoArray = new int [tamanyoFuturo]; //! conseguir que solo imprima la interseccion sin 0's
-        // for (int k = 0; k < cuartoArray.length; k++){
-        //     cuartoArray[k] = tercerArray[k];
-        // }
-    //     return tercerArray;
-    // }
+    public static int[] difSim(int[] arrayA, int[] arrayB) {
+        int[] temporal = new int[arrayA.length + arrayB.length];
+        int contador = 0;
+    
+        // Añadir elementos de A que no están en B
+        for (int i = 0; i < arrayA.length; i++) {
+            boolean estaEnB = false;
+            for (int j = 0; j < arrayB.length; j++) {
+                if (arrayA[i] == arrayB[j]) {
+                    estaEnB = true;
+                    break;
+                }
+            }
+            if (!estaEnB) {
+                temporal[contador++] = arrayA[i];
+            }
+        }
+    
+        // Añadir elementos de B que no están en A
+        for (int i = 0; i < arrayB.length; i++) {
+            boolean estaEnA = false;
+            for (int j = 0; j < arrayA.length; j++) {
+                if (arrayB[i] == arrayA[j]) {
+                    estaEnA = true;
+                    break;
+                }
+            }
+            if (!estaEnA) {
+                temporal[contador++] = arrayB[i];
+            }
+        }
+    
+        // 3️⃣ Crear array final del tamaño exacto
+        int[] resultado = new int[contador];
+        for (int i = 0; i < contador; i++) {
+            resultado[i] = temporal[i];
+        }
+    
+        return resultado;
+    }
 
 
     /**
-     * Comprueba si un array es palindromo. //! PREGUNTA DE EXAMEN
+     * Comprueba si un array es palindromo.  //! EJERCICIO DE EXAMEN
      * @param array de entrada
      * @return true/false si es palindrome
      */
@@ -230,18 +253,20 @@ public class EjerciciosArrays {
     }
 
     /**
-     * Busca el indice de un valor.   //! PREGUNTA DE EXAMEN
+     * Busca el indice de un valor. //! EJERCICIO DE EXAMEN
      * @param array de entrada 
      * @param objetivo del indice
      * @return posicion en la que se encuentra
      */
     public static int buscar(int[] array, int objetivo) {
-        if (objetivo < 0 || objetivo > array.length-1){
-            return -1;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == objetivo) {
+                return i;
+            }
         }
-
-        return array[objetivo];
-    } 
+        return -1;
+    }
+    
 
     /**
      * Elimina elementos en las posiciones dadas.  //!EJERCICIO DE EXAMEN
@@ -282,7 +307,7 @@ public static void main(String[] args) {
 
         System.out.println("Pares de calcetines: " + EjerciciosArrays.paresCalcetines(new String[]{"rojo","azul","rojo","rojo","azul"}, "rojo"));
 
-        // System.out.println("Playlist sin repetidos: " + Arrays.toString(EjerciciosArrays.sinRepetidos(new String[]{"A","B","A","C","B"})));
+        System.out.println("Playlist sin repetidos: " + Arrays.toString(EjerciciosArrays.sinRepetidos(new String[]{"A","B","A","C","B"})));
 
         System.out.println("Rotación del carrusel: " + Arrays.toString(EjerciciosArrays.rotar(new int[]{1,2,3,4,5}, 2)));
 

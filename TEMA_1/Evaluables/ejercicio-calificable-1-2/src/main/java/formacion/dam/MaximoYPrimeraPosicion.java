@@ -1,5 +1,17 @@
 package formacion.dam;
 
+    /**
+     * @author Ivan Mesa
+     * @date 17/10/2025
+     * @version 1.0
+     * @bugs No hay bugs conocidos
+     * @brief Clase para calcular el máximo y la primera posición de un array de enteros.
+     * 
+     * 
+     *  Calcula el valor máximo y la primera posición en la que aparece en el array dado.
+     * 
+     * @param datos el arreglo de enteros a analizar
+     */
 
 public final class MaximoYPrimeraPosicion {
     

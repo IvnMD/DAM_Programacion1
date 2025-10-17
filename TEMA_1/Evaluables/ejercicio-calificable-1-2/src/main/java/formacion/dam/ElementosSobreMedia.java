@@ -2,6 +2,18 @@ package formacion.dam;
 
 import java.util.Arrays;
 
+    /**
+     * @author Ivan Mesa
+     * @date 17/10/2025
+     * @version 1.0
+     * @bugs No hay bugs conocidos
+     * @brief Clase para que almacena en un array los elementos mayores a la media de otro array.
+     * 
+     * 
+     *  Almacena en un nuevo array los elementos mayores a la media del array dado. 
+     * 
+     * @param datos el arreglo de enteros a filtrar
+     */
 
 public final class ElementosSobreMedia {
     private ElementosSobreMedia() {}

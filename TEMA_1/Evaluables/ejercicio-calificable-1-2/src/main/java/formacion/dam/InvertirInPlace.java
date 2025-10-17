@@ -1,5 +1,18 @@
 package formacion.dam;
 
+    /**
+     * @author Ivan Mesa
+     * @date 17/10/2025
+     * @version 1.0
+     * @bugs No hay bugs conocidos
+     * @brief Clase para invertir un array de enteros in place.
+     * 
+     * 
+     *  Invierte el array dado modificando el mismo array.
+     * 
+     * @param datos el arreglo de enteros a invertir
+     */
+
 public final class InvertirInPlace {
     private InvertirInPlace() {}
     public static int[] invertir(int[] datos) {

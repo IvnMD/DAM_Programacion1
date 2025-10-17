@@ -177,26 +177,26 @@ public class EjerciciosArrays {
      * @param arrayB
      * @return array con la diferencia simetrica
      */
-    public static int[] difSim(int[] arrayA, int[] arrayB) {
-        int tamanyo1 = arrayA.length;
-        int tamanyo2 = arrayB.length;
-        int[] tercerArray = new int [tamanyo2];
-        if (tamanyo1 > tamanyo2) {
-        int[] tercerArray = new int [tamanyo1];
-        }
-        int tamanyoFuturo = 0;
+    // public static int[] difSim(int[] arrayA, int[] arrayB) {
+    //     int tamanyo1 = arrayA.length;
+    //     int tamanyo2 = arrayB.length;
+    //     int[] tercerArray = new int [tamanyo2];
+    //     if (tamanyo1 > tamanyo2) {
+    //     int[] tercerArray = new int [tamanyo1];
+    //     }
+    //     int tamanyoFuturo = 0;
  
-        for (int i = 0; i < arrayA.length; i++){
-            tercerArray[i] = arrayA[i];
-            System.out.println("debug 1 - "+tercerArray[i] +"-" + tamanyoFuturo);
-            for (int j = 0; j < arrayB.length; j++){ //!conseguimos la interseccion
-                if (arrayA[i] != arrayB[j]){
-                    tamanyoFuturo ++;
-                    tercerArray[j] = arrayB [j];
-                    System.out.println("debug 2 - "+tercerArray[j]+"-" +  tamanyoFuturo);
-                }
-            }
-        }
+    //     for (int i = 0; i < arrayA.length; i++){
+    //         tercerArray[i] = arrayA[i];
+    //         System.out.println("debug 1 - "+tercerArray[i] +"-" + tamanyoFuturo);
+    //         for (int j = 0; j < arrayB.length; j++){ //!conseguimos la interseccion
+    //             if (arrayA[i] != arrayB[j]){
+    //                 tamanyoFuturo ++;
+    //                 tercerArray[j] = arrayB [j];
+    //                 System.out.println("debug 2 - "+tercerArray[j]+"-" +  tamanyoFuturo);
+    //             }
+    //         }
+    //     }
            
         //     for (int j = 0; j < arrayB.length; j++){ //!conseguimos la interseccion
         //         if (arrayB[i] != tercerArray[j]){
@@ -210,37 +210,54 @@ public class EjerciciosArrays {
         // for (int k = 0; k < cuartoArray.length; k++){
         //     cuartoArray[k] = tercerArray[k];
         // }
-        return tercerArray;
-    }
+    //     return tercerArray;
+    // }
 
 
     /**
-     * Comprueba si un array es palindromo.
+     * Comprueba si un array es palindromo. //! PREGUNTA DE EXAMEN
      * @param array de entrada
      * @return true/false si es palindrome
      */
     public static boolean esPalindromo(int[] array) {
-        return false;
+
+        for (int i = 0; i < array.length / 2; i++){
+            if (array[i] != array[array.length -1 - i]){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
-     * Busca el indice de un valor.
+     * Busca el indice de un valor.   //! PREGUNTA DE EXAMEN
      * @param array de entrada 
      * @param objetivo del indice
      * @return posicion en la que se encuentra
      */
     public static int buscar(int[] array, int objetivo) {
-        return -1;
-    }
+        if (objetivo < 0 || objetivo > array.length-1){
+            return -1;
+        }
+
+        return array[objetivo];
+    } 
 
     /**
-     * Elimina elementos en las posiciones dadas.
+     * Elimina elementos en las posiciones dadas.  //!EJERCICIO DE EXAMEN
      * @param array de entrada
      * @param indices con las posiciones a liminar
      * @return array sin las posiciones dadas
      */
     public static int[] eliminarPorIndices(int[] array, int[] indices) {
-        return null;
+        for (int indice : indices){
+            array[indice] = 0;
+        }
+        //? for (int i=0;i<indices.length-1;i++){      OTRA SOLUCION
+        //?     int valor = indices[i];
+        //?     array[valor] = 0;
+        // }
+        return array;
     }
 
     /**
@@ -249,7 +266,14 @@ public class EjerciciosArrays {
      * @return array con la matriz aplanada
      */
     public static int[] aplanar2D(int[][] matriz) {
-        return null;
+        int [] array = new int [matriz.length];
+        for (int i = 0; i < matriz.length; i++){
+            array[i] = matriz[i];
+            for (int j = 0; j < matriz.length; j++){
+                array[j] = matriz[j];
+            }
+        }
+        return array;
     }
 
 public static void main(String[] args) {
@@ -270,7 +294,7 @@ public static void main(String[] args) {
 
         System.out.println(" Intersección: " + Arrays.toString(EjerciciosArrays.interseccion(new int[]{1,2,3,4}, new int[]{3,4,5})));
  
-        System.out.println("Diferencia simétrica: " + Arrays.toString(EjerciciosArrays.difSim(new int[]{1,2,3}, new int[]{3,4,5})));
+        // System.out.println("Diferencia simétrica: " + Arrays.toString(EjerciciosArrays.difSim(new int[]{1,2,3}, new int[]{3,4,5})));
 
         System.out.println("Palíndromo: " + EjerciciosArrays.esPalindromo(new int[]{1,2,3,2,1}));
 

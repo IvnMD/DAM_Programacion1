@@ -271,7 +271,7 @@ public class EjerciciosArrays {
     /**
      * Elimina elementos en las posiciones dadas.  //!EJERCICIO DE EXAMEN
      * @param array de entrada
-     * @param indices con las posiciones a liminar
+     * @param indices con las posiciones a eliminar
      * @return array sin las posiciones dadas
      */
     public static int[] eliminarPorIndices(int[] array, int[] indices) {
@@ -293,13 +293,41 @@ public class EjerciciosArrays {
     public static int[] aplanar2D(int[][] matriz) {
         int [] array = new int [matriz.length];
         for (int i = 0; i < matriz.length; i++){
-            array[i] = matriz[i];
+            array[i] = matriz[i][i];
             for (int j = 0; j < matriz.length; j++){
-                array[j] = matriz[j];
+                array[j] = matriz[j][j];
             }
         }
         return array;
     }
+
+    // // /**
+    // //  * Imprime los numeros pares de un array
+    // //  * @param args
+    // //  * @return array con los numeros pares
+    // //  */
+
+    // //  public static int[] EjercicioSebasJaime(int[] array) {
+    // //     // int [] array = {2,3,6,4,7};
+    // //     int [] auxiliar = new int [array.length];
+    // //     int contador = 0;
+
+    // //     for (int i = 0; i < array.length; i++){
+    // //         if (array[i] % 2 == 0){
+    // //             auxiliar[i] = array[i];
+    // //             contador++;
+    // //         }
+    // //     }
+    // //     int[] solucion = new int [contador];
+    // //     for (int j = 0; j < contador; j++){
+    // //         if (solucion[j] != 0){
+    // //             solucion[j] = auxiliar[j];
+    // //         }
+
+    // //     }
+    // //     System.out.println("Solucion: " + solucion);
+    // //     return solucion;
+    // //  }
 
 public static void main(String[] args) {
 
@@ -319,7 +347,7 @@ public static void main(String[] args) {
 
         System.out.println(" Intersección: " + Arrays.toString(EjerciciosArrays.interseccion(new int[]{1,2,3,4}, new int[]{3,4,5})));
  
-        // System.out.println("Diferencia simétrica: " + Arrays.toString(EjerciciosArrays.difSim(new int[]{1,2,3}, new int[]{3,4,5})));
+        System.out.println("Diferencia simétrica: " + Arrays.toString(EjerciciosArrays.difSim(new int[]{1,2,3}, new int[]{3,4,5})));
 
         System.out.println("Palíndromo: " + EjerciciosArrays.esPalindromo(new int[]{1,2,3,2,1}));
 
@@ -329,5 +357,7 @@ public static void main(String[] args) {
 
     
         System.out.println("Aplanar Matriz: " + Arrays.toString(EjerciciosArrays.aplanar2D(new int[][]{{1,2},{3},{4,5}})));
+
+        // System.out.println("Ejercicio Sebas/Jaime: " +  Arrays.toString(EjerciciosArrays.EjercicioSebasJaime(new int[]{2,3,6,4,7})));
     }
 }

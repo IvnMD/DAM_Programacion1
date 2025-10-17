@@ -69,6 +69,7 @@ public class MiniCalculadora {
             System.out.println("Operación no válida");
             break;
     }
+    sc.close();
  }
 
 }

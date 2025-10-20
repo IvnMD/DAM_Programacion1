@@ -13,7 +13,7 @@ public class Persona {
     private Strgins apellido2;
 
     /**
-     * Contructor por defecto
+     * Contructor por defecto  //! Importantisimo ponerlo en el examen del viernes. 
      */
     public Persona() {};
     /**
@@ -22,6 +22,31 @@ public class Persona {
      */
     public Persona(String nombre){
         this.nombre; 
+    }
+    /**
+     * Constructor de la clase persona
+     * @param fechaNacimiento fecha de nacimiento de la persona
+     * @param nombre Nombre de la perdona
+     */
+    public Persona(String fechaNacimiento, String nombre) {
+        this.fechaNacimiento = fechaNacimiento;
+        this.nombre = nombre;
+    }
+
+    public void setFechaNacimeinto(String fechaNaciemiento){
+        this.fechaNacimiento = fechaNaciemiento;
+    }
+
+    public String getFechaNacimiento(){
+        return this.fechaNacimiento;
+    }
+
+    public String getApellido1() {
+        return this.apellido1;
+    }
+
+    public void setApellido1(String apellido1) {
+        this.apellido1 = apellido1;
     }
 
 }

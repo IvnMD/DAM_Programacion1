@@ -9,13 +9,13 @@ public class Programa {
         System.out.println("valor" + persona1);
 
         Persona persona2;
-        persona2 = new Persona("00000000000");
+        persona2 = new Persona("433855377-x");
         if (persona1.equals(persona2)){
             System.out.println("Somos la misma persona");
         }
 
         Persona persona3;
-        persona3 = new Persona("qweqwetrryt");
+        persona3 = new Persona("433855377-w");
         if (persona1.equals(persona3)){
             System.out.println("Somos la misma persona");
         }

@@ -99,7 +99,9 @@ public class Persona {
         return false;
         }
         Persona persona = (Persona)o;
-        if (identificador!= persona.getIdentificador());
+        if (identificador!= persona.getIdentificador()) {
+            return false;
+        }
         return true;
     }
 

@@ -1,7 +1,5 @@
 package formacion.dam;
 
-import java.util.Arrays;
-
     /**
      * @author Ivan Mesa
      * @date 17/10/2025
@@ -15,6 +13,7 @@ import java.util.Arrays;
      * @param datos el arreglo de enteros a filtrar
      */
 
+@SuppressWarnings("unused")
 public final class ElementosSobreMedia {
     private ElementosSobreMedia() {}
     

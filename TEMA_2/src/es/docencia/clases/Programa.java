@@ -19,6 +19,5 @@ public class Programa {
         if (persona1.equals(persona3)){
             System.out.println("Somos la misma persona");
         }
-
     }
 }

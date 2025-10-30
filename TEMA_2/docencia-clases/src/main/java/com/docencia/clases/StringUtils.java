@@ -75,7 +75,41 @@ public class StringUtils {
     }
 
     public static String acronimo(String frase) {
-        return null;
+        if (frase == null || frase.isEmpty()){
+            return frase;
+        }
+        String resultado = " ";
+        System.out.println("Vamos a fabricar un acronimo con la frase: " + frase);
+        frase = frase.trim();
+        String[] palabras = frase.split(" ");
+        for (int i = 0; i < palabras.length; i++){
+            String palabra = palabras[i];
+            char letra = palabra.charAt(0);
+            resultado += String.valueOf(letra);
+        }
+        
+        return resultado.toUpperCase();
+    }
+
+    public static String acronimoMayus(String frase) {
+        if (frase == null || frase.isEmpty()){
+            return frase;
+        }
+        String resultado = " ";
+        System.out.println("Vamos a fabricar un acronimo con las mayusculas de la frase: " + frase);
+        frase = frase.trim();
+        String[]palabras = frase.split(" ");
+        for (int i = 0; i < palabras.length; i++){
+            String palabra = palabras[i];
+            char letra = palabra.charAt(0);
+            String letraStr = String.valueOf(letra);
+            String letraMayus = letraStr.toUpperCase();
+            if (letraStr.equals(letraMayus)){
+                resultado+= String.valueOf(letra);
+            }
+        }
+
+        return resultado;
     }
 
 
@@ -88,6 +122,10 @@ public class StringUtils {
         System.out.println("Total de vocales y consonantes en ese orden = [" + resultado2[0] + ","+ resultado2[1] + "]");
         boolean resultado3 = esPalindromo("Arepera");
         System.out.println("Es palindromo? = " + resultado3);
+        String resultado4 = acronimo("   Hola soy una Frase");
+        System.out.println(resultado4);
+        String resultado5 = acronimoMayus("   Hola soy una Frase");
+        System.out.println(resultado5);
         
     }
 }

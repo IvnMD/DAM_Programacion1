@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.docencia.programacion.Ejercicio31Test
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio31Test
-com.docencia.programacion.Ejercicio31Test.gradesAndAverage -- Time elapsed: 0.004 s <<< FAILURE!
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.013 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio31Test
+com.docencia.programacion.Ejercicio31Test.gradesAndAverage -- Time elapsed: 0.009 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <7.5> but was: <0.0>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

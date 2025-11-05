@@ -2,7 +2,7 @@
 Test set: com.docencia.programacion.Ejercicio20Test
 -------------------------------------------------------------------------------
 Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.005 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio20Test
-com.docencia.programacion.Ejercicio20Test.initialsCheck -- Time elapsed: 0.001 s <<< FAILURE!
+com.docencia.programacion.Ejercicio20Test.initialsCheck -- Time elapsed: 0 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <AL> but was: <>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: com.docencia.programacion.Ejercicio15Test
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.014 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio15Test
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio15Test
 com.docencia.programacion.Ejercicio15Test.studentData -- Time elapsed: 0.001 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <Lucia> but was: <null>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
@@ -15,7 +15,7 @@ org.opentest4j.AssertionFailedError: expected: <Lucia> but was: <null>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-com.docencia.programacion.Ejercicio15Test.adultCheck -- Time elapsed: 0.001 s <<< FAILURE!
+com.docencia.programacion.Ejercicio15Test.adultCheck -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

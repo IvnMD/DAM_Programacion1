@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.docencia.programacion.Ejercicio10Test
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio10Test
-com.docencia.programacion.Ejercicio10Test.salaryNormalCase -- Time elapsed: 0.003 s <<< FAILURE!
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.012 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio10Test
+com.docencia.programacion.Ejercicio10Test.salaryNormalCase -- Time elapsed: 0.010 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <400.0> but was: <0.0>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

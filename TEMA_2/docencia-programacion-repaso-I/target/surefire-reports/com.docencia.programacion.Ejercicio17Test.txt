@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.docencia.programacion.Ejercicio17Test
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio17Test
-com.docencia.programacion.Ejercicio17Test.enrollUntilFull -- Time elapsed: 0.002 s <<< FAILURE!
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.010 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio17Test
+com.docencia.programacion.Ejercicio17Test.enrollUntilFull -- Time elapsed: 0.001 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -15,7 +15,7 @@ org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-com.docencia.programacion.Ejercicio17Test.classroomNameCheck -- Time elapsed: 0.001 s <<< FAILURE!
+com.docencia.programacion.Ejercicio17Test.classroomNameCheck -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <Bases de Datos> but was: <null>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

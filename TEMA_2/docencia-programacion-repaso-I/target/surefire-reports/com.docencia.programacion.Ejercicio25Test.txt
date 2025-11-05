@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.docencia.programacion.Ejercicio25Test
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.004 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio25Test
-com.docencia.programacion.Ejercicio25Test.sortBasic -- Time elapsed: 0.001 s <<< FAILURE!
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.021 s <<< FAILURE! -- in com.docencia.programacion.Ejercicio25Test
+com.docencia.programacion.Ejercicio25Test.sortBasic -- Time elapsed: 0.008 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: actual array was <null>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

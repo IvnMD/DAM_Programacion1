@@ -1,7 +1,10 @@
 package com.docencia.programacion;
 
 /**
- * @since 
+ * @author IvnMD
+ * @since 06/11/25
+ * @version 1.0.0
+ * @brief Operaciones basicas de rectangulo: area y perimetro.
  */
 
 public class Ejercicio4 {

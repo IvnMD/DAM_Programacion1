@@ -24,4 +24,5 @@ class Ejercicio22Test {
         assertTrue(Ejercicio22.isValidDni("12345678Z"));
         assertTrue(Ejercicio22.isValidDni("00000000A"));
     }
+    
 }

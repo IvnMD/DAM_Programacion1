@@ -3,7 +3,7 @@ package com.docencia.programacion;
 /**
  * @author jpexposito
  * @version 1.0.0
- * Clase que implementa el ejercicio numero 2
+ * Clase que implementa el ejercicio numero 2     //!VINO HECHO
  */
 public class Ejercicio2 {
 

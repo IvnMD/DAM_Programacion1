@@ -31,4 +31,20 @@ class Ejercicio27Test {
         assertEquals(7, Ejercicio27.sumColumn(m, 1));
         assertEquals(9, Ejercicio27.sumColumn(m, 2));
     }
+
+    @Test
+    @Order(3)
+    void matrixSums2() {
+        int[][] m = {
+            {1,2},
+            {3,4},
+            {5,6}
+        };
+        assertEquals(3, Ejercicio27.sumRow(m, 0));
+        assertEquals(7, Ejercicio27.sumRow(m, 1));
+        assertEquals(11, Ejercicio27.sumRow(m, 2));
+
+        assertEquals(9, Ejercicio27.sumColumn(m, 0));
+        assertEquals(12, Ejercicio27.sumColumn(m, 1));
+    }
 }

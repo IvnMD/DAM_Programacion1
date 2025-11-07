@@ -19,29 +19,46 @@ public class Ejercicio28 {
      * @param y Coordenada y
      */
     public Ejercicio28(double x, double y) {
-        this.x = 0.0;
-        this.y = 0.0;
+        this.x = x;
+        this.y = y;
     }
-
+    /**
+     * Funcion que suma dos vectores
+     * @param other Segundos parametros del vector
+     * @return Suma de ambos vectores
+     */
     public Ejercicio28 add(Ejercicio28 other) {
         Ejercicio28 suma = new Ejercicio28(this.x + other.x, this.y + other.y);
         return suma;
     }
-
+    /**
+     * Funcion que calcula el modulo de un vector
+     * @return Modulo del vector
+     */
     public double magnitude() {
-        double resultado = Math.sqrt(x * x + y * y);
+        double resultado = Math.sqrt((Math.pow(x,2)) + Math.pow(y,2));
         return resultado;
     }
-
+    /**
+     * Funcion que calcula la distancia entre dos vectores
+     * @param other Segundo vector a introducir
+     * @return Distancia entre ambos vectores
+     */
     public double distanceTo(Ejercicio28 other) {
         Ejercicio28 resta = new Ejercicio28(this.x - other.x, this.y - other.y);
         return resta.magnitude();
     }
-
+    /**
+     * Getter de X
+     * @return Devuelve el valor de X
+     */
     public double getX() {
         return this.x;
     }
-
+    /**
+     * Getter de Y
+     * @return Devuelve Y
+     */
     public double getY() {
         return this.y;
     }

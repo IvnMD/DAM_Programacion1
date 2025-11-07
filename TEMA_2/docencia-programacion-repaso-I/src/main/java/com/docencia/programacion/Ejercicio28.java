@@ -25,7 +25,7 @@ public class Ejercicio28 {
 
     public Ejercicio28 add(Ejercicio28 other) {
         Ejercicio28 suma = new Ejercicio28(this.x + other.x, this.y + other.y);
-        return new Ejercicio28(0.0, 0.0);
+        return suma;
     }
 
     public double magnitude() {
@@ -34,17 +34,15 @@ public class Ejercicio28 {
     }
 
     public double distanceTo(Ejercicio28 other) {
-        // TODO implementar
-        return 0.0;
+        Ejercicio28 resta = new Ejercicio28(this.x - other.x, this.y - other.y);
+        return resta.magnitude();
     }
 
     public double getX() {
-        // TODO implementar
-        return 0.0;
+        return this.x;
     }
 
     public double getY() {
-        // TODO implementar
-        return 0.0;
+        return this.y;
     }
 }

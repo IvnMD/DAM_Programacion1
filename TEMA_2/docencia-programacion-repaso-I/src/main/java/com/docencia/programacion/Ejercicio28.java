@@ -1,23 +1,36 @@
 package com.docencia.programacion;
-
+/**
+ * @author IvnMD
+ * @date 07/11/25
+ * @version 1.0.0
+ * @brief Clase para representar un punto en 2D y calcular suma, magnitud y distancia
+ */
 public class Ejercicio28 {
     private final double x;
     private final double y;
 
+    // Constructor vacío: usa valores por defecto
+    public Ejercicio28() {
+        this(0, 0); // llama al constructor con parámetros
+    }
+    /**
+     * Constructor con parámetros
+     * @param x Coordenada x
+     * @param y Coordenada y
+     */
     public Ejercicio28(double x, double y) {
-        // TODO asignar campos
         this.x = 0.0;
         this.y = 0.0;
     }
 
     public Ejercicio28 add(Ejercicio28 other) {
-        // TODO implementar
+        Ejercicio28 suma = new Ejercicio28(this.x + other.x, this.y + other.y);
         return new Ejercicio28(0.0, 0.0);
     }
 
     public double magnitude() {
-        // TODO implementar
-        return 0.0;
+        double resultado = Math.sqrt(x * x + y * y);
+        return resultado;
     }
 
     public double distanceTo(Ejercicio28 other) {

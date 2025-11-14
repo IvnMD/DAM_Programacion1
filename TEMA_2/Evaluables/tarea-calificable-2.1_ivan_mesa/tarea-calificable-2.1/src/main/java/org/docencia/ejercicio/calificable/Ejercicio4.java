@@ -16,17 +16,31 @@ public class Ejercicio4 {
         if (frase == null || frase.isEmpty() || palabra == null || palabra.isEmpty()){
             return 0;
         }
-        int contador = 0;
-        frase = frase.trim().toLowerCase();
-        String []busqueda = frase.split(" ");
-        for (int i = 0; i< frase.length(); i++){
-            for (int j = 0; j < palabra.length(); j++){
-                if (frase.charAt(i) == palabra.charAt(i))
-                contador++;
-                }
-            }
-           return contador; 
-    
-    }
+        // int contador = 0;
+        // frase = frase.trim().toLowerCase();
+        // String []busqueda = frase.split(" ");
+        // for (int i = 0; i< frase.length(); i++){
+        //     for (int j = 0; j < palabra.length(); j++){                                    //!Respuesta examen
+        //         if (frase.charAt(i) == palabra.charAt(i))
+        //         contador++;
+        //         }
+        //     }
 
+
+        // Usar expresiones regulares para separar las palabras de la frase        //! RESPUESTA IA
+        String[] palabrasEnFrase = frase.toLowerCase().split("[^a-zA-Z0-9]+");
+        
+        // Convertir la palabra a minúsculas para la comparación
+        palabra = palabra.toLowerCase();
+        
+        // Comprobar si la palabra aparece en la frase
+        for (String palabraFrase : palabrasEnFrase) {
+            if (palabraFrase.equals(palabra)) {
+                return palabra.length(); // Devolver el tamaño de la palabra
+            }
+        }
+
+        return 0; // No se encontró la palabra
+    }
 }
+

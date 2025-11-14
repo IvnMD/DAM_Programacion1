@@ -3,7 +3,7 @@ package com.docencia.clases;
 /**
  * Clase Persona que identifica una persona de forma unica
  */
-public class Persona {
+public class Persona extends Object{
     private String nombre;
     private int edad;
     private String identificador;
@@ -54,6 +54,17 @@ public class Persona {
     public String getNombre() {
         return nombre;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " nombre='" + nombre + "'" +
+            ", edad='" + edad + "'" +
+            ", identificador='" + identificador + "'" +
+            "}";
+    }
+
 
     public static void main(String[] args) {
         

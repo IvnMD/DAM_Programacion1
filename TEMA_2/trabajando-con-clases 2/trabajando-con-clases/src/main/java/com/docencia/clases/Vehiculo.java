@@ -2,7 +2,7 @@ package com.docencia.clases;
 
 import java.util.Objects;
 
-public abstract class Vehiculo {
+public abstract class Vehiculo implements IVehiculo{
     private String matricula;
     private String modelo;
     private String marca;
@@ -76,6 +76,20 @@ public abstract class Vehiculo {
             "}";
     }
 
+    @Override
+    public int numeroRuedas() {
+        return 0;
+    }
+
+    @Override
+    public String sonido(){
+        return "";
+    }
+
+    @Override
+    public int numeroPuertas(){
+        return 0;
+    }
 
     @Override
     public boolean equals(Object o) {

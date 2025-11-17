@@ -10,6 +10,9 @@ public class Motocicleta extends Vehiculo{
         return "Ratatatata";
     }
 
-    
+    @Override
+    public int numeroRuedas() {
+        return 2;
+    }
 
 }

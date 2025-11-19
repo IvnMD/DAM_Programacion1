@@ -32,8 +32,10 @@ public class Coche extends Vehiculo{
         }
     }
 
-    public boolean contains(Coche coche) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'contains'");
-    }
+
+
+    // // public boolean contains(Coche coche) {
+    // //     // TODO Auto-generated method stub
+    // //     throw new UnsupportedOperationException("Unimplemented method 'contains'");
+    // // }
 }

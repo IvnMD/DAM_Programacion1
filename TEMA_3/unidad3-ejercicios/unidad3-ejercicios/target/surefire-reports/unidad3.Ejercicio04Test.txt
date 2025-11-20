@@ -1,0 +1,25 @@
+-------------------------------------------------------------------------------
+Test set: unidad3.Ejercicio04Test
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.078 s <<< FAILURE! -- in unidad3.Ejercicio04Test
+unidad3.Ejercicio04Test.testArrayVacio -- Time elapsed: 0.043 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "unidad3.Ejercicio04$ContadorSignos.getPositivos()" because "contador" is null
+	at unidad3.Ejercicio04Test.testArrayVacio(Ejercicio04Test.java:24)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+unidad3.Ejercicio04Test.testNull -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "unidad3.Ejercicio04$ContadorSignos.getPositivos()" because "contador" is null
+	at unidad3.Ejercicio04Test.testNull(Ejercicio04Test.java:33)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+unidad3.Ejercicio04Test.testContarSignos -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "unidad3.Ejercicio04$ContadorSignos.getPositivos()" because "contador" is null
+	at unidad3.Ejercicio04Test.testContarSignos(Ejercicio04Test.java:14)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

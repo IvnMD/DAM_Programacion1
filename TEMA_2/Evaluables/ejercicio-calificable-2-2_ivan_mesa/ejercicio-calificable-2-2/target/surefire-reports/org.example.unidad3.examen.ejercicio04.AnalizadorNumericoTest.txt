@@ -1,0 +1,122 @@
+-------------------------------------------------------------------------------
+Test set: org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 6, Errors: 6, Skipped: 0, Time elapsed: 0.061 s <<< FAILURE! -- in org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarSignosDeberiaLanzarIllegalArgumentExceptionSiArrayNull -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3111)
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarSignosDeberiaLanzarIllegalArgumentExceptionSiArrayNull(AnalizadorNumericoTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.calcularParesImparesDeberiaFuncionarSiRangoEsUnSoloNumero -- Time elapsed: 0.006 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.docencia.unidad3.examen.ejercicio04.AnalizadorNumerico$ParesImpares.getPares()" because "resultado" is null
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.calcularParesImparesDeberiaFuncionarSiRangoEsUnSoloNumero(AnalizadorNumericoTest.java:87)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarSignosDeberiaContarCorrectamentePositivosNegativosYCeros -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.docencia.unidad3.examen.ejercicio04.AnalizadorNumerico$ContadorSignos.getPositivos()" because "contador" is null
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarSignosDeberiaContarCorrectamentePositivosNegativosYCeros(AnalizadorNumericoTest.java:22)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.calcularParesImparesDeberiaFuncionarSiAEsMayorQueB -- Time elapsed: 0 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.docencia.unidad3.examen.ejercicio04.AnalizadorNumerico$ParesImpares.getPares()" because "resultado" is null
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.calcularParesImparesDeberiaFuncionarSiAEsMayorQueB(AnalizadorNumericoTest.java:63)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contadorSignosEqualsYHashCodeDeberianFuncionarParaObjetosIguales -- Time elapsed: 0 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <org.docencia.unidad3.examen.ejercicio04.AnalizadorNumerico$ContadorSignos@5f683daf> but was: <org.docencia.unidad3.examen.ejercicio04.AnalizadorNumerico$ContadorSignos@78ffe6dc>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1141)
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contadorSignosEqualsYHashCodeDeberianFuncionarParaObjetosIguales(AnalizadorNumericoTest.java:136)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarPrimosDeberiaIgnorarNumerosMenoresOIgualesA1 -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <3> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:527)
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarPrimosDeberiaIgnorarNumerosMenoresOIgualesA1(AnalizadorNumericoTest.java:109)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarSignosDeberiaDevolverTodoCerosSiArrayVacio -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.docencia.unidad3.examen.ejercicio04.AnalizadorNumerico$ContadorSignos.getPositivos()" because "contador" is null
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarSignosDeberiaDevolverTodoCerosSiArrayVacio(AnalizadorNumericoTest.java:33)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.calcularParesImparesDeberiaFuncionarConRangoNegativo -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.docencia.unidad3.examen.ejercicio04.AnalizadorNumerico$ParesImpares.getPares()" because "resultado" is null
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.calcularParesImparesDeberiaFuncionarConRangoNegativo(AnalizadorNumericoTest.java:75)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarPrimosDeberiaFuncionarSiAEsMayorQueB -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <4> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:527)
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarPrimosDeberiaFuncionarSiAEsMayorQueB(AnalizadorNumericoTest.java:117)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.paresImparesEqualsYHashCodeDeberianFuncionarParaObjetosIguales -- Time elapsed: 0.007 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <org.docencia.unidad3.examen.ejercicio04.AnalizadorNumerico$ParesImpares@2cdd0d4b> but was: <org.docencia.unidad3.examen.ejercicio04.AnalizadorNumerico$ParesImpares@7e9131d5>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1141)
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.paresImparesEqualsYHashCodeDeberianFuncionarParaObjetosIguales(AnalizadorNumericoTest.java:147)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.calcularParesImparesDeberiaSepararCorrectamenteEnRangoPositivo -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.docencia.unidad3.examen.ejercicio04.AnalizadorNumerico$ParesImpares.getPares()" because "resultado" is null
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.calcularParesImparesDeberiaSepararCorrectamenteEnRangoPositivo(AnalizadorNumericoTest.java:51)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarPrimosDeberiaContarPrimosDelUnoAlDiez -- Time elapsed: 0.007 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <4> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:527)
+	at org.example.unidad3.examen.ejercicio04.AnalizadorNumericoTest.contarPrimosDeberiaContarPrimosDelUnoAlDiez(AnalizadorNumericoTest.java:101)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

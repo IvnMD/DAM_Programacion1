@@ -86,7 +86,7 @@ public class Ejercicio09 {
                 minimo = num;
             }
         }
-        double media = (double) suma / numeros.length;
+        double media = (double) suma / numeros.length;  //!El segundo double "(double)" sirve para mantener la precision entre una division de enteros en java
         return new Estadisticas(numeros.length, media, maximo, minimo);
     }
 }

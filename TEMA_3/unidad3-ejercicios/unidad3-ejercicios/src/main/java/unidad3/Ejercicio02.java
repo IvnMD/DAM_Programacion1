@@ -59,6 +59,9 @@ public class Ejercicio02 {
         this.b = b;
     }
     public int getOpcion() {
+        if (opcion < 1 || opcion > 4) {
+            throw new IllegalArgumentException();
+        }
         return opcion;
     }
     public void setOpcion(int opcion) {
@@ -97,6 +100,23 @@ public class Ejercicio02 {
     
     
     public static double operar(double a, double b, int opcion) {
-        return 0;
+        switch (opcion) {
+            case 1 -> {
+                return a + b;
+            }
+            case 2 -> {
+                return a - b;
+            }
+            case 3 -> {
+                return a * b;
+            }
+            case 4 -> {
+                if (b == 0) {
+                    throw new ArithmeticException("Division por cero no permitida");
+                }
+                return a / b;
+            }
+            default -> throw new IllegalArgumentException("Opcion no valida");
+        }
     }
 }

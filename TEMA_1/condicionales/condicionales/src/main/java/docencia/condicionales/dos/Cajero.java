@@ -1,4 +1,4 @@
-package TEMA_1.condicionales.condicionales.src.main.java.docencia.condicionales.dos;
+package docencia.condicionales.dos;
 
 import java.util.Scanner;
 

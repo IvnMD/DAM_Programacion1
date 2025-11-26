@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.docencia.listas.ejercicio10.Ejercicio10Test
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.002 s <<< FAILURE! -- in com.docencia.listas.ejercicio10.Ejercicio10Test
+com.docencia.listas.ejercicio10.Ejercicio10Test.rotarLista -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: Por implementar
+	at com.docencia.listas.ejercicio10.Ejercicio10.rotar(Ejercicio10.java:11)
+	at com.docencia.listas.ejercicio10.Ejercicio10Test.rotarLista(Ejercicio10Test.java:17)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

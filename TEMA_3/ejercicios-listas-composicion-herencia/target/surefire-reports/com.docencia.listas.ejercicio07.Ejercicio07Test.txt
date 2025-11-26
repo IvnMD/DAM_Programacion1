@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: com.docencia.listas.ejercicio07.Ejercicio07Test
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.078 s <<< FAILURE! -- in com.docencia.listas.ejercicio07.Ejercicio07Test
+com.docencia.listas.ejercicio07.Ejercicio07Test.ordenarConSort -- Time elapsed: 0.044 s <<< ERROR!
+java.lang.UnsupportedOperationException: Por implementar
+	at com.docencia.listas.ejercicio07.Ejercicio07.ordenarConSort(Ejercicio07.java:11)
+	at com.docencia.listas.ejercicio07.Ejercicio07Test.ordenarConSort(Ejercicio07Test.java:17)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.docencia.listas.ejercicio07.Ejercicio07Test.ordenarSinSort -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.UnsupportedOperationException: Por implementar
+	at com.docencia.listas.ejercicio07.Ejercicio07.ordenarSinSort(Ejercicio07.java:15)
+	at com.docencia.listas.ejercicio07.Ejercicio07Test.ordenarSinSort(Ejercicio07Test.java:24)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

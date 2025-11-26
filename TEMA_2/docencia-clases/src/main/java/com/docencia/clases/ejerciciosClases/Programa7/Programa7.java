@@ -13,7 +13,6 @@ public class Programa7 {
         pelicula3.setAnyo(1999);
         System.out.println(pelicula3);
         System.out.println("¿1=3?" + pelicula1.equals(pelicula3));
-
     }
 
 }

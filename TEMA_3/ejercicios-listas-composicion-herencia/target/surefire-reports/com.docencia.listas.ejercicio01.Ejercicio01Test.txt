@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: com.docencia.listas.ejercicio01.Ejercicio01Test
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! -- in com.docencia.listas.ejercicio01.Ejercicio01Test
+com.docencia.listas.ejercicio01.Ejercicio01Test.maximoYMinimo -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: Por implementar
+	at com.docencia.listas.ejercicio01.Ejercicio01.maximo(Ejercicio01.java:12)
+	at com.docencia.listas.ejercicio01.Ejercicio01Test.maximoYMinimo(Ejercicio01Test.java:17)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.docencia.listas.ejercicio01.Ejercicio01Test.eliminarNegativos -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.UnsupportedOperationException: Por implementar
+	at com.docencia.listas.ejercicio01.Ejercicio01.eliminarNegativos(Ejercicio01.java:20)
+	at com.docencia.listas.ejercicio01.Ejercicio01Test.eliminarNegativos(Ejercicio01Test.java:24)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

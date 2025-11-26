@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.docencia.listas.ejercicio02.Ejercicio02Test
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.011 s <<< FAILURE! -- in com.docencia.listas.ejercicio02.Ejercicio02Test
+com.docencia.listas.ejercicio02.Ejercicio02Test.gestorTareasBasico -- Time elapsed: 0.007 s <<< ERROR!
+java.lang.UnsupportedOperationException: Por implementar
+	at com.docencia.listas.ejercicio02.Ejercicio02$GestorTareas.agregarTarea(Ejercicio02.java:16)
+	at com.docencia.listas.ejercicio02.Ejercicio02Test.gestorTareasBasico(Ejercicio02Test.java:13)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

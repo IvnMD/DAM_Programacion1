@@ -1,5 +1,6 @@
 package com.docencia.listas.ejercicio08;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ejercicio08 {
@@ -17,6 +18,12 @@ public class Ejercicio08 {
         }
 
         public List<Integer> getPares() {
+            List<Integer> cuenta = new ArrayList<>();
+            for (int i = 0; i < cuenta.size(); i++) {
+                if(cuenta % 2){
+
+                }
+            }
             return pares;
         }
 
@@ -26,6 +33,6 @@ public class Ejercicio08 {
     }
 
     public static ResultadoParticion partir(List<Integer> lista) {
-        throw new UnsupportedOperationException("Por implementar");
+        ResultadoParticion partido = ()
     }
 }

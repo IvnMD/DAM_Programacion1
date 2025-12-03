@@ -8,5 +8,20 @@ package com.docencia.herencia.ejercicio21;
  * al enunciado.
  */
 public class Ejercicio21 {
-    // TODO: implementar jerarquía de herencia para el ejercicio 21
+    public static void main(String[] args) {
+        Circulo circulo = new Circulo(21);
+        Triangulo triangulo = new Triangulo(10, 02);
+
+
+        System.out.println(circulo.area());
+        System.out.println(triangulo.area());
+
+        Figura cuadrado = new Figura (5, 5);
+
+        System.out.println(cuadrado.area());
+
+        Figura rectangulo = new Figura (10, 5);
+
+        System.out.println(rectangulo.area());
+    }
 }

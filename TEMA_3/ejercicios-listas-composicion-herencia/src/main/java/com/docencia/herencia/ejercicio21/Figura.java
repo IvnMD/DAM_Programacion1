@@ -18,7 +18,7 @@ public class Figura {
      * @return double con el valor obtenido
      */
     public double area(){
-        return base + altura;
+        return base * altura;
     }
 
 }

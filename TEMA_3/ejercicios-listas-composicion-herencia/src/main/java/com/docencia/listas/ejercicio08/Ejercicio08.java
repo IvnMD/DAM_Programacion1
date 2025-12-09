@@ -20,19 +20,33 @@ public class Ejercicio08 {
         public List<Integer> getPares() {
             List<Integer> cuenta = new ArrayList<>();
             for (int i = 0; i < cuenta.size(); i++) {
-                if(cuenta % 2){
-
+                if(cuenta.get(i) % 2 == 0){
+                    pares.add(cuenta.get(i));
                 }
             }
             return pares;
         }
 
         public List<Integer> getImpares() {
+            List<Integer> cuenta = new ArrayList<>();
+            for (int i = 0; i < cuenta.size(); i++) {
+                if (cuenta.get(i)% 2 != 0){
+                    impares.add(cuenta.get(i));
+                }
+            }
             return impares;
         }
     }
 
     public static ResultadoParticion partir(List<Integer> lista) {
-        ResultadoParticion partido = ()
+        ResultadoParticion partido = new ResultadoParticion(new ArrayList<>(), new ArrayList<>());
+        for (Integer numero : lista) {
+            if (numero % 2 == 0) {
+                partido.getPares().add(numero);
+            } else {
+                partido.getImpares().add(numero);   
+             }
+        }
+        return partido;
     }
 }

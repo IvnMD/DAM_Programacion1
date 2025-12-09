@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.docencia.listas.ejercicio08.Ejercicio08Test
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! -- in com.docencia.listas.ejercicio08.Ejercicio08Test
-com.docencia.listas.ejercicio08.Ejercicio08Test.partirParesEImpares -- Time elapsed: 0.004 s <<< ERROR!
-java.lang.UnsupportedOperationException: Por implementar
-	at com.docencia.listas.ejercicio08.Ejercicio08.partir(Ejercicio08.java:29)
-	at com.docencia.listas.ejercicio08.Ejercicio08Test.partirParesEImpares(Ejercicio08Test.java:17)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.050 s -- in com.docencia.listas.ejercicio08.Ejercicio08Test

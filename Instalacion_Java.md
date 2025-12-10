@@ -1,10 +1,8 @@
 <div align="justify">
 
-# ![logo](../../../images/coding-book.png) Code & Learn (JDK)
 
 ## OpenJDK 17
 
-![OpenJDK logo](images/open-jdk-logo.png)
 
 ---
 

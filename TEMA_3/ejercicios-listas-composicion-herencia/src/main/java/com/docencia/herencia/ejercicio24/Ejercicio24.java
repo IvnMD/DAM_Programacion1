@@ -8,5 +8,15 @@ package com.docencia.herencia.ejercicio24;
  * al enunciado.
  */
 public class Ejercicio24 {
-    // TODO: implementar jerarquía de herencia para el ejercicio 24
+    
+    public static void main(String[] args) {
+        EmailNotificacion email = new EmailNotificacion("asdasd", "sdfsdfdsf", "asdasdsad");
+        System.out.println(email);
+        SMSNotificacion sms = new SMSNotificacion("asdadasd", "asdasd",666);
+        System.out.println(sms);
+    }
+
+
+
+
 }

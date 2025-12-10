@@ -1,4 +1,4 @@
-package com.docencia.composicion.ejercicio12;
+package com.docencia.composicion.ejercicio15;
 import java.util.Objects;
 
 public class Producto {

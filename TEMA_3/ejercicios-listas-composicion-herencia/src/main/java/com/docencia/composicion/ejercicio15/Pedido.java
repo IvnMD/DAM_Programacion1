@@ -1,4 +1,4 @@
-package com.docencia.composicion.ejercicio12;
+package com.docencia.composicion.ejercicio15;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -48,7 +48,10 @@ public class Pedido {
         return total * (1- (porcentaje/100.0));
 
     }
-
+    
+    public void getPedido(List<LineaPedido> pedido){
+        this.pedido = pedido;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -66,11 +69,13 @@ public class Pedido {
         return super.hashCode()(pedido);
     }
 
+
     @Override
     public String toString() {
         return "{" +
             " pedido='" + getPedido() + "'" +
             "}";
     }
+
     
 }

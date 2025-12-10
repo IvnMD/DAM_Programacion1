@@ -1,5 +1,7 @@
 package com.docencia.composicion.ejercicio12;
 
+import com.docencia.composicion.ejercicio15.Producto;
+
 /**
  * Ejercicio 12 - ver la descripción detallada en el README.md.
  *
@@ -7,9 +9,5 @@ package com.docencia.composicion.ejercicio12;
  * de composición correspondientes al enunciado.
  */
 public class Ejercicio12 {
-    Producto producto1 = new Producto("Gafas", 20);
-    Producto producto2 = new Producto("Bolso", 61);
-    Producto producto3 = new Producto("Piedra", 12.74);
-
 
 }

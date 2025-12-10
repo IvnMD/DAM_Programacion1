@@ -283,10 +283,6 @@ public class Ejercicio12Test {
 
 ---
 
-Perfecto — continúo con los **Ejercicios 13 y 14**, con código **completamente comentado línea a línea** y tests JUnit para copiar/pegar.
-
----
-
 # ✅ **EJERCICIO 13 – COMPOSICIÓN: Biblioteca y Libro**
 
 **Paquete:** `com.docencia.composicion.ejercicio13`

@@ -11,9 +11,6 @@ public class Ejercicio3 {
     private Ejercicio3() {
     }
 
-    /**
-     * TODO: Implementar completamente según enunciado y tests.
-     */
     public static List<Integer> interseccionOrdenada(List<Integer> a, List<Integer> b) {
 
         if(a ==null || a.isEmpty() || b==null || b.isEmpty()){

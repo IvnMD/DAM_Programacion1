@@ -5,7 +5,9 @@ public class Ejercicio1 {
      * Suma todos los elementos del array. Si es null o vacío, devuelve 0.
      */
     public static int sumar(int[] numeros) {
-        // TODO: implementar usando un bucle for (no usar streams)
+        if (numeros == null || numeros.length==0){
+            return 0;
+        }
         throw new UnsupportedOperationException("No implementado");
     }
 

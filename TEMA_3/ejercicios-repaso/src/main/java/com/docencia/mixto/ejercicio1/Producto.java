@@ -7,10 +7,18 @@ public class Producto {
     private String categoria;
     private double precio;
 
+    /**
+     * Constructor vacio/por defecto
+     */
     public Producto() {
-        // TODO: constructor vacío
+        
     }
-
+    /**
+     * Constructor parametrico
+     * @param codigo 
+     * @param categoria
+     * @param precio
+     */
     public Producto(String codigo, String categoria, double precio) {
         // TODO: constructor con identificador y datos
 

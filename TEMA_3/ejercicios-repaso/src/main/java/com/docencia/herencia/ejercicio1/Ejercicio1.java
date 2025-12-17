@@ -29,8 +29,8 @@ public static class Circulo extends Figura {
 
         @Override
         public double area() {
-            // TODO: implementar fórmula del área del círculo.
-            return 0.0;
+            
+            return radio * 2 * Math.PI;
         }
     }
 
@@ -45,14 +45,23 @@ public static class Circulo extends Figura {
 
         @Override
         public double area() {
-            // TODO: implementar área = ancho * alto.
-            return 0.0;
+        
+            return ancho * alto;
         }
     }
 
     public static double areaTotal(List<Figura> figuras) {
-        // TODO: sumar áreas de todas las figuras no nulas.
-        return 0.0;
+        if (figuras == null || figuras.isEmpty()){
+            return 0.0;
+        }
+        double resultado = 0.0;
+
+        for (Figura figura : figuras) {
+            if (figura!=null) {
+                resultado = ;
+                
+            }
+        }        return resultado;
     }
 
 }

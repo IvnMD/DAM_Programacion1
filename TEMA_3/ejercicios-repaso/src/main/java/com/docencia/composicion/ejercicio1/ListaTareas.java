@@ -8,27 +8,35 @@ import java.util.List;
 public class ListaTareas {
     private final List<Tarea> tareas = new ArrayList<>();
 
-    /**
-     * TODO: Implementar según enunciado/tests.
-     */
+
     public void anadirTarea(String descripcion) {
-        // provisional: añade incluso descripciones inválidas
+        if (descripcion == null || descripcion.trim().isEmpty()) {
+            return;
+        }
         tareas.add(new Tarea(descripcion));
     }
 
-    /**
-     * TODO: Implementar según enunciado/tests.
-     */
+
     public boolean marcarComoCompletada(String descripcion) {
-        // provisional: no encuentra nada
+        if (descripcion == null) return false;
+        String buscada = descripcion.trim().toLowerCase();
+        for (Tarea tarea : tareas) {
+            if (tarea.getDescripcion().equals(buscada)) {
+                tarea.marcarCompletada();
+                return true;
+            }
+        }
         return false;
     }
 
-    /**
-     * TODO: Implementar según enunciado/tests.
-     */
+
     public List<Tarea> obtenerPendientes() {
-        // provisional: devuelve todas
-        return new ArrayList<>(tareas);
+        List<Tarea> pendientes = new ArrayList<>();
+        for (Tarea tarea : tareas) {
+            if (!tarea.isCompletada()) {
+                pendientes.add(tarea);
+            }
+        }
+        return pendientes;
     }
 }

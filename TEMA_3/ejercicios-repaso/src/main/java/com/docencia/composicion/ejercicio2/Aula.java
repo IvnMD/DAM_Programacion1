@@ -16,8 +16,13 @@ public class Aula {
     }
 
     public double mediaAlumno(String nombreAlumno) {
-        // TODO: calcular media ignorando mayúsculas/minúsculas; 0.0 si no hay notas válidas.
-        return 0.0;
+        double media = 0.0;
+        int contador = 0;    
+        for (RegistroNota registroNota : registros) {
+                media += registroNota.getNota();
+                contador++;
+            }
+        return contador == 0 ? 0.0 : media / contador;
     }
 
     public List<RegistroNota> getRegistros() {

@@ -10,7 +10,9 @@ public class BandejaMensajes {
 
     public void enviarMensaje(String remitente, String destinatario, String texto) {
 
-        if (remitente == null && destinatario == null && texto == null) {
+        if (remitente != null && !remitente.isBlank()
+            && destinatario != null && !destinatario.isBlank()
+            && texto != null && !texto.isBlank()) {
             mensajes.add(new Mensaje(remitente, destinatario, texto));
         }
     }
@@ -21,7 +23,7 @@ public class BandejaMensajes {
         }
         List<Mensaje> resultado = new ArrayList<>();
         destinatario = destinatario.trim();
-        for (Mensaje mensaje : resultado) {
+        for (Mensaje mensaje : mensajes) {
             if (mensaje.getDestinatario().toLowerCase().equals(destinatario.toLowerCase())) {
                 resultado.add(mensaje);
             }

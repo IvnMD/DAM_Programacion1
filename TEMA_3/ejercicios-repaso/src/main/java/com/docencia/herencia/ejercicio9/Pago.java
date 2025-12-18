@@ -7,6 +7,10 @@ import java.util.List;
 public abstract class Pago {
     private final double importeBase;
 
+    public Pago(){
+        importeBase = 0.0;
+    }
+
     protected Pago(double importeBase) {
         this.importeBase = importeBase;
     }

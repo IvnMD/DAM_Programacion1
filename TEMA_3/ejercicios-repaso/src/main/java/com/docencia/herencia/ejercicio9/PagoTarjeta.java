@@ -12,13 +12,27 @@ public class PagoTarjeta extends Pago {
 
         @Override
         public double calcularImporteFinal() {
-            // TODO: implementar según enunciado/tests.
-            return 0.0;
+            double resultado = getImporteBase() + (getImporteBase() * recargoPorcentaje / 100);
+                if (resultado <= 0.0){
+                    return 0.0;
+                }
+            return resultado;
         }
     
 
     public static double totalPagos(List<Pago> pagos) {
-        // TODO: sumar importes finales de pagos no nulos.
-        return 0.0;
+        if (pagos == null || pagos.isEmpty()) {
+            return 0.0;
+        }
+    
+        double total = 0.0;
+        for (Pago pago : pagos) {
+            if (pago != null) {
+                total += pago.calcularImporteFinal();
+            }
+        }
+        return total;
     }
+
 }
+

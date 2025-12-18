@@ -25,7 +25,7 @@ public class CentroSalud {
         for (Consulta consulta : consultas) {
             Paciente paciente = consulta.getPaciente();
             Paciente pacienteBuscar = new Paciente(nombrePaciente);
-            if (nombrePaciente.equals(paciente.getNombre())){
+            if (pacienteBuscar.equals(paciente)){
                 resultado = resultado +1;
             }
         }
@@ -33,6 +33,6 @@ public class CentroSalud {
     }
 
     public List<Consulta> getConsultas() {
-        return consultas;
+        return new ArrayList<>(consultas);
     }
 }

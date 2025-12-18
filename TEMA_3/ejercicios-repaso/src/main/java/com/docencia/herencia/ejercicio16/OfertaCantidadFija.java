@@ -12,7 +12,7 @@ public class OfertaCantidadFija extends Oferta {
 
     @Override
     public double precioFinal() {
-        // TODO: aplicar descuento fijo sin dejar precio negativo.
+            if()
         return 0.0;
     }
 

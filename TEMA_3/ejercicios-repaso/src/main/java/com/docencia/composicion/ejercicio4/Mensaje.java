@@ -11,9 +11,9 @@ public class Mensaje {
     private final String texto;
 
     public Mensaje(String remitente, String destinatario, String texto) {
-        this.remitente = remitente;
-        this.destinatario = destinatario;
-        this.texto = texto;
+        this.remitente = remitente.trim();
+        this.destinatario = destinatario.trim();
+        this.texto = texto.trim();
     }
 
     public String getRemitente() {

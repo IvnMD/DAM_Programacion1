@@ -1,30 +1,24 @@
 # DAM_Programacion1
 
-Repositorio de la asignatura "Programación 1" del ciclo formativo de grado superior en Desarrollo de Aplicaciones Multiplataforma (DAM).  
-Aquí se centralizan las prácticas, proyectos, apuntes y materiales didácticos del primer curso de la asignatura para facilitar el estudio, la entrega de prácticas y la ejecución de ejemplos.
+Repositorio de la asignatura "Programación 1" del ciclo formativo de grado superior en Desarrollo de Aplicaciones Multiplataforma (DAM). Aquí se guardan las prácticas, proyectos, apuntes y ejemplos del primer curso, organizados por temas para que sea fácil consultarlos y ejecutar los ejercicios.
 
 Descripción
 -----------
-Este repositorio organiza el material por temas (TEMA_1, TEMA_2, TEMA_3, ...). Cada tema contiene subcarpetas con ejercicios, evaluables, exámenes y proyectos. Usa este README como índice principal para navegar rápidamente por los temas y por las prácticas incluidas en cada uno.
+Este repositorio reúne el material usado en clase: ejercicios, evaluables, exámenes, proyectos y guías. Los contenidos están organizados por carpetas llamadas `TEMA_1`, `TEMA_2`, `TEMA_3`, etc. Cada tema puede contener subcarpetas con prácticas, enunciados o ejemplos.
 
 Índice
 ------
-- [Descripción](#descripción)
 - [Estructura del repositorio](#estructura-del-repositorio)
-- [Temas y proyectos (índice detallado)](#temas-y-proyectos-índice-detallado)
-  - [Tema 1 — Fundamentos / Material del tema 1](#tema-1---fundamentos--material-del-tema-1)
-  - [Tema 2 — Material del tema 2](#tema-2---material-del-tema-2)
-  - [Tema 3 — Material del tema 3](#tema-3---material-del-tema-3)
-- [Archivos útiles en la raíz](#archivos-útiles-en-la-raíz)
-- [Requisitos y cómo ejecutar prácticas](#requisitos-y-cómo-ejecutar-prácticas)
-- [Cómo añadir nuevas prácticas / Actualizar el índice](#cómo-añadir-nuevas-prácticas--actualizar-el-índice)
-- [Contribuir](#contribuir)
+- [Temas y proyectos](#temas-y-proyectos)
+- [Archivos útiles](#archivos-útiles)
+- [Cómo ejecutar las prácticas](#cómo-ejecutar-las-prácticas)
 - [Licencia](#licencia)
-- [Contacto / Autor](#contacto--autor)
+- [Contribuir](#contribuir)
+- [Contacto](#contacto)
 
 Estructura del repositorio
 --------------------------
-Estructura actual (resumen de carpetas y archivos detectados en el repositorio):
+En la raíz encontrarás carpetas por tema y algunos archivos sueltos. Resumen de lo detectado:
 
 - TEMA_1/
   - Evaluables/
@@ -44,85 +38,90 @@ Estructura actual (resumen de carpetas y archivos detectados en el repositorio):
   - trabajando-con-clases 2/
   - trabajando-con-clases/
   - unidad3-ejercicios/
-- Instalacion_Java.md (guía de instalación de Java)
-- README.md (este archivo)
+- Instalacion_Java.md — guía para preparar Java
 
-Temas y proyectos (índice detallado)
-------------------------------------
-A continuación tienes enlaces directos a las carpetas encontradas en el repositorio. Haz clic en cada entrada para abrir la carpeta en GitHub y ver los archivos y READMEs concretos.
+Temas y proyectos
+------------------
+Enlace directo a las carpetas encontradas (haz clic para abrirlas en GitHub):
 
-### Tema 1 — Fundamentos / Material del tema 1
-- [TEMA_1/Evaluables](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_1/Evaluables) — Evaluables y ejercicios tipo examen.
-- [TEMA_1/Repaso](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_1/Repaso) — Material de repaso.
-- [TEMA_1/array](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_1/array) — Ejercicios sobre arrays.
-- [TEMA_1/condicionales](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_1/condicionales) — Ejercicios sobre condicionales.
+- Tema 1
+  - [TEMA_1/Evaluables](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_1/Evaluables)
+  - [TEMA_1/Repaso](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_1/Repaso)
+  - [TEMA_1/array](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_1/array)
+  - [TEMA_1/condicionales](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_1/condicionales)
+- Tema 2
+  - [TEMA_2/Evaluables](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_2/Evaluables)
+  - [TEMA_2/docencia-clases](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_2/docencia-clases)
+  - [TEMA_2/docencia-programacion-repaso-I](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_2/docencia-programacion-repaso-I)
+- Tema 3
+  - [TEMA_3/Examenes](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/Examenes)
+  - [TEMA_3/Proyecto0_Clases](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/Proyecto0_Clases)
+  - [TEMA_3/ejercicios-1-eval-repaso-I](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/ejercicios-1-eval-repaso-I)
+  - [TEMA_3/ejercicios-listas-composicion-herencia](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/ejercicios-listas-composicion-herencia)
+  - [TEMA_3/ejercicios-repaso](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/ejercicios-repaso)
+  - [TEMA_3/trabajando-con-clases 2](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/trabajando-con-clases%202)
+  - [TEMA_3/trabajando-con-clases](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/trabajando-con-clases)
+  - [TEMA_3/unidad3-ejercicios](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/unidad3-ejercicios)
 
-### Tema 2 — Material del tema 2
-- [TEMA_2/Evaluables](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_2/Evaluables) — Evaluables del tema 2.
-- [TEMA_2/docencia-clases](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_2/docencia-clases) — Material de clase y apuntes.
-- [TEMA_2/docencia-programacion-repaso-I](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_2/docencia-programacion-repaso-I) — Repaso y ejemplos de programación.
+Archivos útiles
+---------------
+- [Instalacion_Java.md](https://github.com/IvnMD/DAM_Programacion1/blob/main/Instalacion_Java.md) — instrucciones para instalar y configurar Java (útil para las prácticas en Java).
 
-### Tema 3 — Material del tema 3
-- [TEMA_3/Examenes](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/Examenes) — Exámenes y propuestas.
-- [TEMA_3/Proyecto0_Clases](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/Proyecto0_Clases) — Proyecto inicial sobre clases.
-- [TEMA_3/ejercicios-1-eval-repaso-I](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/ejercicios-1-eval-repaso-I) — Ejercicios de evaluación y repaso.
-- [TEMA_3/ejercicios-listas-composicion-herencia](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/ejercicios-listas-composicion-herencia) — Ejercicios sobre listas, composición y herencia.
-- [TEMA_3/ejercicios-repaso](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/ejercicios-repaso) — Ejercicios para repasar conceptos.
-- [TEMA_3/trabajando-con-clases 2](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/trabajando-con-clases%202) — Carpeta con nombre que contiene un espacio (GitHub muestra %20 en la URL).
-- [TEMA_3/trabajando-con-clases](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/trabajando-con-clases) — Variación de los ejercicios con clases.
-- [TEMA_3/unidad3-ejercicios](https://github.com/IvnMD/DAM_Programacion1/tree/main/TEMA_3/unidad3-ejercicios) — Ejercicios de la unidad 3.
+Cómo ejecutar las prácticas
+---------------------------
+Cada práctica suele incluir un README propio con instrucciones. Si no existe, normalmente basta con localizar la clase `main` o el script principal. Ejemplos generales:
 
-Archivos útiles en la raíz
--------------------------
-- [Instalacion_Java.md](https://github.com/IvnMD/DAM_Programacion1/blob/main/Instalacion_Java.md) — Guía para instalar y preparar Java en el entorno (útil para muchas prácticas).
-
-Requisitos y cómo ejecutar prácticas
------------------------------------
-Los requisitos dependen del lenguaje de cada práctica. Recomendaciones generales:
-- Java (si corresponde): JDK 11+ y, si se usa, Maven o Gradle.
-- Python: Python 3.8+ y virtualenv.
-- Node.js: Node 14+ y npm/yarn.
-
-Para ejecutar una práctica:
-1. Entra en la carpeta de la práctica deseada (por ejemplo, haz clic en los enlaces del índice).
-2. Sigue el README local de la práctica (si existe) con instrucciones de compilación/ejecución.
-3. Si no hay README en la práctica, revisa los archivos fuente para identificar la clase principal o el script de arranque.
-
-Cómo añadir nuevas prácticas / Actualizar el índice
----------------------------------------------------
-1. Crea la carpeta dentro del tema correspondiente, por ejemplo `TEMA_4/nueva-practica`.
-2. Añade un `README.md` dentro de la carpeta explicando objetivo, dependencias y cómo ejecutar.
-3. Actualiza este README (índice principal) añadiendo el enlace a la nueva carpeta bajo el tema correspondiente.
-4. Haz commit y push.
-
-Ejemplo de commit:
-```
-git add TEMA_4/nueva-practica
-git commit -m "Añadida TEMA_4/nueva-practica: calculadora"
-git push origin main
-```
-
-Contribuir
-----------
-Si quieres colaborar:
-- Haz fork del repositorio.
-- Crea una rama descriptiva: `git checkout -b feature/nombre`.
-- Añade o mejora prácticas y documenta con README dentro de cada práctica.
-- Abre un Pull Request y explica los cambios.
+- Clonar el repositorio:
+  ```bash
+  git clone https://github.com/IvnMD/DAM_Programacion1.git
+  cd DAM_Programacion1
+  ```
+- Java (si la práctica usa Maven):
+  ```bash
+  cd TEMA_3/Proyecto0_Clases
+  mvn clean compile
+  mvn exec:java -Dexec.mainClass="es.tu.paquete.Main"
+  ```
+- Python:
+  ```bash
+  python3 -m venv env
+  source env/bin/activate  # Linux/macOS
+  env\Scripts\activate   # Windows (PowerShell)
+  pip install -r requirements.txt
+  python main.py
+  ```
+- Node.js:
+  ```bash
+  npm install
+  npm start
+  ```
 
 Licencia
 --------
-Añade un archivo `LICENSE` con la licencia que prefieras (por ejemplo MIT). Ejemplo breve:
+- Código fuente: Apache License 2.0. Consulta el archivo [LICENSE](https://github.com/IvnMD/DAM_Programacion1/blob/main/LICENSE) para el texto completo.
+- Documentación y material didáctico (apuntes, enunciados): Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0). Más información en [LICENSE-DOCS.md](https://github.com/IvnMD/DAM_Programacion1/blob/main/LICENSE-DOCS.md).
 
-```
-MIT License
+Nota: Con esta combinación el código puede reutilizarse ampliamente (incluso con fines comerciales) bajo Apache 2.0, mientras que los materiales docentes permanecen protegidos frente a usos comerciales sin permiso y requieren atribución y ShareAlike para obras derivadas.
 
-Copyright (c) 2025 IvnMD
-...
-```
+Contribuir
+----------
+Si quieres colaborar, gracias. Sugerencias:
 
-Contacto / Autor
-----------------
-- Autor: IvnMD  
+1. Haz fork del repositorio y crea una rama para tu trabajo:
+   ```bash
+   git checkout -b feature/nombre-corto
+   ```
+2. Añade tus cambios, comenta bien los commits y sube la rama al fork.
+3. Abre un pull request describiendo el cambio y cómo probarlo.
+
+Ten en cuenta que, al contribuir código, aceptas que ese código se publique bajo Apache License 2.0. Para contribuciones de documentación, aplicará CC BY-NC-SA 4.0.
+
+Contacto
+--------
+- Autor: IvnMD (Iván Mesa Domínguez)
 - Correo: ivan.mesa.dominguez@gmail.com
-- Perfil: [https://github.com/IvnMD](https://github.com/IvnMD)
+- Perfil: https://github.com/IvnMD
+
+---
+
+(Hecho para uso docente: si quieres que deje algún texto más corto u ordene las carpetas de otra forma, dímelo y lo ajusto.)

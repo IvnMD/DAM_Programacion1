@@ -122,6 +122,4 @@ Contacto
 - Correo: ivan.mesa.dominguez@gmail.com
 - Perfil: https://github.com/IvnMD
 
----
-
-(Hecho para uso docente: si quieres que deje algún texto más corto u ordene las carpetas de otra forma, dímelo y lo ajusto.)
+---)

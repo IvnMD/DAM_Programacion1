@@ -20,12 +20,23 @@ public class Ejercicio6 {
     }
 
 
-/**
-     * TODO: Implementar completamente según enunciado y tests.
+    /**
+     * Contador de ocurrencias en una lista
+     * @param textos lista de palabras
+     * @param objetivo palabra objetivo
+     * @return total de palabras coincidentes econtradas
      */
     public static int contarOcurrencias(List<String> textos, String objetivo) {
-        // Implementación provisional: siempre 0.
-        return 0;
+        if (textos == null || textos.isEmpty() || objetivo == null || objetivo.isBlank()){
+            return 0;
+        }
+        int resultado = 0;
+        for (String palabras : textos) {
+            if(palabras != null && palabras.trim().toLowerCase().equals(objetivo.trim().toLowerCase())){
+                resultado++;
+            }
+        }
+        return resultado;
     }
 
 }

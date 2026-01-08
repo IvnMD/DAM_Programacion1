@@ -6,13 +6,15 @@ public class Pelicula {
     private String codigo;
     private String titulo;
     private int duracionMin;
-
+    /**
+     * Constructor vacio/por defecto
+     */
     public Pelicula() {
-        // TODO: constructor vacío (dejar valores por defecto o inicializar si lo necesitas)
+        this.duracionMin = 90;
     }
 
     public Pelicula(String codigo) {
-        // TODO: constructor con identificador único
+        setCodigo(codigo);
     }
 
     public String getCodigo() {
@@ -20,6 +22,9 @@ public class Pelicula {
     }
 
     public void setCodigo(String codigo) {
+        if(codigo == null || codigo.isBlank()){
+            throw new IllegalArgumentException("");
+        }
         this.codigo = codigo;
     }
 

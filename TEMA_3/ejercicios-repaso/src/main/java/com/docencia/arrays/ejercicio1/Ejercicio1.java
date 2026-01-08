@@ -8,7 +8,12 @@ public class Ejercicio1 {
         if (numeros == null || numeros.length==0){
             return 0;
         }
-        throw new UnsupportedOperationException("No implementado");
+        int resultado = 0;
+        for (int i = 0; i < numeros.length; i++) {
+            resultado += numeros[i];
+        };
+
+        return resultado;
     }
 
     public static void main(String[] args) {

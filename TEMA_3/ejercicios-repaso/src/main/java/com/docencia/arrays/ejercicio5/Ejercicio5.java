@@ -2,11 +2,20 @@ package com.docencia.arrays.ejercicio5;
 
 public class Ejercicio5 {
     /**
-     * Devuelve el índice de objetivo o -1 si no está.
+     * Devuelve el indice de objetivo o -1 si no esta.
+     * @param numeros array de numeros
+     * @param objetivo numero a buscar en el array
      */
     public static int indiceDe(int[] numeros, int objetivo) {
-        // TODO: implementar usando un bucle for (no usar streams)
-        throw new UnsupportedOperationException("No implementado");
+        if(numeros == null || numeros.length==0){
+            return -1;
+        }
+        for (int i = 0; i < numeros.length; i++) {
+            if (numeros[i] == objetivo){
+                return i;
+            }
+        }
+        return -1;
     }
 
     public static void main(String[] args) {

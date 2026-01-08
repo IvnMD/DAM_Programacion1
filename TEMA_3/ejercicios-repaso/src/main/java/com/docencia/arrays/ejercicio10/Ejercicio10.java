@@ -5,8 +5,15 @@ public class Ejercicio10 {
      * Devuelve un nuevo array donde los negativos se sustituyen por 0.
      */
     public static int[] normalizarNegativos(int[] numeros) {
-        // TODO: implementar usando un bucle for (no usar streams)
-        throw new UnsupportedOperationException("No implementado");
+        if(numeros == null || numeros.length==0){
+            throw new IllegalArgumentException();
+        }
+        for (int i = 0; i < numeros.length; i++) {
+            if(numeros[i]<0){
+                numeros[i] = 0;
+            }
+        }
+        return numeros;
     }
 
     public static void main(String[] args) {

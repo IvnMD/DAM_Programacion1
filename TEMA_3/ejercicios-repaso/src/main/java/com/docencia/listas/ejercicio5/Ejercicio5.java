@@ -25,7 +25,17 @@ public class Ejercicio5 {
      * TODO: Implementar completamente según enunciado y tests.
      */
     public static List<String> normalizarNombres(List<String> nombres) {
-        // Implementación provisional: devuelve lista vacía.
+        if(nombres == null || nombres.isEmpty()){
+            return new ArrayList<>();
+        }
+        List<String> resultado = new ArrayList<>();
+        for (int i = 0; i < array.length; i++) {
+        } 
+            String normalizado = "";
+            nombres
+            resultado.add(normalizado);
+        }
+        
         return new ArrayList<>();
     }
 

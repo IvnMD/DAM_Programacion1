@@ -5,8 +5,19 @@ public class Ejercicio2 {
      * Devuelve el valor máximo del array. Si es null o vacío, lanza IllegalArgumentException.
      */
     public static int maximo(int[] numeros) {
-        // TODO: implementar usando un bucle for (no usar streams)
-        throw new UnsupportedOperationException("No implementado");
+        if (numeros== null){
+            return 0;
+        }
+        if (numeros.length==0){
+            throw new IllegalArgumentException();
+        }
+        int maximo = numeros[0];
+        for (int i = 1; i < numeros.length; i++) {
+            if (numeros[i] > maximo){
+                maximo = numeros[i];
+            }
+        }
+        return maximo;
     }
 
     public static void main(String[] args) {

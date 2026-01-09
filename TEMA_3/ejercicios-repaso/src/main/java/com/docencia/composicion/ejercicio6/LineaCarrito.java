@@ -14,6 +14,7 @@ public class LineaCarrito {
         this.cantidad = cantidad;
     }
 
+
     public Producto getProducto() {
         return producto;
     }

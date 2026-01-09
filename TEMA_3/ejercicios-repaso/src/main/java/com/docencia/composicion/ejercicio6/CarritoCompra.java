@@ -9,15 +9,20 @@ public class CarritoCompra {
     private final List<LineaCarrito> lineas = new ArrayList<>();
 
     public void anadirLinea(Producto producto, int cantidad) {
-        // TODO: validar producto, precio y cantidad.
-        if (producto != null) {
-            lineas.add(new LineaCarrito(producto, cantidad));
-        }
+    if (producto == null || cantidad <= 0 || producto.getPrecio() < 0) {
+        return; 
     }
+    lineas.add(new LineaCarrito(producto, cantidad));
+}
+
 
     public double calcularTotal(double porcentajeIva) {
-        // TODO: sumar base y aplicar IVA.
-        return 0.0;
+        double base = 0.0;
+        double iva = 1 + (porcentajeIva/100);
+        for (LineaCarrito lineaCarrito : lineas) {
+            base += lineaCarrito.getImporte();
+        }
+        return base * iva;
     }
 
     public List<LineaCarrito> getLineas() {

@@ -10,8 +10,12 @@ public class Producto {
     private final double precio;
 
     public Producto(String nombre, double precio) {
-        this.nombre = nombre;
-        this.precio = precio;
+        if(nombre==null||nombre.isBlank())
+        {
+            throw new IllegalArgumentException();
+        }
+        this.nombre=nombre;
+        this.precio=precio;
     }
 
     public String getNombre() {

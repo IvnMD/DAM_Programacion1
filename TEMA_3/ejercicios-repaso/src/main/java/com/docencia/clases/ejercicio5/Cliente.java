@@ -1,18 +1,15 @@
 package com.docencia.clases.ejercicio5;
 
-import java.util.Objects;
-
 public class Cliente {
     private int id;
     private String nombre;
     private boolean vip;
 
     public Cliente() {
-        // TODO: constructor vacío (dejar valores por defecto o inicializar si lo necesitas)
     }
 
     public Cliente(int id) {
-        // TODO: constructor con identificador único
+        setId(id);
     }
 
     public int getId() {
@@ -20,6 +17,9 @@ public class Cliente {
     }
 
     public void setId(int id) {
+        if( id == 0){
+            throw new IllegalArgumentException();
+        }
         this.id = id;
     }
 
@@ -39,21 +39,39 @@ public class Cliente {
         this.vip = vip;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        // TODO: implementar equals comparando SOLO el identificador único (id)
-        return super.equals(o);
-    }
+    
 
     @Override
     public int hashCode() {
-        // TODO: implementar hashCode consistente con equals (usar SOLO el identificador único)
-        return super.hashCode();
+        int hash = 7;
+        hash = 97 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        return this.id == other.id;
     }
 
     @Override
     public String toString() {
-        // TODO: implementar toString legible incluyendo al menos el identificador único
-        return super.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cliente{");
+        sb.append("id=").append(id);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", vip=").append(vip);
+        sb.append('}');
+        return sb.toString();
     }
 }

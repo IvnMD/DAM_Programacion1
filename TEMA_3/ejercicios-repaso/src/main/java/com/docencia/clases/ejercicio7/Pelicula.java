@@ -45,20 +45,37 @@ public class Pelicula {
     }
 
     @Override
-    public boolean equals(Object o) {
-        // TODO: implementar equals comparando SOLO el identificador único (codigo)
-        return super.equals(o);
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.codigo);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        // TODO: implementar hashCode consistente con equals (usar SOLO el identificador único)
-        return super.hashCode();
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pelicula other = (Pelicula) obj;
+        return Objects.equals(this.codigo, other.codigo);
     }
 
     @Override
     public String toString() {
-        // TODO: implementar toString legible incluyendo al menos el identificador único
-        return super.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Pelicula{");
+        sb.append("codigo=").append(codigo);
+        sb.append(", titulo=").append(titulo);
+        sb.append(", duracionMin=").append(duracionMin);
+        sb.append('}');
+        return sb.toString();
     }
+
+
 }

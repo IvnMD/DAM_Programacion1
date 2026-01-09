@@ -8,11 +8,10 @@ public class Persona {
     private int edad;
 
     public Persona() {
-        // TODO: constructor vacío (dejar valores por defecto o inicializar si lo necesitas)
     }
 
     public Persona(String dni) {
-        // TODO: constructor con identificador único
+        setDni(dni);
     }
 
     public String getDni() {
@@ -20,6 +19,9 @@ public class Persona {
     }
 
     public void setDni(String dni) {
+        if (dni == null || dni.isEmpty()) {
+            throw new IllegalArgumentException("El DNI no puede ser nulo o vacío");
+        }
         this.dni = dni;
     }
 
@@ -40,20 +42,31 @@ public class Persona {
     }
 
     @Override
-    public boolean equals(Object o) {
-        // TODO: implementar equals comparando SOLO el identificador único (dni)
-        return super.equals(o);
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.dni);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        // TODO: implementar hashCode consistente con equals (usar SOLO el identificador único)
-        return super.hashCode();
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Persona other = (Persona) obj;
+        return Objects.equals(this.dni, other.dni);
     }
 
     @Override
     public String toString() {
-        // TODO: implementar toString legible incluyendo al menos el identificador único
-        return super.toString();
+        return "Persona [dni=" + dni + ", nombre=" + nombre + ", edad=" + edad + "]";
     }
+
+    
 }

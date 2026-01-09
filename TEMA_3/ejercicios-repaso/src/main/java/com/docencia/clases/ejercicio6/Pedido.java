@@ -8,11 +8,10 @@ public class Pedido {
     private String estado;
 
     public Pedido() {
-        // TODO: constructor vacío (dejar valores por defecto o inicializar si lo necesitas)
     }
 
     public Pedido(String codigo) {
-        // TODO: constructor con identificador único
+        setCodigo(codigo);
     }
 
     public String getCodigo() {
@@ -20,6 +19,9 @@ public class Pedido {
     }
 
     public void setCodigo(String codigo) {
+        if(codigo == null || codigo.isBlank()){
+            throw new IllegalArgumentException();
+        }
         this.codigo = codigo;
     }
 
@@ -39,21 +41,39 @@ public class Pedido {
         this.estado = estado;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        // TODO: implementar equals comparando SOLO el identificador único (codigo)
-        return super.equals(o);
-    }
+    
+    
 
     @Override
     public int hashCode() {
-        // TODO: implementar hashCode consistente con equals (usar SOLO el identificador único)
-        return super.hashCode();
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.codigo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        return Objects.equals(this.codigo, other.codigo);
     }
 
     @Override
     public String toString() {
-        // TODO: implementar toString legible incluyendo al menos el identificador único
-        return super.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Pedido{");
+        sb.append("codigo=").append(codigo);
+        sb.append(", importe=").append(importe);
+        sb.append(", estado=").append(estado);
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -29,8 +29,7 @@ public static class Circulo extends Figura {
 
         @Override
         public double area() {
-            
-            return radio * 2 * Math.PI;
+            return Math.PI * radio * radio;
         }
     }
 
@@ -58,10 +57,10 @@ public static class Circulo extends Figura {
 
         for (Figura figura : figuras) {
             if (figura!=null) {
-                resultado = ;
-                
+                resultado += figura.area();
             }
-        }        return resultado;
+        }
+        return resultado;
     }
 
 }

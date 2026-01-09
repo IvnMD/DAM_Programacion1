@@ -12,7 +12,7 @@ public class OfertaCantidadFija extends Oferta {
 
     @Override
     public double precioFinal() {
-            if()
+            
         return 0.0;
     }
 

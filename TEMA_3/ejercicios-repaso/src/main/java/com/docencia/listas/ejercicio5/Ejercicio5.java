@@ -29,10 +29,10 @@ public class Ejercicio5 {
             return new ArrayList<>();
         }
         List<String> resultado = new ArrayList<>();
-        for (int i = 0; i < array.length; i++) {
-        } 
+        for (int i = 0; i < nombres.size(); i++) {
+        
             String normalizado = "";
-            nombres
+            
             resultado.add(normalizado);
         }
         

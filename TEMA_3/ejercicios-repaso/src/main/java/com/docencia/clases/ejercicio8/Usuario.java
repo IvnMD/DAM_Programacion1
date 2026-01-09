@@ -8,11 +8,10 @@ public class Usuario {
     private boolean activo;
 
     public Usuario() {
-        // TODO: constructor vacío (dejar valores por defecto o inicializar si lo necesitas)
     }
 
     public Usuario(String username) {
-        // TODO: constructor con identificador único
+        setUsername(username);
     }
 
     public String getUsername() {
@@ -40,20 +39,37 @@ public class Usuario {
     }
 
     @Override
-    public boolean equals(Object o) {
-        // TODO: implementar equals comparando SOLO el identificador único (username)
-        return super.equals(o);
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.username);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        // TODO: implementar hashCode consistente con equals (usar SOLO el identificador único)
-        return super.hashCode();
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        return Objects.equals(this.username, other.username);
     }
 
     @Override
     public String toString() {
-        // TODO: implementar toString legible incluyendo al menos el identificador único
-        return super.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Usuario{");
+        sb.append("username=").append(username);
+        sb.append(", email=").append(email);
+        sb.append(", activo=").append(activo);
+        sb.append('}');
+        return sb.toString();
     }
+
+
 }

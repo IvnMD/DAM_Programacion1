@@ -1,18 +1,16 @@
 package com.docencia.clases.ejercicio9;
 
-import java.util.Objects;
-
 public class Curso {
+
     private String codigo;
     private String nombre;
     private int creditos;
 
     public Curso() {
-        // TODO: constructor vacío (dejar valores por defecto o inicializar si lo necesitas)
     }
 
     public Curso(String codigo) {
-        // TODO: constructor con identificador único
+        setCodigo(codigo);
     }
 
     public String getCodigo() {
@@ -20,6 +18,9 @@ public class Curso {
     }
 
     public void setCodigo(String codigo) {
+        if (codigo == null || codigo.isBlank()) {
+            throw new IllegalArgumentException();
+        }
         this.codigo = codigo;
     }
 
@@ -40,20 +41,44 @@ public class Curso {
     }
 
     @Override
-    public boolean equals(Object o) {
-        // TODO: implementar equals comparando SOLO el identificador único (codigo)
-        return super.equals(o);
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+        return result;
     }
 
     @Override
-    public int hashCode() {
-        // TODO: implementar hashCode consistente con equals (usar SOLO el identificador único)
-        return super.hashCode();
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Curso other = (Curso) obj;
+        if (codigo == null) {
+            if (other.codigo != null) {
+                return false;
+            }
+        } else if (!codigo.equals(other.codigo)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        // TODO: implementar toString legible incluyendo al menos el identificador único
-        return super.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Curso{");
+        sb.append("codigo=").append(codigo);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", creditos=").append(creditos);
+        sb.append('}');
+        return sb.toString();
     }
+
 }

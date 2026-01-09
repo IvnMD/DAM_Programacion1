@@ -8,11 +8,10 @@ public class CuentaBancaria {
     private double saldo;
 
     public CuentaBancaria() {
-        // TODO: constructor vacío (dejar valores por defecto o inicializar si lo necesitas)
     }
 
     public CuentaBancaria(String iban) {
-        // TODO: constructor con identificador único
+        setIban(iban);
     }
 
     public String getIban() {
@@ -20,6 +19,9 @@ public class CuentaBancaria {
     }
 
     public void setIban(String iban) {
+        if (iban == null ||iban.isBlank()){
+            throw new IllegalArgumentException();
+        }
         this.iban = iban;
     }
 
@@ -39,21 +41,40 @@ public class CuentaBancaria {
         this.saldo = saldo;
     }
 
+    
+
     @Override
-    public boolean equals(Object o) {
-        // TODO: implementar equals comparando SOLO el identificador único (iban)
-        return super.equals(o);
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("CuentaBancaria{");
+        sb.append("iban=").append(iban);
+        sb.append(", titular=").append(titular);
+        sb.append(", saldo=").append(saldo);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override
     public int hashCode() {
-        // TODO: implementar hashCode consistente con equals (usar SOLO el identificador único)
-        return super.hashCode();
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.iban);
+        return hash;
     }
 
     @Override
-    public String toString() {
-        // TODO: implementar toString legible incluyendo al menos el identificador único
-        return super.toString();
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CuentaBancaria other = (CuentaBancaria) obj;
+        return Objects.equals(this.iban, other.iban);
     }
+
+
 }

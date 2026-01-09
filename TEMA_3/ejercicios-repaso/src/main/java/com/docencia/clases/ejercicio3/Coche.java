@@ -8,11 +8,10 @@ public class Coche {
     private int anio;
 
     public Coche() {
-        // TODO: constructor vacío (dejar valores por defecto o inicializar si lo necesitas)
     }
 
     public Coche(String matricula) {
-        // TODO: constructor con identificador único
+        setMatricula(matricula);
     }
 
     public String getMatricula() {
@@ -20,6 +19,9 @@ public class Coche {
     }
 
     public void setMatricula(String matricula) {
+        if (matricula == null || matricula.isEmpty()) {
+            throw new IllegalArgumentException("El identificador único no puede ser nulo");
+        }
         this.matricula = matricula;
     }
 
@@ -40,20 +42,30 @@ public class Coche {
     }
 
     @Override
-    public boolean equals(Object o) {
-        // TODO: implementar equals comparando SOLO el identificador único (matricula)
-        return super.equals(o);
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.matricula);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        // TODO: implementar hashCode consistente con equals (usar SOLO el identificador único)
-        return super.hashCode();
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Coche other = (Coche) obj;
+        return Objects.equals(this.matricula, other.matricula);
     }
 
     @Override
     public String toString() {
-        // TODO: implementar toString legible incluyendo al menos el identificador único
-        return super.toString();
+        return "Coche [matricula=" + matricula + ", marca=" + marca + ", anio=" + anio + "]";
     }
 }
+

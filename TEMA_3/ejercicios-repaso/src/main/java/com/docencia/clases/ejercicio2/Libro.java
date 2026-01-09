@@ -8,11 +8,10 @@ public class Libro {
     private String autor;
 
     public Libro() {
-        // TODO: constructor vacío (dejar valores por defecto o inicializar si lo necesitas)
     }
 
     public Libro(String isbn) {
-        // TODO: constructor con identificador único
+        setIsbn(isbn);
     }
 
     public String getIsbn() {
@@ -20,6 +19,9 @@ public class Libro {
     }
 
     public void setIsbn(String isbn) {
+        if (isbn == null || isbn.isEmpty()) {
+            throw new IllegalArgumentException("El identificador único no puede ser nulo");
+        }
         this.isbn = isbn;
     }
 
@@ -39,21 +41,33 @@ public class Libro {
         this.autor = autor;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        // TODO: implementar equals comparando SOLO el identificador único (isbn)
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        // TODO: implementar hashCode consistente con equals (usar SOLO el identificador único)
-        return super.hashCode();
-    }
+    
 
     @Override
     public String toString() {
-        // TODO: implementar toString legible incluyendo al menos el identificador único
-        return super.toString();
+        return "Libro [isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + "]";
+    }
+
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.isbn);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Libro other = (Libro) obj;
+        return Objects.equals(this.isbn, other.isbn);
     }
 }

@@ -8,11 +8,10 @@ public class Mascota {
     private String tipo;
 
     public Mascota() {
-        // TODO: constructor vacío (dejar valores por defecto o inicializar si lo necesitas)
     }
 
     public Mascota(String chip) {
-        // TODO: constructor con identificador único
+        setChip(chip);
     }
 
     public String getChip() {
@@ -20,6 +19,9 @@ public class Mascota {
     }
 
     public void setChip(String chip) {
+        if(chip == null || chip.isBlank()){
+            throw new IllegalArgumentException();
+        }
         this.chip = chip;
     }
 
@@ -39,21 +41,40 @@ public class Mascota {
         this.tipo = tipo;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        // TODO: implementar equals comparando SOLO el identificador único (chip)
-        return super.equals(o);
-    }
+    
 
     @Override
     public int hashCode() {
-        // TODO: implementar hashCode consistente con equals (usar SOLO el identificador único)
-        return super.hashCode();
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.chip);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Mascota other = (Mascota) obj;
+        return Objects.equals(this.chip, other.chip);
     }
 
     @Override
     public String toString() {
-        // TODO: implementar toString legible incluyendo al menos el identificador único
-        return super.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Mascota{");
+        sb.append("chip=").append(chip);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", tipo=").append(tipo);
+        sb.append('}');
+        return sb.toString();
     }
+
+
 }

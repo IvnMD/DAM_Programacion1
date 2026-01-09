@@ -9,10 +9,14 @@ public class Alumno {
     private final String nombre;
 
     public Alumno(String nombre) {
-        this.nombre = nombre;
+        if (nombre == null || nombre.isBlank()){
+            throw new IllegalArgumentException();
+        }
+        this.nombre = nombre.trim().toLowerCase();
     }
 
     public String getNombre() {
+        
         return nombre;
     }
 }

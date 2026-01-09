@@ -17,6 +17,9 @@ public class Incidencia {
     }
 
     public int getId() {
+        if (id > 0){
+            return -1;
+        }
         return id;
     }
 

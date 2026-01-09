@@ -5,13 +5,13 @@ public class Estado {
 
     /**
      * 
-     * @param valor valor del estado actual (Abierto/cerrado/apagado)
+     * @param valor valor del estado actual (Abierto/cerrado)
      */
     public Estado(String valor){
         if (valor == null || valor.isEmpty()){
             throw new IllegalArgumentException("");
         }
-        if (!valor.equals("abierto") || !valor.equals("cerrado")|| !valor.equals("apagado")){
+        if (!valor.equals("abierto") || !valor.equals("cerrado")){
             this.valor = valor.trim().toLowerCase();
         }
     }

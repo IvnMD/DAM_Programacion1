@@ -11,7 +11,7 @@ public class GestorIncidencias {
 
     public Incidencia crearIncidencia(String descripcion) {
         // TODO: validar descripción y crear una incidencia ABIERTA con id incremental.
-        if (descripcion == null) {
+        if (descripcion == null || descripcion.isBlank) {
             return null;
         }
         Incidencia inc = new Incidencia(siguienteId++, descripcion, EstadoIncidencia.ABIERTA);
@@ -20,7 +20,7 @@ public class GestorIncidencias {
     }
 
     public boolean cerrarIncidencia(int id) {
-        // TODO: cerrar incidencia si existe y está ABIERTA.
+        if(id.getEstado.equals(ABIERTA))
         return false;
     }
 

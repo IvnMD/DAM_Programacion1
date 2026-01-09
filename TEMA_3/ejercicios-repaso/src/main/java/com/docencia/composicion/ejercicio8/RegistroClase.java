@@ -16,8 +16,24 @@ public class RegistroClase {
     }
 
     public double porcentajeAsistencia(String nombreAlumno) {
-        // TODO: calcular porcentaje para el alumno indicado.
-        return 0.0;
+        if(nombreAlumno == null || registros.isEmpty()) {
+            return 0.0;
+        }
+        int totalClasesAlumno = 0;
+        int totalAsistencias = 0;
+        for (RegistroAsistencia registro : registros) {
+            if (registro.getAlumno().getNombre().equals(nombreAlumno)){
+                totalClasesAlumno++;
+                if (registro.isPresente()) {
+                    totalAsistencias++;
+                }
+            }
+            if (totalClasesAlumno == 0){
+             return 0.0;
+            }
+
+        }
+        return (totalAsistencias/totalClasesAlumno)*100;
     }
 
     public List<RegistroAsistencia> getRegistros() {

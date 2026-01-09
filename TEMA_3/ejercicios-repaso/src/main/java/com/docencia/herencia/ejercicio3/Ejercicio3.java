@@ -1,6 +1,7 @@
 package com.docencia.herencia.ejercicio3;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,8 +28,7 @@ public static class Perro extends Animal {
 
         @Override
         public String sonido() {
-            // TODO: devolver "guau".
-            return "";
+            return "guau";
         }
     }
 
@@ -39,14 +39,14 @@ public static class Perro extends Animal {
 
         @Override
         public String sonido() {
-            // TODO: devolver "miau".
-            return "";
+            return "miau";
         }
     }
 
     public static String concatenarSonidos(List<Animal> animales) {
-        // TODO: concatenar sonidos separados por espacio, ignorando animales null.
-        return "";
+            List<Animal> animalValido = new ArrayList<>();
+            if ()
+        return ;
     }
 
 }

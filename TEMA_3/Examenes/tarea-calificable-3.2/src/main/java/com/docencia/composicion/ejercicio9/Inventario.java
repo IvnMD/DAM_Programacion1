@@ -23,11 +23,12 @@ public class Inventario {
             return false;
         }
         for (LineaInventario lineaInventario : lineas) {
-            if (nombreProducto.trim().toLowerCase().equals(nombreProducto.trim().toLowerCase())){
+            if (nombreProducto.trim().toLowerCase().equals(nombreProducto.trim().toLowerCase()) && lineaInventario.getCantidad() >= cantidad){
                 lineaInventario.setCantidad(lineaInventario.getCantidad()-cantidad);
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public int stockDe(String nombreProducto) {
@@ -36,12 +37,12 @@ public class Inventario {
         }
         int resultado = 0;
         for (LineaInventario lineaInventario : lineas) {
-            if (nombreProducto.trim().toLowerCase().equals(nombreProducto.trim().toLowerCase())){
+            if (lineaInventario.getProducto().getNombre().trim().toLowerCase().equals(nombreProducto.trim().toLowerCase())){
                 resultado += lineaInventario.getCantidad();
             }
-            if (!nombreProducto.trim().toLowerCase().equals(nombreProducto.trim().toLowerCase())){
-                return 0;
-            }
+            // if (!nombreProducto.trim().toLowerCase().equals(nombreProducto.trim().toLowerCase())){
+            //     return 0;
+            // }
         
         }
         return resultado;

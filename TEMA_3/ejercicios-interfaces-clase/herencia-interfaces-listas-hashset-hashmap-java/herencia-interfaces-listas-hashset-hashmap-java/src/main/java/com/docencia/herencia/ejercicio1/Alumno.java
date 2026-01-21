@@ -5,13 +5,21 @@ import java.util.UUID;
 
 public class Alumno extends Persona {
     private String matricula;
+
     
+    
+    private Alumno() {
+        
+    }
+
+    public Alumno(UUID id) {
+        super(id);
+        
+    }
+
     public Alumno(UUID id, String nombre, int edad, String matricula) {
         super(id, nombre, edad);
-        if (matricula == null || matricula.isBlank()) {
-            throw new IllegalArgumentException("La matrícula no puede ser nula o vacía");
-        }
-        this.matricula = matricula;
+        setMatricula(matricula);
     }
     
     public String getMatricula() { 
@@ -33,5 +41,25 @@ public class Alumno extends Persona {
                ", id=" + getId() + 
                ", nombre=" + getNombre() + 
                ", edad=" + getEdad() + "}";
+    }
+
+    public void setMatricula(String matricula) {
+        if (matricula == null || matricula.isBlank()){
+            throw new IllegalArgumentException();
+        }
+        this.matricula = matricula;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+        }
+    
+    @Override
+    public boolean equals(Object obj){
+        if (!(obj instanceof Alumno)){
+            return false;
+        }
+        return super.equals(obj);
     }
 }

@@ -8,18 +8,30 @@ public class Portatil extends Dispositivo {
 
     public Portatil(UUID id, String fabricante, double pulgadas) {
         super(id, fabricante);
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        setPulgadas(pulgadas);
 }
 
     public double getPulgadas() { return pulgadas; }
+
+    
 
     @Override
     public String tipo() {
         return "Portatil";
     }
 
+    
+    
+
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Portatil [getPulgadas()=" + getPulgadas() + ", id=" + getId() + "]";
+    }
+
+    public void setPulgadas(double pulgadas) {
+        if (pulgadas <= 0) {
+            throw new IllegalArgumentException();
+        }
+        this.pulgadas = pulgadas;
     }
 }

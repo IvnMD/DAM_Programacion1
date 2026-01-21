@@ -94,7 +94,7 @@ mvn clean test
 
 ### Ejecutar verificación completa (incluye JaCoCo + nota)
 ```bash
- mvn clean -Pcalificar verify
+ 
 ```
 
 #### Cobertura en el comienzo del desarrollo

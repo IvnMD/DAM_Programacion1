@@ -14,27 +14,44 @@ public abstract class Dispositivo {
 
     protected Dispositivo(UUID id, String fabricante) {
         this.id = id == null ? UUID.randomUUID() : id;
-        this.fabricante = fabricante;
+        setFabricante(fabricante);
     }
 
     public UUID getId() { return id; }
     public String getFabricante() { return fabricante; }
+    
+
+    public void setFabricante(String fabricante) {
+        if (fabricante == null || fabricante.isBlank()){
+            throw new IllegalArgumentException();
+        }
+        this.fabricante = fabricante;
+    }
 
     /** Metodo abstracto para demostrar polimorfismo. */
     public abstract String tipo();
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Dispositivo other = (Dispositivo) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Dispositivo [id=" + getId() + ", getFabricante()=" + getFabricante() + "]";
     }
+
+    
 }

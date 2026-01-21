@@ -1,5 +1,6 @@
 package com.docencia.listas.ejercicio1;
 
+import com.docencia.herencia.ejercicio1.Alumno;
 import com.docencia.herencia.ejercicio1.Persona;
 
 import java.util.ArrayList;
@@ -26,17 +27,40 @@ public class ListaPersonas {
      * @throws IllegalArgumentException si persona es nula, tiene campos invalidos o su id ya existe
      */
     public void anadir(Persona persona) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        
+        validar(persona);
+        if (personas.contains(persona)) {
+            throw new IllegalArgumentException();
+        }
+        
+        personas.add(persona);
+        
     }
 
     /** Busca una persona por id. */
     public Persona buscarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        for (Persona persona : personas){
+            if(persona.getId().equals(id)){
+                return persona;
+            }
+        }
+        Alumno persona = new Alumno(id);
+        int posicion = personas.indexOf(persona);
+        if(posicion < 0){
+            return null;
+        }
+        return personas.get(posicion);
     }
 
     /** Elimina una persona por id. */
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        return personas.removeIf(persona -> persona.getId().equals(id));
     }
 
     /**
@@ -46,16 +70,31 @@ public class ListaPersonas {
      * @param nuevaPersona nueva persona (debe tener el mismo id)
      */
     public void modificar(UUID id, Persona nuevaPersona) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(nuevaPersona);
+        Persona existente = buscarPorId(id);
+            if (existente == null){
+                throw new NoSuchElementException();
+            }
+        if(!existente.equals(nuevaPersona)){
+            throw new IllegalArgumentException();
+        }
+        int indice = personas.indexOf(existente);
+        personas.set(indice, nuevaPersona);
+        
     }
+
+
 
     /** Devuelve una copia inmutable de la lista. */
     public List<Persona> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return List.copyOf(personas);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        int resultado = 0;
+        resultado = personas.size();
+
+        return resultado;
     }
 
     private boolean existeId(UUID id) {

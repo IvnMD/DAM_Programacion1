@@ -13,6 +13,14 @@ public abstract class Persona {
     private String nombre;
     private int edad;
 
+    public Persona() {
+    // Constructor vacío en la superclase
+    }
+
+    public Persona(UUID id){
+        setId(id);
+    }
+
     protected Persona(UUID id, String nombre, int edad) {
         this.id = id == null ? UUID.randomUUID() : id;
         this.nombre = nombre;
@@ -20,6 +28,12 @@ public abstract class Persona {
 
         getNombre();
         getEdad();
+    }
+
+    
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public UUID getId() { 
@@ -59,9 +73,6 @@ public abstract class Persona {
         }
         if (this == obj) {
             return true;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
         }
         final Persona other = (Persona) obj;
         return Objects.equals(this.id, other.id);

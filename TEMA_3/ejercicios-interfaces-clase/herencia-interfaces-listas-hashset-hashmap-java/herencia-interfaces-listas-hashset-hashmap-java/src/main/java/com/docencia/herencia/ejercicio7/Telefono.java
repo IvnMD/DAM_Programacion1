@@ -8,18 +8,29 @@ public class Telefono extends Dispositivo {
 
     public Telefono(UUID id, String fabricante, String numero) {
         super(id, fabricante);
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        setNumero(numero);
 }
 
     public String getNumero() { return numero; }
+
+    
 
     @Override
     public String tipo() {
         return "Telefono";
     }
 
+    
+
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Telefono [getNumero()=" + getNumero() + ", id=" + getId() + "]";
+    }
+
+    public void setNumero(String numero) {
+        if (numero == null || numero.isBlank()){
+            throw new IllegalArgumentException();
+        }
+        this.numero = numero;
     }
 }

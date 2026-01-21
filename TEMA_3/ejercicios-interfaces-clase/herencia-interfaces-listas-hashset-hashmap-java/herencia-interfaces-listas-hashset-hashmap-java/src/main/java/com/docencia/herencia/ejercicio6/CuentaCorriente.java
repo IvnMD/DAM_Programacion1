@@ -8,18 +8,26 @@ public class CuentaCorriente extends CuentaBancaria {
 
     public CuentaCorriente(UUID id, String titular, double saldo, double limiteDescubierto) {
         super(id, titular, saldo);
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        setLimiteDescubierto(limiteDescubierto);
 }
-
     public double getLimiteDescubierto() { return limiteDescubierto; }
+
+    public void setLimiteDescubierto(double limiteDescubierto){
+        if (limiteDescubierto <= 0){
+            throw new IllegalArgumentException();
+        }
+        this.limiteDescubierto = limiteDescubierto;
+    }
 
     @Override
     public double comisionMensual() {
         return 4.99;
     }
-
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "CuentaCorriente [getLimiteDescubierto()=" + getLimiteDescubierto() + ", id=" + getId()
+                + ", getTitular()=" + getTitular() + ", getSaldo()=" + getSaldo() + "]";
     }
+
+    
 }

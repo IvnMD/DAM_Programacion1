@@ -12,12 +12,23 @@ public class Cancion implements Reproducible {
     private String titulo;
     private String artista;
 
-    public Cancion(UUID id, String titulo, String artista) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public Cancion(UUID id, String titulo, String artista) {
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.titulo = titulo;
+        this.artista = artista;
+    }
 
-    public UUID getId() { return id; }
-    public String getTitulo() { return titulo; }
-    public String getArtista() { return artista; }
+    public UUID getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getArtista() {
+        return artista;
+    }
 
     @Override
     public String reproducir() {
@@ -26,16 +37,27 @@ public class Cancion implements Reproducible {
 
     @Override
     public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (o == this)
+            return true;
+        if (!(o instanceof Cancion)) {
+            return false;
+        }
+        Cancion cancion = (Cancion) o;
+        return Objects.equals(id, cancion.id);
     }
 
     @Override
     public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "{" +
+                " id='" + getId() + "'" +
+                ", titulo='" + getTitulo() + "'" +
+                ", artista='" + getArtista() + "'" +
+                "}";
     }
+
 }

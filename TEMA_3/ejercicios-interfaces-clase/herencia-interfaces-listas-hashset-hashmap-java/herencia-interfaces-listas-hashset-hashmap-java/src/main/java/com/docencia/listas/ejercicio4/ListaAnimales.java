@@ -1,6 +1,7 @@
 package com.docencia.listas.ejercicio4;
 
 import com.docencia.herencia.ejercicio4.Animal;
+import com.docencia.herencia.ejercicio4.Perro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,27 +21,52 @@ public class ListaAnimales {
     private final List<Animal> animales = new ArrayList<>();
 
     public void anadir(Animal animal) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(animal);
+        if(animales.contains(animal)){
+            throw new IllegalArgumentException();
+        }
+        animales.add(animal);
     }
 
     public Animal buscarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null){
+            throw new IllegalArgumentException();
+        }
+        for (Animal animal : animales) {
+            return animal;
+        }
+        Animal animal = new Perro(id);
+        int posicion = animales.indexOf(animal);
+        if (posicion < 0){
+            return null;
+        }
+        return animales.get(posicion);
     }
 
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        return animales.removeIf(animal -> animal.getId().equals(id));
     }
 
     public void modificar(UUID id, Animal nuevoAnimal) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(nuevoAnimal);
+        Animal existente = buscarPorId(id);
+        if (existente == null) {
+            throw new NoSuchElementException();
+        }
+        if(!existente.equals(nuevoAnimal)){
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Animal> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return List.copyOf(animales);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return animales.size();
     }
 
     private boolean existeId(UUID id) {

@@ -12,7 +12,10 @@ public class ClienteVip implements Descontable {
     private double porcentaje;
     private String nivel;
 
-    public ClienteVip(UUID id, double porcentaje, String nivel) {        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public ClienteVip(UUID id, double porcentaje, String nivel) {    
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.porcentaje = porcentaje;
+        this.nivel = nivel;
 }
 
     public UUID getId() { return id; }
@@ -25,17 +28,26 @@ public class ClienteVip implements Descontable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ClienteVip other = (ClienteVip) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "ClienteVip [id=" + id + ", porcentaje=" + porcentaje + ", nivel=" + nivel + "]";
     }
+
+    
 }

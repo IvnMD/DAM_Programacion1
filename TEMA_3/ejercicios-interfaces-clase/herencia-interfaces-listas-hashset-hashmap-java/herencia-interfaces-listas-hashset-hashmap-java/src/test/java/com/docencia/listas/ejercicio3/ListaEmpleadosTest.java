@@ -20,7 +20,7 @@ public class ListaEmpleadosTest {
     }
 
     private Empleado nuevoB(UUID id) {
-        return new Gerente(id, "Pedro", 3000.0, 5);
+        return new Desarrollador(id, "Pedro", 3000.0, "C++");
     }
 
     private Empleado invalido(UUID id) {

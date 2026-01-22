@@ -12,8 +12,11 @@ public class Wifi implements Conectable {
     private String ssid;
     private String password;
 
-    public Wifi(UUID id, String ssid, String password) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public Wifi(UUID id, String ssid, String password) {       
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.ssid = ssid;
+        this.password = password;
+    }
 
     public UUID getId() { return id; }
     public String getSsid() { return ssid; }
@@ -25,17 +28,26 @@ public class Wifi implements Conectable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Wifi other = (Wifi) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Wifi [id=" + id + ", ssid=" + ssid + ", password=" + password + "]";
     }
+
+    
 }

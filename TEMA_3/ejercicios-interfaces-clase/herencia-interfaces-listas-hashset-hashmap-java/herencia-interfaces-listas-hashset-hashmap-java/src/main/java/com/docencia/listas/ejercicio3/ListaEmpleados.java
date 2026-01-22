@@ -1,6 +1,7 @@
 package com.docencia.listas.ejercicio3;
 
 import com.docencia.herencia.ejercicio3.Empleado;
+import com.docencia.herencia.ejercicio3.Gerente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,27 +22,55 @@ public class ListaEmpleados {
     private final List<Empleado> empleados = new ArrayList<>();
 
     public void anadir(Empleado empleado) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(empleado);
+        if (empleados.contains(empleado)){
+            throw new IllegalArgumentException();
+        }
+        empleados.add(empleado);
     }
 
     public Empleado buscarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null){
+            throw new IllegalArgumentException();
+        }
+        for (Empleado empleado : empleados) {
+             return empleado;
+        }
+        Empleado empleado = new Gerente(id);
+        int posicion = empleados.indexOf(empleado);
+        if (posicion < 0){
+            return null;
+        }
+        return empleados.get(posicion);
+        
     }
 
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null){
+            throw new IllegalArgumentException();
+        }
+        return empleados.removeIf(empleado -> empleado.getId().equals(id));
     }
 
     public void modificar(UUID id, Empleado nuevoEmpleado) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(nuevoEmpleado);
+        Empleado existente = buscarPorId(id);
+        if (existente == null){
+            throw new NoSuchElementException();
+        }
+        if(!existente.equals(nuevoEmpleado)){
+            throw new IllegalArgumentException();
+        }
+        int indice = empleados.indexOf(existente);
+        empleados.set(indice, nuevoEmpleado);
     }
 
     public List<Empleado> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return List.copyOf(empleados);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return empleados.size();
     }
 
     private boolean existeId(UUID id) {

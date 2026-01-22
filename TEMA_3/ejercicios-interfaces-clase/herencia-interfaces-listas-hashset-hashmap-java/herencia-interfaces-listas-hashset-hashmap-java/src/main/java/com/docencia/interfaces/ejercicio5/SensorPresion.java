@@ -12,7 +12,10 @@ public class SensorPresion implements Medible {
     private String ubicacion;
     private double kpa;
 
-    public SensorPresion(UUID id, String ubicacion, double kpa) {        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public SensorPresion(UUID id, String ubicacion, double kpa) { 
+                this.id = id == null ? UUID.randomUUID() : id;
+                this.ubicacion = ubicacion;
+                this.kpa = kpa;
 }
 
     public UUID getId() { return id; }
@@ -25,17 +28,28 @@ public class SensorPresion implements Medible {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        SensorPresion other = (SensorPresion) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "SensorPresion [id=" + id + ", ubicacion=" + ubicacion + ", kpa=" + kpa + "]";
     }
+
+
+    
+
 }

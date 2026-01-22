@@ -12,7 +12,10 @@ public class CuadradoDrawable implements Drawable {
     private double lado;
     private String color;
 
-    public CuadradoDrawable(UUID id, double lado, String color) {        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public CuadradoDrawable(UUID id, double lado, String color) {    
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.lado = lado;
+        this.color = color;
 }
 
     public UUID getId() { return id; }
@@ -25,17 +28,25 @@ public class CuadradoDrawable implements Drawable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CuadradoDrawable other = (CuadradoDrawable) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "CuadradoDrawable [id=" + id + ", lado=" + lado + ", color=" + color + "]";
     }
+    
 }

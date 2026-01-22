@@ -12,7 +12,10 @@ public class Avion implements Volador {
     private String modelo;
     private int motores;
 
-    public Avion(UUID id, String modelo, int motores) {        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public Avion(UUID id, String modelo, int motores) { 
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.modelo = modelo;
+        this.motores = motores;
 }
 
     public UUID getId() { return id; }
@@ -25,17 +28,27 @@ public class Avion implements Volador {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Avion other = (Avion) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Avion [id=" + id + ", modelo=" + modelo + ", motores=" + motores + "]";
     }
+
+    
+
 }

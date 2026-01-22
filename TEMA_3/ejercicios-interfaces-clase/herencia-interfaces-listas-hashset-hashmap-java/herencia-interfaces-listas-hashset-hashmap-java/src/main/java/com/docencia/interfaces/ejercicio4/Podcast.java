@@ -12,12 +12,23 @@ public class Podcast implements Reproducible {
     private String nombre;
     private int episodio;
 
-    public Podcast(UUID id, String nombre, int episodio) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public Podcast(UUID id, String nombre, int episodio) {
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.nombre = nombre;
+        this.episodio = episodio;
+    }
 
-    public UUID getId() { return id; }
-    public String getNombre() { return nombre; }
-    public int getEpisodio() { return episodio; }
+    public UUID getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getEpisodio() {
+        return episodio;
+    }
 
     @Override
     public String reproducir() {
@@ -25,17 +36,26 @@ public class Podcast implements Reproducible {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Podcast other = (Podcast) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Podcast [id=" + id + ", nombre=" + nombre + ", episodio=" + episodio + "]";
     }
+
+    
 }

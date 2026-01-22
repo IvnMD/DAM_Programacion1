@@ -12,8 +12,11 @@ public class Factura implements Pagable {
     private double base;
     private double iva;
 
-    public Factura(UUID id, double base, double iva) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public Factura(UUID id, double base, double iva) {
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.base = base;
+        this.iva = iva;
+    }
 
     public UUID getId() { return id; }
     public double getBase() { return base; }
@@ -25,17 +28,28 @@ public class Factura implements Pagable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (getClass() != obj.getClass())
+            return false;
+        Factura other = (Factura) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Factura [id=" + id + ", base=" + base + ", iva=" + iva + "]";
     }
+
+    
+
+    
 }

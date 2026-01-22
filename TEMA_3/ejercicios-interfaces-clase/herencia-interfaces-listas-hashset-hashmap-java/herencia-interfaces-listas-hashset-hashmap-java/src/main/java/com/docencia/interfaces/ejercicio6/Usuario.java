@@ -12,8 +12,11 @@ public class Usuario implements Autenticable {
     private String nombre;
     private String hash;
 
-    public Usuario(UUID id, String nombre, String hash) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public Usuario(UUID id, String nombre, String hash) { 
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.nombre = nombre;
+        this.hash = hash;
+    }
 
     public UUID getId() { return id; }
     public String getNombre() { return nombre; }
@@ -25,17 +28,22 @@ public class Usuario implements Autenticable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        Admin other = (Admin) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Admin [id=" + id + ", nombre=" + nombre + ", hash=" + hash + "]";
     }
 }

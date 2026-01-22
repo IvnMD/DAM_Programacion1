@@ -12,8 +12,11 @@ public class CsvExporter implements Exportable {
     private String separador;
     private int columnas;
 
-    public CsvExporter(UUID id, String separador, int columnas) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public CsvExporter(UUID id, String separador, int columnas) { 
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.separador = separador;
+        this.columnas = columnas;
+    }
 
     public UUID getId() { return id; }
     public String getSeparador() { return separador; }
@@ -25,17 +28,26 @@ public class CsvExporter implements Exportable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CsvExporter other = (CsvExporter) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "CsvExporter [id=" + id + ", separador=" + separador + ", columnas=" + columnas + "]";
     }
+
+    
 }

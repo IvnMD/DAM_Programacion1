@@ -12,7 +12,12 @@ public class Dron implements Volador {
     private String marca;
     private int bateriaMinutos;
 
-    public Dron(UUID id, String marca, int bateriaMinutos) {        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public Dron(UUID id, String marca, int bateriaMinutos) {   
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.marca = marca;
+        this.bateriaMinutos = bateriaMinutos;
+
+ 
 }
 
     public UUID getId() { return id; }
@@ -24,18 +29,29 @@ public class Dron implements Volador {
         return 500;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
-    }
+    
 
     @Override
     public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Objects.hash(id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Dron other = (Dron) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Dron [id=" + id + ", marca=" + marca + ", bateriaMinutos=" + bateriaMinutos + "]";
     }
+
+    
 }

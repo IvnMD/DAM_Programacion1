@@ -6,6 +6,10 @@ public class Gerente extends Empleado {
 
     private int numReportes;
 
+    public Gerente(UUID id){
+        super(id);
+    }
+
     public Gerente(UUID id, String nombre, double salarioBase, int numReportes) {
         super(id, nombre, salarioBase);
         if (numReportes < 0) { 
@@ -13,6 +17,8 @@ public class Gerente extends Empleado {
         }
         this.numReportes = numReportes;
     }
+
+
 
     public int getNumReportes() { 
         return numReportes; 

@@ -12,8 +12,11 @@ public class Bluetooth implements Conectable {
     private String mac;
     private int canal;
 
-    public Bluetooth(UUID id, String mac, int canal) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public Bluetooth(UUID id, String mac, int canal) {   
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.mac = mac;
+        this.canal = canal;
+    }
 
     public UUID getId() { return id; }
     public String getMac() { return mac; }
@@ -25,17 +28,24 @@ public class Bluetooth implements Conectable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        Bluetooth other = (Bluetooth) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Bluetooth [id=" + id + ", mac=" + mac + ", canal=" + canal + "]";
     }
+
+    
 }

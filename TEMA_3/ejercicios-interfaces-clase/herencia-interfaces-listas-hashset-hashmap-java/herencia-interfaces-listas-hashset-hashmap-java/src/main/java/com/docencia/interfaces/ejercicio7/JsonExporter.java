@@ -12,30 +12,44 @@ public class JsonExporter implements Exportable {
     private boolean pretty;
     private int indent;
 
-    public JsonExporter(UUID id, boolean pretty, int indent) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
-
-    public UUID getId() { return id; }
-    public boolean getPretty() { return pretty; }
-    public int getIndent() { return indent; }
-
-    @Override
-    public String exportar() {
-        return pretty ? "JSON(pretty)" : "JSON";
+    public JsonExporter(UUID id, boolean pretty, int indent) {
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.pretty = pretty;
+        this.indent = indent;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public UUID getId() {
+        return id;
+    }
+
+    public boolean getPretty() {
+        return pretty;
+    }
+
+    public int getIndent() {
+        return indent;
     }
 
     @Override
     public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Objects.hash(id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        JsonExporter other = (JsonExporter) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "JsonExporter [id=" + id + ", pretty=" + pretty + ", indent=" + indent + "]";
     }
+
 }

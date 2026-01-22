@@ -12,7 +12,10 @@ public class Cupon implements Descontable {
     private double importe;
     private String codigo;
 
-    public Cupon(UUID id, double importe, String codigo) {        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public Cupon(UUID id, double importe, String codigo) {  
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.importe = importe;
+        this.codigo = codigo;
 }
 
     public UUID getId() { return id; }
@@ -25,17 +28,26 @@ public class Cupon implements Descontable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public String toString() {
+        return "Cupon [id=" + id + ", importe=" + importe + ", codigo=" + codigo + "]";
     }
 
     @Override
     public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Objects.hash(id);
     }
 
     @Override
-    public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Cupon other = (Cupon) obj;
+        return Objects.equals(id, other.id);
     }
+
+    
 }

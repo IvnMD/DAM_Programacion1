@@ -12,12 +12,23 @@ public class CirculoDrawable implements Drawable {
     private double radio;
     private String color;
 
-    public CirculoDrawable(UUID id, double radio, String color) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public CirculoDrawable(UUID id, double radio, String color) {
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.radio = radio;
+        this.color = color;
+    }
 
-    public UUID getId() { return id; }
-    public double getRadio() { return radio; }
-    public String getColor() { return color; }
+    public UUID getId() {
+        return id;
+    }
+
+    public double getRadio() {
+        return radio;
+    }
+
+    public String getColor() {
+        return color;
+    }
 
     @Override
     public String dibujar() {
@@ -25,17 +36,25 @@ public class CirculoDrawable implements Drawable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CirculoDrawable other = (CirculoDrawable) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "CirculoDrawable [id=" + id + ", radio=" + radio + ", color=" + color + "]";
     }
+    
 }

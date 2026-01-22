@@ -6,6 +6,10 @@ public class Perro extends Animal {
 
     private String raza;
 
+    public Perro(UUID id){
+        super(id);
+    }
+
     public Perro(UUID id, String nombre, String raza) {
         super(id, nombre);
         if (raza == null || raza.isBlank()){

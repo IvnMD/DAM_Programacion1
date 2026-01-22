@@ -20,7 +20,7 @@ public class ListaVehiculosTest {
     }
 
     private Vehiculo nuevoB(UUID id) {
-        return new Motocicleta(id, "Honda", "CB500", false);
+        return new Coche(id, "Honda", "CB500", 3);
     }
 
     private Vehiculo invalido(UUID id) {

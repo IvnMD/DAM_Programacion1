@@ -12,12 +12,23 @@ public class SensorTemperatura implements Medible {
     private String ubicacion;
     private double celsius;
 
-    public SensorTemperatura(UUID id, String ubicacion, double celsius) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public SensorTemperatura(UUID id, String ubicacion, double celsius) {
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.ubicacion = ubicacion;
+        this.celsius = celsius;
+    }
 
-    public UUID getId() { return id; }
-    public String getUbicacion() { return ubicacion; }
-    public double getCelsius() { return celsius; }
+    public UUID getId() {
+        return id;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public double getCelsius() {
+        return celsius;
+    }
 
     @Override
     public double medir() {
@@ -25,17 +36,25 @@ public class SensorTemperatura implements Medible {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        SensorTemperatura other = (SensorTemperatura) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "SensorTemperatura [id=" + id + ", ubicacion=" + ubicacion + ", celsius=" + celsius + "]";
     }
+
 }

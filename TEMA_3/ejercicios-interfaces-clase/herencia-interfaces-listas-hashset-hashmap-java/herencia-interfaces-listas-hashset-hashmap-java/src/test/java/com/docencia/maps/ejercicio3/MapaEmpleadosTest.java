@@ -20,7 +20,7 @@ public class MapaEmpleadosTest {
     }
 
     private Empleado nuevoB(UUID id) {
-        return new Gerente(id, "Pablo", 2000.0, 5);
+        return new Desarrollador(id, "Pablo", 2000.0, "Kotlin");
     }
 
     private Empleado invalido(UUID id) {

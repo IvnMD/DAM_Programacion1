@@ -16,6 +16,10 @@ public abstract class Animal {
         this.nombre = nombre;
     }
 
+    public Animal(UUID id) {
+        this.id = id == null ? UUID.randomUUID() : id;
+    }
+
     public UUID getId() { return id; }
     public String getNombre() { return nombre; }
 
@@ -37,8 +41,6 @@ public abstract class Animal {
         if (this == obj)
             return true;
 
-        if (getClass() != obj.getClass())
-            return false;
         Animal other = (Animal) obj;
         if (id == null) {
             if (other.id != null)

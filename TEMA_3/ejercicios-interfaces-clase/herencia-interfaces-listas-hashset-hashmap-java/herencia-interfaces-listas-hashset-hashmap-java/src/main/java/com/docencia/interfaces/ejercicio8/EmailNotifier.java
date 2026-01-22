@@ -12,12 +12,23 @@ public class EmailNotifier implements Notificable {
     private String from;
     private String to;
 
-    public EmailNotifier(UUID id, String from, String to) {        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public EmailNotifier(UUID id, String from, String to) {
+        this.id = id == null ? UUID.randomUUID() : id;
+        this.to = to;
+        this.from = from;
+    }
 
-    public UUID getId() { return id; }
-    public String getFrom() { return from; }
-    public String getTo() { return to; }
+    public UUID getId() {
+        return id;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public String getTo() {
+        return to;
+    }
 
     @Override
     public boolean notificar(String mensaje) {
@@ -25,17 +36,25 @@ public class EmailNotifier implements Notificable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EmailNotifier other = (EmailNotifier) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "EmailNotifier [id=" + id + ", from=" + from + ", to=" + to + "]";
     }
+
 }

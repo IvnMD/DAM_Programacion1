@@ -5,7 +5,10 @@ import com.docencia.herencia.ejercicio1.Persona;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.UUID;
+
+import javax.swing.JPopupMenu.Separator;
 
 /**
  * Gestiona un mapa de {@link Persona} usando internamente {@link HashMap}.
@@ -16,34 +19,64 @@ import java.util.UUID;
  * - No se permiten ids nulos ni duplicados.
  */
 public class MapaPersonas {
-    private final Map<UUID, Persona> index = new HashMap<>();
+    private final Map<UUID, Persona> index;
+
+    public MapaPersonas(){
+        index = new HashMap<>();
+    }
 
     /** Anad... un elemento a la coleccion. */
     public void anadir(Persona elemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(elemento);
+        //! Si existe, salgo, si no añado
+        Persona existe = buscarPorId(elemento.getId());
+        if(existe != null){
+            throw new IllegalArgumentException();
+        }
+        // if(index.containsValue(elemento)){   //? Metodo alternativo
+        //     throw new IllegalArgumentException();
+        // }
+        index.put(elemento.getId(), elemento);
     }
 
     /** Busca por id. */
     public Persona buscarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        boolean existe = index.containsKey(id);
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+            if (!existe){
+                return null;
+            }
+        return index.get(id);
     }
     /** Elimina por id. */
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        index.remove(id); 
+        return true;
     }
 
     /** Reemplaza el elemento con ese id por otro (mismo id). */
     public void modificar(UUID id, Persona nuevoElemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        Persona persona = buscarPorId(id);
+        if (persona == null){
+            throw new NoSuchElementException();
+        }
+        validar(nuevoElemento);
+        if(!persona.equals(nuevoElemento)){
+            throw new IllegalArgumentException();
+        }
+        index.replace(id, nuevoElemento);
+        // index.replace(id, persona, nuevoElemento);
     }
 
     /** Devuelve una copia inmutable del conjunto. */
     public java.util.Set<Persona> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Set.copyOf(index.values());
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return index.size();
     }
     private void validar(Persona elemento) {
         if (elemento == null) {

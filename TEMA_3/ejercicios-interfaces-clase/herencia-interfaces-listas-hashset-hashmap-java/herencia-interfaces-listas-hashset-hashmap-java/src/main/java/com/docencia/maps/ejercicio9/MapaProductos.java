@@ -5,6 +5,7 @@ import com.docencia.herencia.ejercicio9.Producto;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -16,35 +17,68 @@ import java.util.UUID;
  * - No se permiten ids nulos ni duplicados.
  */
 public class MapaProductos {
-    private final Map<UUID, Producto> index = new HashMap<>();
+    private final Map<UUID, Producto> index;
+
+
+
+    public MapaProductos(){
+        index = new HashMap<>();
+    }
 
     /** Anad... un elemento a la coleccion. */
     public void anadir(Producto elemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(elemento);
+        //! Si existe, salgo, si no añado
+        Producto existe = buscarPorId(elemento.getId());
+        if(existe != null){
+            throw new IllegalArgumentException();
+        }
+        // if(index.containsValue(elemento)){   //? Metodo alternativo
+        //     throw new IllegalArgumentException();
+        // }
+        index.put(elemento.getId(), elemento);
     }
 
     /** Busca por id. */
     public Producto buscarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        boolean existe = index.containsKey(id);
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+            if (!existe){
+                return null;
+            }
+        return index.get(id);
     }
     /** Elimina por id. */
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        index.remove(id); 
+        return true;
     }
 
     /** Reemplaza el elemento con ese id por otro (mismo id). */
     public void modificar(UUID id, Producto nuevoElemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        Producto elemento = buscarPorId(id);
+        if (elemento == null){
+            throw new NoSuchElementException();
+        }
+        validar(nuevoElemento);
+        if(!elemento.equals(nuevoElemento)){
+            throw new IllegalArgumentException();
+        }
+        index.replace(id, nuevoElemento);
+        // index.replace(id, persona, nuevoElemento);
     }
 
     /** Devuelve una copia inmutable del conjunto. */
     public java.util.Set<Producto> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Set.copyOf(index.values());
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return index.size();
     }
+    
     private void validar(Producto elemento) {
         if (elemento == null) {
             throw new IllegalArgumentException("El producto no puede ser nulo");

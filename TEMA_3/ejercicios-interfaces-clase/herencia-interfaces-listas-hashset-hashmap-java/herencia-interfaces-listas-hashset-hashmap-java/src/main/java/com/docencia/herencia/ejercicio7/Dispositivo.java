@@ -3,6 +3,8 @@ package com.docencia.herencia.ejercicio7;
 import java.util.Objects;
 import java.util.UUID;
 
+import com.docencia.herencia.ejercicio7.Dispositivo;
+
 /**
  * Clase base abstracta.
  * Incluye un identificador unico (UUID) y campos comunes.
@@ -36,17 +38,22 @@ public abstract class Dispositivo {
         return Objects.hash(id);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
+@Override
+public boolean equals(Object obj) {
+    if (obj == null)
+        return false;
+    if (this == obj)
+        return true;
+    if (!(obj instanceof Dispositivo))  // Add this check!
+        return false;
+    Dispositivo other = (Dispositivo) obj;
+    if (id == null) {
+        if (other.id != null)
             return false;
-
-        Dispositivo other = (Dispositivo) obj;
-        return Objects.equals(id, other.id);
-    }
-
+    } else if (!id.equals(other.id))
+        return false;
+    return true;
+}
     @Override
     public String toString() {
         return "Dispositivo [id=" + getId() + ", getFabricante()=" + getFabricante() + "]";

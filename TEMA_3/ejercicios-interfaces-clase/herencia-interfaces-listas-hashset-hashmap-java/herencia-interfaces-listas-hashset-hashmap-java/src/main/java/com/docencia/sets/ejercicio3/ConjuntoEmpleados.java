@@ -1,7 +1,5 @@
 package com.docencia.sets.ejercicio3;
 
-import com.docencia.herencia.ejercicio2.Coche;
-import com.docencia.herencia.ejercicio2.Empleado;
 import com.docencia.herencia.ejercicio3.Desarrollador;
 import com.docencia.herencia.ejercicio3.Empleado;
 

@@ -1,7 +1,6 @@
 package com.docencia.sets.ejercicio6;
 
-import com.docencia.herencia.ejercicio5.Circulo;
-import com.docencia.herencia.ejercicio5.CuentaBancaria;
+
 import com.docencia.herencia.ejercicio6.CuentaAhorro;
 import com.docencia.herencia.ejercicio6.CuentaBancaria;
 

@@ -1,7 +1,6 @@
 package com.docencia.listas.ejercicio10;
 
 import com.docencia.herencia.ejercicio10.Documento;
-import com.docencia.herencia.ejercicio9.Documento;
 
 import java.util.ArrayList;
 import java.util.List;

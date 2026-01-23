@@ -37,21 +37,24 @@ public abstract class Empleado {
         return result;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null)
-            return false;
-        if (this == obj)
-            return true;
+    
 
-        Empleado other = (Empleado) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
+@Override
+public boolean equals(Object obj) {
+    if (obj == null)
+        return false;
+    if (this == obj)
         return true;
-    }
+    if (!(obj instanceof Empleado))  // Add this check!
+        return false;
+    Empleado other = (Empleado) obj;
+    if (id == null) {
+        if (other.id != null)
+            return false;
+    } else if (!id.equals(other.id))
+        return false;
+    return true;
+}
 
     @Override
     public String toString() {

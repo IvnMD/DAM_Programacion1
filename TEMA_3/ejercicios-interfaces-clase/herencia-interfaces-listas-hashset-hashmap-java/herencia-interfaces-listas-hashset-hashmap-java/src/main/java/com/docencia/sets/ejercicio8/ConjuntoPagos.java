@@ -1,6 +1,5 @@
 package com.docencia.sets.ejercicio8;
 
-import com.docencia.herencia.ejercicio7.Pago;
 import com.docencia.herencia.ejercicio8.Pago;
 
 import java.util.HashSet;

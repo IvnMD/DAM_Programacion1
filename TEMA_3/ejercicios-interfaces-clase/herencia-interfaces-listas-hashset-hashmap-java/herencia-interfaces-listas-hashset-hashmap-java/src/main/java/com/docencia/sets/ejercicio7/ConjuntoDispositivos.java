@@ -1,6 +1,6 @@
 package com.docencia.sets.ejercicio7;
 
-import com.docencia.herencia.ejercicio6.Dispositivo;
+
 import com.docencia.herencia.ejercicio7.Dispositivo;
 
 import java.util.HashSet;

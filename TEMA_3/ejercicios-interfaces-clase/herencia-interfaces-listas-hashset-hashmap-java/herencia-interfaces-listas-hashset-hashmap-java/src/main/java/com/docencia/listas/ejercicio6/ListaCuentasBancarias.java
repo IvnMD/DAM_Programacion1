@@ -1,11 +1,11 @@
 package com.docencia.listas.ejercicio6;
 
-import com.docencia.herencia.ejercicio6.CuentaBancaria;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
+
+import com.docencia.herencia.ejercicio6.CuentaBancaria;
 
 /**
  * Gestiona una lista de {@link CuentaBancaria} usando {@link java.util.ArrayList}.
@@ -21,27 +21,51 @@ public class ListaCuentasBancarias {
     private final List<CuentaBancaria> cuentas = new ArrayList<>();
 
     public void anadir(CuentaBancaria cuenta) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(cuenta);
+        if(cuentas.contains(cuenta)){
+            throw new IllegalArgumentException();
+        }
+        cuentas.add(cuenta);
     }
 
     public CuentaBancaria buscarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if(id == null){
+            throw new IllegalArgumentException();
+        }
+        for (CuentaBancaria cuentaBancaria : cuentas) {
+            if(cuentaBancaria.getId().equals(id)){
+                return cuentaBancaria;
+            }
+        }
+        return null;
     }
 
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null){
+            throw new IllegalArgumentException();
+        }
+        return cuentas.removeIf(cuenta -> cuenta.getId().equals(id));
     }
 
     public void modificar(UUID id, CuentaBancaria nuevaCuenta) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(nuevaCuenta);
+        CuentaBancaria existente = buscarPorId(id);
+        if (existente == null){
+            throw new NoSuchElementException();
+        }
+        if (!existente.equals(nuevaCuenta)){
+            throw new IllegalArgumentException();
+        }
+        int indice = cuentas.indexOf(existente);
+        cuentas.set(indice, nuevaCuenta);
     }
 
     public List<CuentaBancaria> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return List.copyOf(cuentas);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return cuentas.size();
     }
 
     private boolean existeId(UUID id) {

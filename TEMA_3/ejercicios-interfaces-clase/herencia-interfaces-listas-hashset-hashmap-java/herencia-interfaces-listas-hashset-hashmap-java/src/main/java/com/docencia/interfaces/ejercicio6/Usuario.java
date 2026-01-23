@@ -32,18 +32,23 @@ public class Usuario implements Autenticable {
         return Objects.hash(id);
     }
 
-    @Override
+        @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
+        if (obj == null) {
             return false;
-        Admin other = (Admin) obj;
-        return Objects.equals(id, other.id);
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Usuario)) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        return Objects.equals(this.id, other.id);
     }
 
     @Override
     public String toString() {
-        return "Admin [id=" + id + ", nombre=" + nombre + ", hash=" + hash + "]";
+        return "Usuario [id=" + id + ", nombre=" + nombre + ", hash=" + hash + "]";
     }
 }

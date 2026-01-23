@@ -52,4 +52,9 @@ public class JsonExporter implements Exportable {
         return "JsonExporter [id=" + id + ", pretty=" + pretty + ", indent=" + indent + "]";
     }
 
+    @Override
+    public String exportar() {
+        return "{ \"exporter\": \"json\", \"pretty\": " + pretty + ", \"indent\": " + indent + " }";
+    }
+
 }

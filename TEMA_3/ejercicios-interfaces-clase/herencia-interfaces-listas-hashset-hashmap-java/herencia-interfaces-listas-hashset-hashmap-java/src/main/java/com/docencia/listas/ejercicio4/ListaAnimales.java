@@ -1,12 +1,11 @@
 package com.docencia.listas.ejercicio4;
 
-import com.docencia.herencia.ejercicio4.Animal;
-import com.docencia.herencia.ejercicio4.Perro;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
+
+import com.docencia.herencia.ejercicio4.Animal;
 
 /**
  * Gestiona una lista de {@link Animal} usando {@link java.util.ArrayList}.
@@ -22,25 +21,22 @@ public class ListaAnimales {
 
     public void anadir(Animal animal) {
         validar(animal);
-        if(animales.contains(animal)){
+        if (animales.contains(animal)) {
             throw new IllegalArgumentException();
         }
         animales.add(animal);
     }
 
     public Animal buscarPorId(UUID id) {
-        if (id == null){
+        if (id == null) {
             throw new IllegalArgumentException();
         }
         for (Animal animal : animales) {
-            return animal;
+            if (animal.getId().equals(id)) {
+                return animal; // Devuelves directamente el objeto encontrado
+            }
         }
-        Animal animal = new Perro(id);
-        int posicion = animales.indexOf(animal);
-        if (posicion < 0){
-            return null;
-        }
-        return animales.get(posicion);
+        return null;
     }
 
     public boolean eliminarPorId(UUID id) {
@@ -56,9 +52,11 @@ public class ListaAnimales {
         if (existente == null) {
             throw new NoSuchElementException();
         }
-        if(!existente.equals(nuevoAnimal)){
+        if (!existente.equals(nuevoAnimal)) {
             throw new IllegalArgumentException();
         }
+        int indice = animales.indexOf(existente);
+        animales.set(indice, nuevoAnimal);
     }
 
     public List<Animal> listar() {

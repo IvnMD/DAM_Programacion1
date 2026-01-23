@@ -12,6 +12,9 @@ public abstract class Vehiculo {
     private String marca;
     private String modelo;
 
+    public Vehiculo() {
+    }
+
     public Vehiculo (UUID id){
         this.id = id == null ? UUID.randomUUID() : id; 
     }

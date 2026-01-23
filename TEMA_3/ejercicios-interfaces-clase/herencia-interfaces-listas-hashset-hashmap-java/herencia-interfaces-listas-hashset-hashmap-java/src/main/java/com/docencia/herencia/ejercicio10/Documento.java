@@ -24,17 +24,38 @@ public abstract class Documento {
     public abstract String tipo();
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+    if (obj == null) {
+        return false;
     }
+    if (this == obj) {
+        return true;
+    }
+    if (!(obj instanceof Documento)) {  
+        return false;
+    }
+    final Documento other = (Documento) obj;
+    return Objects.equals(this.id, other.id);
+}
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Documento{");
+        sb.append("id=").append(id);
+        sb.append(", titulo=").append(titulo);
+        sb.append('}');
+        return sb.toString();
     }
+
+
+
+
 }

@@ -8,8 +8,7 @@ public class Factura extends Documento {
 
     public Factura(UUID id, String titulo, String numero) {
         super(id, titulo);
-        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+        this.numero = numero;}
 
     public String getNumero() { return numero; }
 
@@ -20,6 +19,10 @@ public class Factura extends Documento {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Factura{" +
+                "id=" + getId() +
+                ", titulo='" + getTitulo() + '\'' +
+                ", numero='" + numero + '\'' +
+                '}';
     }
 }

@@ -53,11 +53,14 @@ public class Cancion implements Reproducible {
 
     @Override
     public String toString() {
-        return "{" +
-                " id='" + getId() + "'" +
-                ", titulo='" + getTitulo() + "'" +
-                ", artista='" + getArtista() + "'" +
-                "}";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cancion{");
+        sb.append("id=").append(id);
+        sb.append(", titulo=").append(titulo);
+        sb.append(", artista=").append(artista);
+        sb.append('}');
+        return sb.toString();
     }
+
 
 }

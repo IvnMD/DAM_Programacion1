@@ -8,18 +8,30 @@ public class PagoTarjeta extends Pago {
 
     public PagoTarjeta(UUID id, double importe, String ultimos4) {
         super(id, importe);
-        throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+        setUltimos4(ultimos4);
+    }
 
     public String getUltimos4() { return ultimos4; }
+
+    
 
     @Override
     public boolean requiereValidacion() {
         return true;
     }
 
+    
+
+
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "PagoTarjeta [getUltimos4()=" + getUltimos4() + ", id=" + getId() + "]";
+    }
+
+    public void setUltimos4(String ultimos4) {
+        if (ultimos4 == null || ultimos4.isBlank()){
+            throw new IllegalArgumentException();
+        }
+        this.ultimos4 = ultimos4;
     }
 }

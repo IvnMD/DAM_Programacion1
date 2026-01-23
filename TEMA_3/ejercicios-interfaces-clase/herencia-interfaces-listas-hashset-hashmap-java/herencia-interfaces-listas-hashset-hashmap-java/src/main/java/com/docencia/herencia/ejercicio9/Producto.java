@@ -19,25 +19,40 @@ public abstract class Producto {
         this.precio = precio;
     }
 
-    public UUID getId() { return id; }
-    public String getNombre() { return nombre; }
-    public double getPrecio() { return precio; }
+    public UUID getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
 
     /** Metodo abstracto para demostrar polimorfismo. */
     public abstract String categoria();
 
     @Override
-    public boolean equals(Object o) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
-    public int hashCode() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Producto))
+            return false;
+        Producto other = (Producto) obj;
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + "]";
     }
 }

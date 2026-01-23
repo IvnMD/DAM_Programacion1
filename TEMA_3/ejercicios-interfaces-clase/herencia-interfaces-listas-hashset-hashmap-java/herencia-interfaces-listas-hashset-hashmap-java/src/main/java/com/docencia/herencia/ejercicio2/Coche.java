@@ -6,6 +6,9 @@ public class Coche extends Vehiculo {
 
     private int puertas;
 
+    public Coche(UUID id) {
+        super(id);
+    }
 
     public Coche(UUID id, String marca, String modelo, int puertas) {
         super(id, marca, modelo);
@@ -14,9 +17,8 @@ public class Coche extends Vehiculo {
         }
         this.puertas = puertas;
     }
-    public Coche(UUID id) {
-        //TODO Auto-generated constructor stub
-    }
+
+
     public int getPuertas() { 
         return puertas; 
     }

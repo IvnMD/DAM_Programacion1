@@ -34,12 +34,16 @@ public abstract class Animal {
         return result;
     }
 
+    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null)
-            return false;
+            return false;        
         if (this == obj)
             return true;
+        if (!(obj instanceof Animal))
+            return false;
 
         Animal other = (Animal) obj;
         if (id == null) {

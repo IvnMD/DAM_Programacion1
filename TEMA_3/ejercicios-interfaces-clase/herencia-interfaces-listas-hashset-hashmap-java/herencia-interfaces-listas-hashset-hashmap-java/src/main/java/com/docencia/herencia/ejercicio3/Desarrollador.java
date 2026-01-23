@@ -11,6 +11,10 @@ public class Desarrollador extends Empleado {
         this.lenguajePrincipal = lenguajePrincipal;
 }
 
+    public Desarrollador(UUID id) {
+        super(id);
+    }
+
     public String getLenguajePrincipal() { 
         if (lenguajePrincipal == null || lenguajePrincipal.isBlank()){
             throw new IllegalStateException();

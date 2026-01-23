@@ -1,5 +1,6 @@
 package com.docencia.sets.ejercicio8;
 
+import com.docencia.herencia.ejercicio7.Pago;
 import com.docencia.herencia.ejercicio8.Pago;
 
 import java.util.HashSet;
@@ -17,35 +18,84 @@ import java.util.UUID;
  */
 public class ConjuntoPagos {
 
-    private final Set<Pago> set = new HashSet<>();
+    private final Set<Pago> set;
+
+
+    public ConjuntoPagos() {
+        this.set = new HashSet<>();
+    }
 
     /** Anad... un elemento a la coleccion. */
     public void anadir(Pago elemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(elemento);
+        if (set.contains(elemento)) {
+            throw new IllegalArgumentException();
+        }
+        set.add(elemento);
+    }
+
+    public Pago buscar(Pago PagosBuscar) {
+        if (PagosBuscar == null) {
+            throw new IllegalArgumentException();
+        }
+        for (Pago pago : set) {
+            if (pago.equals(PagosBuscar)) {
+                return pago;
+            }
+        }
+        return null;
+
     }
 
     /** Busca por id. */
-public Pago buscarPorId(UUID id) {
-    throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public Pago buscarPorId(UUID id) {
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        for (Pago pago : set) {
+            if (pago.getId().equals(id)) { // Compara el id directamente
+                return pago;
+            }
+        }
+        return null;
+    }
 
     /** Elimina por id. */
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        return set.removeIf(pago -> pago.getId().equals(id));
+
+        // Pago existe = buscarPorId(id); //!Metodo igualmente valido
+        // if(existe == null){
+        // return false;
+        // }
+        // return set.remove(existe);
+
     }
 
     /** Reemplaza el elemento con ese id por otro (mismo id). */
     public void modificar(UUID id, Pago nuevoElemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(nuevoElemento);
+        Pago existente = buscarPorId(id);
+        if (existente == null) {
+            throw new NoSuchElementException();
+        }
+        if (!existente.equals(nuevoElemento)) {
+            return;
+        }
+        set.add(nuevoElemento);
+
     }
 
     /** Devuelve una copia inmutable del conjunto. */
     public Set<Pago> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Set.copyOf(set);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return set.size();
     }
     private void validar(Pago elemento) {
         if (elemento == null) {

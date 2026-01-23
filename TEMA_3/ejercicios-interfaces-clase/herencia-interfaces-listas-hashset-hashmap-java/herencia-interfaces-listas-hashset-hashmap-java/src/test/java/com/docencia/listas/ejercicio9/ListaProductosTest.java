@@ -20,7 +20,7 @@ public class ListaProductosTest {
     }
 
     private Producto nuevoB(UUID id) {
-        return new Electronica(id, "Teclado", 20.0, 24);
+        return new Libro(id, "Teclado", 20.0, "ISBN3");
     }
 
     private Producto invalido(UUID id) {

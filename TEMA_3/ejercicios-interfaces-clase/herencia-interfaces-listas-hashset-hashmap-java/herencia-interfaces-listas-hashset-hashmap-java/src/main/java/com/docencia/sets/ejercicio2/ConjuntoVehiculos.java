@@ -1,5 +1,6 @@
 package com.docencia.sets.ejercicio2;
 
+import com.docencia.herencia.ejercicio2.Coche;
 import com.docencia.herencia.ejercicio2.Vehiculo;
 
 import java.util.HashSet;
@@ -17,35 +18,91 @@ import java.util.UUID;
  */
 public class ConjuntoVehiculos {
 
-    private final Set<Vehiculo> set = new HashSet<>();
+    private final Set<Vehiculo> set;
+
+    public ConjuntoVehiculos(){
+        this.set = new HashSet<>();
+    }
 
     /** Anad... un elemento a la coleccion. */
     public void anadir(Vehiculo elemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(elemento);
+        if(set.contains(elemento)){
+            throw new IllegalArgumentException();
+        }
+        set.add(elemento);
     }
+
+    public Vehiculo buscar(Vehiculo vehiculoBuscar) {
+            if (vehiculoBuscar == null) {
+                throw new IllegalArgumentException();
+            }
+            for (Vehiculo vehiculo : set){
+                if(vehiculo.equals(vehiculoBuscar)){
+                    return vehiculo;
+                }
+            }
+        return null;
+        
+        
+    }
+
+
 
     /** Busca por id. */
 public Vehiculo buscarPorId(UUID id) {
-    throw new UnsupportedOperationException("El metodo no esta implementado");
+    
+    if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        Vehiculo vehiculoBuscar = new Coche(id);
+        for (Vehiculo vehiculo : set){
+            if(vehiculo.equals(vehiculoBuscar)){
+                return vehiculo;
+            }
+        }
+    return buscar(vehiculoBuscar);
+        
+        
 }
 
     /** Elimina por id. */
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        return set.removeIf(vehiculo -> vehiculo.getId().equals(id));
+
+        
+        //  Vehiculo existe = buscarPorId(id); //!Metodo igualmente valido
+        //     if(existe == null){
+        //         return false;
+        //     }
+        //     return set.remove(existe);
+         
     }
 
     /** Reemplaza el elemento con ese id por otro (mismo id). */
     public void modificar(UUID id, Vehiculo nuevoElemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(nuevoElemento);
+        Vehiculo existente = buscarPorId(id);
+        if (existente == null){
+            throw new NoSuchElementException();
+        }
+        if(!existente.equals(nuevoElemento)){
+            return;
+        }
+        set.add(nuevoElemento);
+
     }
 
     /** Devuelve una copia inmutable del conjunto. */
     public Set<Vehiculo> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Set.copyOf(set);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return set.size();
     }
     private void validar(Vehiculo elemento) {
         if (elemento == null) {

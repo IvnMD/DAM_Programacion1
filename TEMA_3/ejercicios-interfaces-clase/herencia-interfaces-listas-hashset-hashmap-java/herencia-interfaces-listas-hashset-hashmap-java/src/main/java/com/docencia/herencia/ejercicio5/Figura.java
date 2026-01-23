@@ -11,6 +11,13 @@ public abstract class Figura {
     private UUID id;
     private String color;
 
+    public Figura() {
+    }
+
+    public Figura(UUID id){
+         this.id = id == null ? UUID.randomUUID() : id;
+    }
+
     protected Figura(UUID id, String color) {
         this.id = id == null ? UUID.randomUUID() : id;
         this.color = color;

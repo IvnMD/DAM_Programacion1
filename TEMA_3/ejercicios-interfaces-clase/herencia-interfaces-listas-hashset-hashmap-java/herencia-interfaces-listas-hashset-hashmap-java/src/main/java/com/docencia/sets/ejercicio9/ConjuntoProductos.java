@@ -1,5 +1,6 @@
 package com.docencia.sets.ejercicio9;
 
+
 import com.docencia.herencia.ejercicio9.Producto;
 
 import java.util.HashSet;
@@ -17,35 +18,84 @@ import java.util.UUID;
  */
 public class ConjuntoProductos {
 
-    private final Set<Producto> set = new HashSet<>();
+    private final Set<Producto> set;
+
+
+    public ConjuntoProductos() {
+        this.set = new HashSet<>();
+    }
 
     /** Anad... un elemento a la coleccion. */
     public void anadir(Producto elemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(elemento);
+        if (set.contains(elemento)) {
+            throw new IllegalArgumentException();
+        }
+        set.add(elemento);
+    }
+
+    public Producto buscar(Producto productosBuscar) {
+        if (productosBuscar == null) {
+            throw new IllegalArgumentException();
+        }
+        for (Producto producto : set) {
+            if (producto.equals(productosBuscar)) {
+                return producto;
+            }
+        }
+        return null;
+
     }
 
     /** Busca por id. */
-public Producto buscarPorId(UUID id) {
-    throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public Producto buscarPorId(UUID id) {
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        for (Producto producto : set) {
+            if (producto.getId().equals(id)) { // Compara el id directamente
+                return producto;
+            }
+        }
+        return null;
+    }
 
     /** Elimina por id. */
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        return set.removeIf(producto -> producto.getId().equals(id));
+
+        // Producto existe = buscarPorId(id); //!Metodo igualmente valido
+        // if(existe == null){
+        // return false;
+        // }
+        // return set.remove(existe);
+
     }
 
     /** Reemplaza el elemento con ese id por otro (mismo id). */
     public void modificar(UUID id, Producto nuevoElemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(nuevoElemento);
+        Producto existente = buscarPorId(id);
+        if (existente == null) {
+            throw new NoSuchElementException();
+        }
+        if (!existente.equals(nuevoElemento)) {
+            return;
+        }
+        set.add(nuevoElemento);
+
     }
 
     /** Devuelve una copia inmutable del conjunto. */
     public Set<Producto> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Set.copyOf(set);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return set.size();
     }
     private void validar(Producto elemento) {
         if (elemento == null) {

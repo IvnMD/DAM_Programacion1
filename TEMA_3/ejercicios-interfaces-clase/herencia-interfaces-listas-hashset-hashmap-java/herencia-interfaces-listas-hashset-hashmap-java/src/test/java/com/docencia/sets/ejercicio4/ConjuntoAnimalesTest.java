@@ -20,7 +20,7 @@ public class ConjuntoAnimalesTest {
     }
 
     private Animal nuevoB(UUID id) {
-        return new Gato(id, "Misu", true);
+        return new Perro (id, "Misu", "sato");
     }
 
     private Animal invalido(UUID id) {

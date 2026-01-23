@@ -1,6 +1,7 @@
 package com.docencia.listas.ejercicio10;
 
 import com.docencia.herencia.ejercicio10.Documento;
+import com.docencia.herencia.ejercicio9.Documento;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,29 +21,52 @@ public class ListaDocumentos {
     private final List<Documento> documentos = new ArrayList<>();
 
     public void anadir(Documento documento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(documento);
+        if (documentos.contains(documento)) {
+            throw new IllegalArgumentException();
+        }
+        documentos.add(documento);
     }
 
     public Documento buscarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        for (Documento documento : documentos) {
+            if (documento.getId().equals(id)) {
+                return documento;
+            }
+        }
+        return null;
     }
 
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        return documentos.removeIf(documentos -> documentos.getId().equals(id));
     }
 
-    public void modificar(UUID id, Documento nuevoDocumento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+    public void modificar(UUID id, Documento nuevoProducto) {
+        validar(nuevoProducto);
+        Documento existente = buscarPorId(id);
+        if (existente == null) {
+            throw new NoSuchElementException();
+        }
+        if (!existente.equals(nuevoProducto)) {
+            throw new IllegalArgumentException();
+        }
+        int indice = documentos.indexOf(existente);
+        documentos.set(indice, nuevoProducto);
     }
 
     public List<Documento> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return List.copyOf(documentos);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return documentos.size();
     }
-
     private boolean existeId(UUID id) {
         return documentos.stream().anyMatch(d -> d.getId().equals(id));
     }

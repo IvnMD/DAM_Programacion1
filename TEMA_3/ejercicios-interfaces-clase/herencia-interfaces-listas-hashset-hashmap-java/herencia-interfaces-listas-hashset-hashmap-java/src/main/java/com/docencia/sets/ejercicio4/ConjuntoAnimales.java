@@ -1,6 +1,7 @@
 package com.docencia.sets.ejercicio4;
 
 import com.docencia.herencia.ejercicio4.Animal;
+import com.docencia.herencia.ejercicio4.Perro;
 
 import java.util.HashSet;
 import java.util.NoSuchElementException;
@@ -17,36 +18,94 @@ import java.util.UUID;
  */
 public class ConjuntoAnimales {
 
-    private final Set<Animal> set = new HashSet<>();
+    private final Set<Animal> set;
+
+    public ConjuntoAnimales(){
+        this.set = new HashSet<>();
+    }
 
     /** Anad... un elemento a la coleccion. */
     public void anadir(Animal elemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(elemento);
+
+        if(set.contains(elemento)){
+            throw new IllegalArgumentException();
+        }
+        set.add(elemento);
     }
+
+    public Animal buscar(Animal animalBuscar) {
+            if (animalBuscar == null) {
+                throw new IllegalArgumentException();
+            }
+            for (Animal animal : set){
+                if(animal.equals(animalBuscar)){
+                    return animal;
+                }
+            }
+        return null;
+        
+        
+    }
+
+
 
     /** Busca por id. */
 public Animal buscarPorId(UUID id) {
-    throw new UnsupportedOperationException("El metodo no esta implementado");
+    
+    if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        Animal animalBuscar = new Perro(id);
+        for (Animal animal : set){
+            if(animal.equals(animalBuscar)){
+                return animal;
+            }
+        }
+    return buscar(animalBuscar);
+        
+        
 }
 
     /** Elimina por id. */
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        return set.removeIf(animal -> animal.getId().equals(id));
+
+        
+        //  Animal existe = buscarPorId(id); //!Metodo igualmente valido
+        //     if(existe == null){
+        //         return false;
+        //     }
+        //     return set.remove(existe);
+         
     }
 
     /** Reemplaza el elemento con ese id por otro (mismo id). */
     public void modificar(UUID id, Animal nuevoElemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(nuevoElemento);
+        Animal existente = buscarPorId(id);
+        if (existente == null){
+            throw new NoSuchElementException();
+        }
+        if(!existente.equals(nuevoElemento)){
+            return;
+        }
+        set.add(nuevoElemento);
+
     }
 
     /** Devuelve una copia inmutable del conjunto. */
     public Set<Animal> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Set.copyOf(set);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return set.size();
     }
+
     private void validar(Animal elemento) {
         if (elemento == null) {
             throw new IllegalArgumentException("El animal no puede ser nulo");

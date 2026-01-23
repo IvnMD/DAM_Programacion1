@@ -1,5 +1,6 @@
 package com.docencia.listas.ejercicio9;
 
+import com.docencia.herencia.ejercicio8.Pago;
 import com.docencia.herencia.ejercicio9.Producto;
 
 import java.util.ArrayList;
@@ -21,27 +22,51 @@ public class ListaProductos {
     private final List<Producto> productos = new ArrayList<>();
 
     public void anadir(Producto producto) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(producto);
+        if (productos.contains(producto)) {
+            throw new IllegalArgumentException();
+        }
+        productos.add(producto);
     }
 
     public Producto buscarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        for (Producto producto : productos) {
+            if (producto.getId().equals(id)) {
+                return producto;
+            }
+        }
+        return null;
     }
 
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        return productos.removeIf(productos -> productos.getId().equals(id));
     }
 
     public void modificar(UUID id, Producto nuevoProducto) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(nuevoProducto);
+        Producto existente = buscarPorId(id);
+        if (existente == null) {
+            throw new NoSuchElementException();
+        }
+        if (!existente.equals(nuevoProducto)) {
+            throw new IllegalArgumentException();
+        }
+        int indice = productos.indexOf(existente);
+        productos.set(indice, nuevoProducto);
     }
 
     public List<Producto> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return List.copyOf(productos);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return productos.size();
     }
 
     private boolean existeId(UUID id) {

@@ -20,7 +20,7 @@ public class ConjuntoDocumentosTest {
     }
 
     private Documento nuevoB(UUID id) {
-        return new Contrato(id, "Contrato A", "Parte1");
+        return new Factura(id, "Contrato A", "Parte1");
     }
 
     private Documento invalido(UUID id) {

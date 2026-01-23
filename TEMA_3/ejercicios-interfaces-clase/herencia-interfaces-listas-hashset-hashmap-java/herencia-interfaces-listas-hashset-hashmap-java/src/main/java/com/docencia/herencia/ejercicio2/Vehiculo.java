@@ -62,5 +62,6 @@ public abstract class Vehiculo {
         return "Vehiculo [id=" + id + ", marca=" + marca + ", modelo=" + modelo + "]";
     }
 
+
     
 }

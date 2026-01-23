@@ -2,6 +2,7 @@ package com.docencia.sets.ejercicio10;
 
 import com.docencia.herencia.ejercicio10.Documento;
 
+
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -17,35 +18,84 @@ import java.util.UUID;
  */
 public class ConjuntoDocumentos {
 
-    private final Set<Documento> set = new HashSet<>();
+    private final Set<Documento> set;
+
+
+    public ConjuntoDocumentos() {
+        this.set = new HashSet<>();
+    }
 
     /** Anad... un elemento a la coleccion. */
     public void anadir(Documento elemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(elemento);
+        if (set.contains(elemento)) {
+            throw new IllegalArgumentException();
+        }
+        set.add(elemento);
+    }
+
+    public Documento buscar(Documento documentoBuscar) {
+        if (documentoBuscar == null) {
+            throw new IllegalArgumentException();
+        }
+        for (Documento documento : set) {
+            if (documento.equals(documentoBuscar)) {
+                return documento;
+            }
+        }
+        return null;
+
     }
 
     /** Busca por id. */
-public Documento buscarPorId(UUID id) {
-    throw new UnsupportedOperationException("El metodo no esta implementado");
-}
+    public Documento buscarPorId(UUID id) {
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        for (Documento documento : set) {
+            if (documento.getId().equals(id)) { // Compara el id directamente
+                return documento;
+            }
+        }
+        return null;
+    }
 
     /** Elimina por id. */
     public boolean eliminarPorId(UUID id) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        return set.removeIf(documento -> documento.getId().equals(id));
+
+        // Documento existe = buscarPorId(id); //!Metodo igualmente valido
+        // if(existe == null){
+        // return false;
+        // }
+        // return set.remove(existe);
+
     }
 
     /** Reemplaza el elemento con ese id por otro (mismo id). */
     public void modificar(UUID id, Documento nuevoElemento) {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        validar(nuevoElemento);
+        Documento existente = buscarPorId(id);
+        if (existente == null) {
+            throw new NoSuchElementException();
+        }
+        if (!existente.equals(nuevoElemento)) {
+            return;
+        }
+        set.add(nuevoElemento);
+
     }
 
     /** Devuelve una copia inmutable del conjunto. */
     public Set<Documento> listar() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return Set.copyOf(set);
     }
 
     public int tamanio() {
-        throw new UnsupportedOperationException("El metodo no esta implementado");
+        return set.size();
     }
     private void validar(Documento elemento) {
         if (elemento == null) {

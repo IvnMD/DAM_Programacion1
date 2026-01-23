@@ -19,6 +19,10 @@ public class Rectangulo extends Figura {
 
     
 
+    public Rectangulo(UUID id) {
+        super(id);
+    }
+
     public void setAncho(double ancho) {
         if (ancho <= 0) {
             throw new IllegalArgumentException();

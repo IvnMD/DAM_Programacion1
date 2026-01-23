@@ -20,7 +20,7 @@ public class MapaDispositivosTest {
     }
 
     private Dispositivo nuevoB(UUID id) {
-        return new Portatil(id, "Dell", 16);
+        return new Telefono(id, "Dell", "16");
     }
 
     private Dispositivo invalido(UUID id) {

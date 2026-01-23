@@ -19,7 +19,7 @@ public abstract class Empleado {
     }
 
     public Empleado(UUID id) {
-       
+       this.id = id == null ? UUID.randomUUID() : id;
     }
 
     public UUID getId() { return id; }
@@ -39,12 +39,11 @@ public abstract class Empleado {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
         if (obj == null)
             return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj)
+            return true;
+
         Empleado other = (Empleado) obj;
         if (id == null) {
             if (other.id != null)

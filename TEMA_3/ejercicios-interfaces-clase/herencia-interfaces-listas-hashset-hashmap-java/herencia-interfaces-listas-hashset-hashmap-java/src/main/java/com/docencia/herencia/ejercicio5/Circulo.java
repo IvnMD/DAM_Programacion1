@@ -8,11 +8,16 @@ public class Circulo extends Figura {
 
     public Circulo(UUID id, String color, double radio) {
         super(id, color);
-       setRadio(radio);
-}
+        setRadio(radio);
+    }
 
-    public double getRadio() { return radio; }
-    
+    public Circulo(UUID id) {
+        super(id);
+    }
+
+    public double getRadio() {
+        return radio;
+    }
 
     @Override
     public double area() {
@@ -25,11 +30,10 @@ public class Circulo extends Figura {
     }
 
     public void setRadio(double radio) {
-       if (radio <= 0){
-        throw  new IllegalArgumentException();
-       }
+        if (radio <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.radio = radio;
     }
 
-    
 }

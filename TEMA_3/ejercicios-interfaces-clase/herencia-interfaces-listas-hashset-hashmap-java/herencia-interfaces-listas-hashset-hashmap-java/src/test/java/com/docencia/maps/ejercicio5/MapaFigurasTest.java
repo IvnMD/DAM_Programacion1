@@ -20,7 +20,7 @@ public class MapaFigurasTest {
     }
 
     private Figura nuevoB(UUID id) {
-        return new Rectangulo(id, "Azul", 2.0, 3.0);
+        return new Circulo(id, "Azul",  3.0);
     }
 
     private Figura invalido(UUID id) {

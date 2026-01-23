@@ -20,7 +20,7 @@ public class ConjuntoCuentasBancariasTest {
     }
 
     private CuentaBancaria nuevoB(UUID id) {
-        return new CuentaCorriente(id, "Luis", 200.0, 1.0);
+        return new CuentaAhorro(id, "Luis", 200.0, 1.0);
     }
 
     private CuentaBancaria invalido(UUID id) {

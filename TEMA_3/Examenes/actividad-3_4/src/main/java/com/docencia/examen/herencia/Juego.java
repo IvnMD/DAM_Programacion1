@@ -82,15 +82,21 @@ public abstract class Juego {
      */
     @Override
     public boolean equals(Object obj) {
-      if (obj == null)
+        if (obj == null)
             return false;
+        if (id == null){
+            return false;
+        }
         if (this == obj)
             return true;
         if (!(obj instanceof Juego)){
             return false;
         }
         Juego other = (Juego) obj;
-        return Objects.equals(id, other.id);
+        if (other.getId() == null){
+            return false;
+        }
+        return id.equals(other.getId());
     }
     /**
      * Metodo ToString

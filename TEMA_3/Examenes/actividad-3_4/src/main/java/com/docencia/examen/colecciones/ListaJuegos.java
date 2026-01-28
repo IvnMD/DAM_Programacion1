@@ -96,16 +96,22 @@ public class ListaJuegos {
             throw new IllegalArgumentException();
         }
         double resultado = 0;
-        if(tipo == "MESA") {
-
-        }
+         for (Juego juego : juegos) {
+            if(juego.tipoJuego().equals(tipo)){
+                resultado+=juego.getComplemento();
+            }
+         }
             
         return resultado;
     }
 
     public double calcularPrecioTotal() {
+        double precio = 0.0;
+        for (Juego juego : juegos) {
+            precio += juego.getComplemento();
+        }
         
-        return 0.0;
+        return precio;
     }
 
     public int contarPorTipo(String tipo) {

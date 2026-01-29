@@ -12,13 +12,29 @@ public final class RegexCodigoProducto {
   private RegexCodigoProducto() {}
 
   public static boolean esValido(String texto) {
-    // TODO: implementar este metodo
-    throw new UnsupportedOperationException("TODO");
+    // if (texto == null || texto.isBlank()){
+    //   return false;
+    // }
+    // String copia = texto.toUpperCase();
+    // if (!(copia.equals(texto))) {
+    //   return false;
+    // }
+    // String[] arrayTexto = texto.split("-");
+    // if (arrayTexto.length != 2){
+    //   return false;
+    // }
+    // if (arrayTexto[0].length() !=3 ){
+    //   return false;
+    // }
+    // if (arrayTexto[1].length() != 4) {
+    //   return false;
+    // }
+   
+    return Pattern.matches("^[A-Z]{3}-[0-9]{4}$", texto);
   }
 
   public static Pattern patron() {
-    // TODO: implementar este metodo
-    throw new UnsupportedOperationException("TODO");
+    return Pattern.compile("^[A-Z]{3}-[0-9]{4}$");
   }
 
 

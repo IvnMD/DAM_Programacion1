@@ -12,13 +12,20 @@ public final class RegexPalabraMinusculas {
   private RegexPalabraMinusculas() {}
 
   public static boolean esValido(String texto) {
-    // TODO: implementar este metodo
-    throw new UnsupportedOperationException("TODO");
+    // String copia = texto.toString();
+    // if (copia.length() < 3 || copia.length() > 10){
+    //   return false;
+    // }
+    // String minuscula = copia.toLowerCase();
+    // if (minuscula.equals(texto)){
+    //   return true;
+    // }
+    // return false;
+    return Pattern.matches("^[a-z]{3,10}$", texto);
   }
 
   public static Pattern patron() {
-    // TODO: implementar este metodo
-    throw new UnsupportedOperationException("TODO");
+    return Pattern.compile("^[a-z]{3,10}$");
   }
 
 

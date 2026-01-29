@@ -9,21 +9,26 @@ public final class RegexSoloDigitos {
 
   private static final Pattern PATRON = Pattern.compile("\"^[0-9]+$\"");
 
-  private RegexSoloDigitos() {}
-
-  public static boolean esValido(String texto) {
-    Matcher digitos = PATRON.matcher(texto);
-    if (digitos.matches()){
-      return true;
-    } else {
-      return false;
-    }
-    
+  private RegexSoloDigitos() {
   }
+  /**
+   * Funcion que comprueba validez del patron
+   * @param texto Patron a comprobar
+   * @return true o false
+   */
+  public static boolean esValido(String texto) {
+    String patron = "^[0-9]+$";
+    return Pattern.matches(patron, texto);
 
+
+
+  }
+  /**
+   * 
+   * @return
+   */
   public static Pattern patron() {
-    if (PATRON == NULL);
-    throw new UnsupportedOperationException("TODO");
+    return Pattern.compile("^[0-9]+$");
   }
 
 

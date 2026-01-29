@@ -12,7 +12,7 @@ class RegexCodigoProductoTest {
 
 
   @Test
-  void debeAceptarFormato() {
+  void noDebeAceptarFormato() {
     assertTrue(RegexCodigoProducto.esValido("ABC-1234"), "Error: 'ABC-1234' debe ser valido");
   }
 

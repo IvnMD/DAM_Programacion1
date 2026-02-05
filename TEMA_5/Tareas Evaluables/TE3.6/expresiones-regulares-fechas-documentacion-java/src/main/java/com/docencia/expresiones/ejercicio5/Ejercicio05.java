@@ -15,7 +15,7 @@ public class Ejercicio05 {
     if (plate == null || plate.isBlank()){
       return false;
     }
-    String expReg = "^[0-9]¨{4}[B-Z]{3}$";
+    String expReg = "^[0-9]{4}[A-Z&&[^AEIOUQ]]{3}$";
     return Pattern.matches(expReg, plate);
   }
 }

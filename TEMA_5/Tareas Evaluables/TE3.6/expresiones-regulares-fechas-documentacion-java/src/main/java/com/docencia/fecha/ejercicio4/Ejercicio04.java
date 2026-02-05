@@ -22,6 +22,10 @@ import java.time.LocalTime;
      */
 public class Ejercicio04 {
 public static LocalTime redondearArriba(LocalTime t, int pasoMin) {
-        throw new UnsupportedOperationException("TODO");
+        if (t == null){
+            throw new IllegalArgumentException();
+        }
+        
+
     }
 }

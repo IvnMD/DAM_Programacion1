@@ -20,6 +20,13 @@ import java.time.LocalTime;
  */
 public class Ejercicio05 {
     public static LocalTime sumarMinutos(LocalTime t, long deltaMin) {
-        throw new UnsupportedOperationException("TODO");
+        if (t == null){
+            throw new IllegalArgumentException();
+        }
+        if (deltaMin == 0){
+            return t;
+        }
+
+        return t.plusMinutes(deltaMin);
     }
 }

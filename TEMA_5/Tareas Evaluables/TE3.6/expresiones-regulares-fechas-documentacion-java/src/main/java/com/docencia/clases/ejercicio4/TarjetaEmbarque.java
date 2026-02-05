@@ -16,7 +16,9 @@ public class TarjetaEmbarque {
     }
 
     public void validate(LocalDate hoy) {
-        throw new UnsupportedOperationException("TODO");
+        if (fechaVuelo.isAfter(hoy)){
+            throw new IllegalArgumentException();
+        }
     }
 
     public boolean puedeEmbarcar(LocalDate hoy, LocalTime ahora) {

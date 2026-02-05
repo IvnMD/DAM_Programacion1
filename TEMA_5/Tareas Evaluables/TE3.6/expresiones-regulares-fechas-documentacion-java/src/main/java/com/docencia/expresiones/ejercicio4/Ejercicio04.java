@@ -15,8 +15,7 @@ public class Ejercicio04 {
     if (cp == null || cp.isBlank()){
       return false;
     }
-    
-    String expReg = "^(0[1-9]|[1-4][0-9]|5[0-2])[0-9]{3}$";
+    String expReg = "^([0-4][0-9]|5[0-2])[0-9]{3}$";
     return Pattern.matches(expReg, cp);
   }
 

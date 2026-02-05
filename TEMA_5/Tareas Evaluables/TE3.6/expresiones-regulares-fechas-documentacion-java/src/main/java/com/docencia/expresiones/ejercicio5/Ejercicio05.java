@@ -12,6 +12,10 @@ public class Ejercicio05 {
 
 
   public static boolean isValidMatriculaES(String plate) {
-    throw new UnsupportedOperationException("TODO");
+    if (plate == null || plate.isBlank()){
+      return false;
+    }
+    String expReg = "^[0-9]¨{4}[B-Z]{3}$";
+    return Pattern.matches(expReg, plate);
   }
 }

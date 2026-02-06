@@ -12,7 +12,19 @@ import java.util.regex.Pattern;
  */
 public class Ejercicio08 {
 
-  public static boolean isValidIPv4(String ip) {
-    throw new UnsupportedOperationException("TODO");
+public static boolean isValidIPv4(String ip) {
+    if (ip == null || ip.isBlank()) {
+        return false; 
+    }
+    // 25[0-5]         -> 250-255
+    // 2[0-4][0-9]     -> 200-249
+    // 1[0-9][0-9]     -> 100-199
+    // [1-9][0-9]      -> 10-99 (prohíbe 01, 02, etc.)
+    // [0-9]           -> 0-9 (un solo dígito)
+    String octeto = "(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])";
+
+    String patron = "^" + octeto + "\\." + octeto + "\\." + octeto + "\\." + octeto + "$";
+
+    return Pattern.matches(patron, ip);
   }
 }

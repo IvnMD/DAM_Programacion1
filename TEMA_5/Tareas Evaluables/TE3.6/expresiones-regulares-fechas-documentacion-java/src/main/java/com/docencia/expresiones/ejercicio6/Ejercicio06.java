@@ -15,12 +15,20 @@ public class Ejercicio06 {
   /**
    * Devuelve true si existe al menos una palabra repetida consecutivamente.
    */
-  public static boolean hasConsecutiveRepeatedWord(String text) {
-    if (text == null || text.isBlank()){
+public static boolean hasConsecutiveRepeatedWord(String text) {
+    if (text == null || text.isBlank()) {
       return false;
     }
-    String expReg= ".*([a-zéóíáA-Z])+)\\s+)[a-zA-Z])+).*";
 
-   return Pattern.matches(expReg, text);
+    String expReg = ".*\\b([a-zA-ZáéíóúÁÉÍÓÚ]+)\\s+\\1\\b.*";
+    
+    //! \b           -> Límite de palabra (para que no coincida "hola" dentro de "holahola")
+    //? ([a-zA-ZáéíóúÁÉÍÓÚ]+) -> Grupo 1: captura una palabra completa
+    //! \s+          -> Uno o más espacios en blanco
+    //? \1           -> Referencia al Grupo 1 (la misma palabra exacta)
+    //! \b           -> Otro límite de palabra
+    //? Ponemos .* al principio y al final para que Pattern.matches coincida con toda la cadena
+
+    return Pattern.matches(expReg, text);
   }
 }

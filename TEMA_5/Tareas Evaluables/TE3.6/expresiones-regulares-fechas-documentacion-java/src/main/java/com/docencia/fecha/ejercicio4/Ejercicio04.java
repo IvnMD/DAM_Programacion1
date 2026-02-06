@@ -26,6 +26,6 @@ public static LocalTime redondearArriba(LocalTime t, int pasoMin) {
             throw new IllegalArgumentException();
         }
         
-
+        return t;
     }
 }

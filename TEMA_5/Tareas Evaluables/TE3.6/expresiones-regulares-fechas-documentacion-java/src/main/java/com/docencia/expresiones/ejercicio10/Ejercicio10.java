@@ -1,5 +1,7 @@
 package com.docencia.expresiones.ejercicio10;
 
+import java.util.regex.Pattern;
+
 /**
  /**
  * 10) VALIDAR DNI/NIF ESPAÑOL (8 dígitos + letra) EXACTO
@@ -21,7 +23,30 @@ package com.docencia.expresiones.ejercicio10;
 public class Ejercicio10 {
 
     public static boolean validarDNI(String dni) {
-        throw new UnsupportedOperationException("TODO");
+        if (dni == null || dni.isBlank()){
+            return false;
+        }
+        String patron = "^\\d{8}[A-Z]$";
+        // Validar el formato
+        if (!dni.matches(patron)) {
+            return false;
+        }
+
+        String letras_dni = "TRWAGMYFPDXBNJZSQVHLCKE";
+                
+        // Extraer el número (primeros 8 caracteres)
+        String numero = dni.substring(0, 8);
+        
+        // Extraer la letra (último carácter)
+        char letra = dni.charAt(8);
+        
+        // Calcular la letra correcta
+        int numeroInt = Integer.parseInt(numero);
+        char letraCorrecta = letras_dni.charAt(numeroInt % 23);
+        
+        // Verificar que la letra coincida
+        return letra == letraCorrecta;
+    
     }
 
 }

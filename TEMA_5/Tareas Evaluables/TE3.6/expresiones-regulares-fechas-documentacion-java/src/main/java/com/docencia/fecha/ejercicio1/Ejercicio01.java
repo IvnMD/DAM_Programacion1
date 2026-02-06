@@ -27,6 +27,18 @@ import java.time.LocalTime;
 
 public class Ejercicio01 {
     public static boolean estaDentro(LocalTime t, LocalTime inicio, LocalTime fin) {
-        throw new UnsupportedOperationException("TODO");
+        if (t == null || inicio == null || fin == null || inicio.isAfter(fin)){
+            throw new IllegalArgumentException();
+        }
+        if ( inicio.equals(fin)){
+            return false;
+        }
+        if (t.isBefore(fin) && t.isAfter(inicio)||t.equals(inicio)){
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
 }

@@ -21,7 +21,31 @@ import java.util.List;
      * - inicio=23:50, pasoMin=15, n=4 => [23:50, 00:05, 00:20, 00:35]
      */
 public class Ejercicio10 {
-public static List<LocalTime> generarAlarmas(LocalTime inicio, int pasoMin, int n) {
-        throw new UnsupportedOperationException("TODO");
+    
+    public static List<LocalTime> generarAlarmas(LocalTime inicio, int pasoMin, int n) {
+        if (inicio == null) {
+            throw new IllegalArgumentException();
+        }
+        if (pasoMin <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (n < 0) {
+            throw new IllegalArgumentException();
+        }
+        
+        List<LocalTime> alarmas = new ArrayList<>();
+        
+        if (n == 0) {
+            return alarmas;
+        }
+        
+        LocalTime alarmaActual = inicio;
+        
+        for (int i = 0; i < n; i++) {
+            alarmas.add(alarmaActual);
+            alarmaActual = alarmaActual.plusMinutes(pasoMin);
+        }
+        
+        return alarmas;
     }
 }

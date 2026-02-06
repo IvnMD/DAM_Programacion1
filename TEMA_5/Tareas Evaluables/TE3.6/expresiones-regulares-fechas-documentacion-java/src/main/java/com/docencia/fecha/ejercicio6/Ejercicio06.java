@@ -1,5 +1,6 @@
 package com.docencia.fecha.ejercicio6;
 
+import java.time.Duration;
 import java.time.LocalTime;
 
 /**
@@ -24,7 +25,26 @@ import java.time.LocalTime;
  * - fin=20:00, inicio=06:00 => false
  */
 public class Ejercicio06 {
+    
     public static boolean cumpleDescanso(LocalTime finTurno, LocalTime inicioSiguiente, int minDescansoHoras) {
-        throw new UnsupportedOperationException("TODO");
+        // Validaciones
+        if (finTurno == null || inicioSiguiente == null) {
+            throw new IllegalArgumentException();
+        }
+        if (minDescansoHoras <= 0 || minDescansoHoras > 24) {
+            throw new IllegalArgumentException();
+        }
+        // Calcular la diferencia en minutos
+        Duration diferencia = Duration.between(finTurno, inicioSiguiente);
+        long minutosDescanso = diferencia.toMinutes();
+
+        if (minutosDescanso < 0) {
+            minutosDescanso += 24 * 60;  // 1440 minutos = 24h
+        }
+        
+    
+        long minutosMinimoRequerido = minDescansoHoras * 60;
+    
+        return minutosDescanso >= minutosMinimoRequerido;
     }
 }

@@ -20,12 +20,23 @@ import java.time.LocalTime;
      * - 10:15 => 10:15
      * - 10:59 => 11:00
      */
+
 public class Ejercicio04 {
-public static LocalTime redondearArriba(LocalTime t, int pasoMin) {
-        if (t == null){
+    public static LocalTime redondearArriba(LocalTime t, int pasoMin) {
+        if (t == null || pasoMin <= 0 || pasoMin > 60 || 60 % pasoMin != 0) {
             throw new IllegalArgumentException();
         }
+
+        int minutos = t.getMinute();
+        boolean tieneFracciones = t.getSecond() > 0 || t.getNano() > 0;
+
+        if (minutos % pasoMin == 0 && !tieneFracciones) {
+            return t;
+        }
+
+        int minutosParaSumar = pasoMin - (minutos % pasoMin);
         
-        return t;
+        return t.withSecond(0).withNano(0).plusMinutes(minutosParaSumar);
     }
 }
+

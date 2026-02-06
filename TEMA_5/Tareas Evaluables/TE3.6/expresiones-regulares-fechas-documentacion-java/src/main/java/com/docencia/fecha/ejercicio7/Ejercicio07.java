@@ -22,6 +22,19 @@ import java.time.LocalTime;
      */
 public class Ejercicio07 {
 public static boolean solapan(LocalTime aIni, LocalTime aFin, LocalTime bIni, LocalTime bFin) {
-        throw new UnsupportedOperationException("TODO");
+        if (aIni == null || aFin == null || bIni == null || bFin == null) {
+            throw new IllegalArgumentException();
+        }
+        
+
+        if (!aIni.isBefore(aFin)) {
+            throw new IllegalArgumentException();
+        }
+        if (!bIni.isBefore(bFin)) {
+            throw new IllegalArgumentException();
+        }
+        
+ 
+        return aIni.isBefore(bFin) && bIni.isBefore(aFin);
     }
 }

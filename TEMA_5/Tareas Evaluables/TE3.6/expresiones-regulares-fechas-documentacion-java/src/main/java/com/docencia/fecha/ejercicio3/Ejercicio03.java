@@ -23,6 +23,15 @@ import java.time.LocalTime;
  */
 public class Ejercicio03 {
     public static long minutosHasta(LocalTime ahora, LocalTime objetivo) {
-        throw new UnsupportedOperationException("TODO");
+        if (ahora == null || objetivo == null){
+            throw new IllegalArgumentException();
+        }
+        Duration diferencia = Duration.between(ahora, objetivo);
+        long minutos = diferencia.toMinutes();
+
+        if (minutos < 0) {     //! Si el resultado es negativo, significa que el objetivo es "mañana" asi que sumamos 24 horas (1440 minutos)
+            minutos += 24 * 60;  
+        }
+        return minutos;
     }
 }

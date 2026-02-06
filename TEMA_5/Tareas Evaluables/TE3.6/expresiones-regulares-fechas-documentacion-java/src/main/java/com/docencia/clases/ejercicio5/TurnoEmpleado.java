@@ -1,13 +1,16 @@
 package com.docencia.clases.ejercicio5;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.regex.Pattern;
 
 public class TurnoEmpleado {
 
     private static final String EMP_ID_REGEX = "^EMP-\\d{5}$";
-    private static final String FRANJA_REGEX = "^\\d{2}:\\d{2}-\\d{2}:\\d{2}$";
+    private static final DateTimeFormatter HM = DateTimeFormatter.ofPattern("HH:mm");
 
     private final String empleadoId;
     private final LocalDate dia;
@@ -22,23 +25,50 @@ public class TurnoEmpleado {
     }
 
     public void validate() {
-        throw new UnsupportedOperationException("TODO");
+        if (empleadoId == null || dia == null || inicio == null || fin == null) {
+            throw new IllegalArgumentException();
+        }
+        if (!Pattern.matches(EMP_ID_REGEX, empleadoId)) {
+            throw new IllegalArgumentException();
+        }
+        // El turno no puede ser de 0 minutos
+        if (inicio.equals(fin)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String franja() {
-        throw new UnsupportedOperationException("TODO");
+        return inicio.format(HM) + "-" + fin.format(HM);
     }
 
     public LocalDateTime inicioDateTime() {
-        throw new UnsupportedOperationException("TODO");
+        return LocalDateTime.of(dia, inicio);
     }
 
     public LocalDateTime finDateTime() {
-        throw new UnsupportedOperationException("TODO");
+        // Si el fin es antes que el inicio, es un turno nocturno que acaba el día
+        // siguiente
+        if (fin.isBefore(inicio)) {
+            return LocalDateTime.of(dia.plusDays(1), fin);
+        }
+        return LocalDateTime.of(dia, fin);
     }
 
     public boolean cumpleDescansoMinimoDesde(TurnoEmpleado anterior, int minDescansoHoras) {
-        throw new UnsupportedOperationException("TODO");
+        if (anterior == null)
+            return true;
+
+        LocalDateTime finAnterior = anterior.finDateTime();
+        LocalDateTime inicioActual = this.inicioDateTime();
+
+        // Si el inicio del actual es antes que el fin del anterior, no hay descanso
+        // posible
+        if (inicioActual.isBefore(finAnterior)) {
+            return false;
+        }
+
+        long minutosDescanso = Duration.between(finAnterior, inicioActual).toMinutes();
+        return minutosDescanso >= (long) minDescansoHoras * 60;
     }
 
     public String getEmpleadoId() {

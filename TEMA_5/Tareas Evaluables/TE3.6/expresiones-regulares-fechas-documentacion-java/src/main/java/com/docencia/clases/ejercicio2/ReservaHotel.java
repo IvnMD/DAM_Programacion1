@@ -1,6 +1,7 @@
 package com.docencia.clases.ejercicio2;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.regex.Pattern;
 
 public class ReservaHotel {
@@ -18,19 +19,41 @@ public class ReservaHotel {
     }
 
     public void validate() {
-        String patronDni = "^[0-9]{8}[a-ZA-Z]$";
-        String patronRes = "^RES-[0-9]{4}-[a-zA-Z]{3}$";
-        Pattern.matches(patronDni, this.dni);
-        Pattern.matches(patronRes, codigoReserva);
+        if (codigoReserva == null || dni == null || checkIn == null || checkOut == null) {
+            throw new IllegalArgumentException();
+        }
+
+        if (!Pattern.matches("^RES-[0-9]{4}-[A-Z]{3}$", codigoReserva)) {
+            throw new IllegalArgumentException();
+        }
+
+        if (!isValidDni(dni)) {
+            throw new IllegalArgumentException();
+        }
+
+        if (!checkOut.isAfter(checkIn)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isValidDni(String dni) {
+        if (!Pattern.matches("^[0-9]{8}[A-Z]$", dni)) {
+            return false;
+        }
+        String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+        int numero = Integer.parseInt(dni.substring(0, 8));
+        char letraEsperada = letras.charAt(numero % 23);
+        return dni.charAt(8) == letraEsperada;
     }
 
     public long noches() {
-        long resultado = checkOut.getDayOfYear()-checkOut.getDayOfYear();
-        return resultado;
+        return ChronoUnit.DAYS.between(checkIn, checkOut);
     }
 
     public boolean puedeCancelar(LocalDate hoy) {
-        throw new UnsupportedOperationException("TODO");
+        if (hoy == null)
+            throw new IllegalArgumentException();
+        return !hoy.isAfter(checkIn.minusDays(2));
     }
 
     public String getCodigoReserva() {

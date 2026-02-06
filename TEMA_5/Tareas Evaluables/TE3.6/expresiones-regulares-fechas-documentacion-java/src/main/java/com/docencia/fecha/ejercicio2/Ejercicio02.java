@@ -25,6 +25,20 @@ import java.time.LocalTime;
      */
 public class Ejercicio02 {
     public static boolean estaDentroCircular(LocalTime t, LocalTime inicio, LocalTime fin) {
-        throw new UnsupportedOperationException("TODO");
+        if (t == null || inicio == null || fin == null){
+            throw new IllegalArgumentException();
+        }
+        /**
+         * Si el inicio coincide con el final, lo tratamos como intervalo vacio
+         */
+        if (inicio.equals(fin)){
+            return false;
+        }
+        if (inicio.isBefore(fin)) {             //! Si el intervalo no cruza la medianoche
+            return !t.isBefore(inicio) && t.isBefore(fin);
+        }
+
+        return !t.isBefore(inicio) || t.isBefore(fin);        //! = true SI t >= inicio O t < fin 
     }
 }
+

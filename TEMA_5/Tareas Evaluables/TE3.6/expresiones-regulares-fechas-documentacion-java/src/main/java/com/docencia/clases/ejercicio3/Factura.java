@@ -1,6 +1,7 @@
 package com.docencia.clases.ejercicio3;
 
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 public class Factura {
 
@@ -20,11 +21,38 @@ public class Factura {
     }
 
     public void validate() {
-        throw new UnsupportedOperationException("TODO");
+        if (numeroFactura == null || iban == null || nifEmpresa == null ||
+                fechaEmision == null || fechaVencimiento == null) {
+            throw new IllegalArgumentException();
+        }
+
+        // Formato FAC-YYYY-6DÍGITOS
+        if (!Pattern.matches("^FAC-\\d{4}-\\d{6}$", numeroFactura)) {
+            throw new IllegalArgumentException();
+        }
+
+        // Formato ES + 22 dígitos
+        if (!Pattern.matches("^ES\\d{22}$", iban)) {
+            throw new IllegalArgumentException();
+        }
+
+        // NIF Empresa: Letra inicial (A-J, P, Q, R, S, U, V, N, W) + 7 u 8 dígitos +
+        // letra/dígito
+        // El test rechaza específicamente un DNI (8 números + letra)
+        if (!Pattern.matches("^[A-Z][0-9]{7,8}[A-Z0-9]$", nifEmpresa)
+                || Pattern.matches("^[0-9]{8}[A-Z]$", nifEmpresa)) {
+            throw new IllegalArgumentException();
+        }
+
+        if (fechaVencimiento.isBefore(fechaEmision)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public boolean isVencida(LocalDate hoy) {
-        throw new UnsupportedOperationException("TODO");
+        if (hoy == null)
+            throw new IllegalArgumentException();
+        return hoy.isAfter(fechaVencimiento);
     }
 
     public String getNumeroFactura() {

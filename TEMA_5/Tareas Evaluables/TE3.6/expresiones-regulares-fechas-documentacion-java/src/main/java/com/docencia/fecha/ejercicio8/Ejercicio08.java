@@ -1,6 +1,8 @@
 package com.docencia.fecha.ejercicio8;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * EJERCICIO 8B) NORMALIZAR FRANJA HORARIA (PUEDE CRUZAR MEDIANOCHE)
@@ -35,10 +37,57 @@ import java.time.LocalTime;
  * - "24:00-06:00"  (hora fuera de rango)
  * - "10:60-12:00"  (minutos fuera de rango)
  * - "10:00-10:00"  (franja vacía)
- * - "1030-1215"    (formato incorrecto)
+ * - "1030-1215"    (formato incorrecto).
  */
 public class Ejercicio08 {
+    private static final String patron = "^\\d{2}:\\d{2}-\\d{2}:\\d{2}$";
+    private static final DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+
     public static String normalizarFranja(String franja) {
-        throw new UnsupportedOperationException("TODO");
+        if (franja == null || franja.isBlank()) {
+            throw new IllegalArgumentException();
+        }
+
+        if (!franja.matches(patron)) {
+            throw new IllegalArgumentException();
+        }
+
+        String[] partes = franja.split("-");
+        if (partes.length != 2) {
+            throw new IllegalArgumentException();
+        }
+
+        String inicioStr = partes[0];
+        String finStr = partes[1];
+
+        validarHoraMinuto(inicioStr);
+        validarHoraMinuto(finStr);
+
+        LocalTime inicio = LocalTime.parse(inicioStr, formato);
+        LocalTime fin = LocalTime.parse(finStr, formato);
+
+        if (inicio.equals(fin)) {
+            throw new IllegalArgumentException();
+        }
+
+        String inicioNormalizado = inicio.format(formato);
+        String finNormalizado = fin.format(formato);
+
+        return inicioNormalizado + "-" + finNormalizado;
+    }
+
+    private static void validarHoraMinuto(String horaStr) {
+        String[] partes = horaStr.split(":");
+
+        int hora = Integer.parseInt(partes[0]);
+        int minuto = Integer.parseInt(partes[1]);
+
+        if (hora < 0 || hora > 23) {
+            throw new IllegalArgumentException();
+        }
+
+        if (minuto < 0 || minuto > 59) {
+            throw new IllegalArgumentException();
+        }
     }
 }

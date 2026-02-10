@@ -14,6 +14,7 @@ public class Exercise07 {
     if (text == null || text.isBlank()){
       return null;
     }
+<<<<<<< HEAD
     String dia = "(0[1-9]|1[0-9]|2[0-9]3[0-1])";
     String mes = "(0[1-9]|1[0-2])";
     String anyo = "[0-9]{4}";
@@ -26,5 +27,14 @@ public class Exercise07 {
 
 
     return resultado;
+=======
+    String dia = "^(0[1-9]|1[0-9]|2[0-9]3[0-1])$";
+    String mes = "^(0[1-9]|1[0-2])$";
+    String anyo = "^20[0-9]{2}$";
+    String patron = "^" + dia + "/" + mes + "/" + anyo + "$";
+
+    // return Pattern.matches(patron,text);
+    return null;
+>>>>>>> origin/main
   }
 }

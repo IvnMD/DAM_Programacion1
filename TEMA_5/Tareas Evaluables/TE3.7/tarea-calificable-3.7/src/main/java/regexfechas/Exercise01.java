@@ -16,13 +16,18 @@ public class Exercise01 {
     if (text == null || text.isBlank()){
       return null;
     }
+<<<<<<< HEAD
     String[] palabras = text.split(" ");
+=======
+    String[] array = new String[3];
+>>>>>>> origin/main
     List<String> resultado = new ArrayList<>(); 
     String dia = "^(0[0-9]|1[0-9]|2[0-9]3[0-1])";
     String mes = "(0[1-9]|1[0-2])";
     String anyo = "[0-9]{4}";
       String patron = "^" + dia + "/" + mes + "/" + anyo + "$";
 
+<<<<<<< HEAD
 
     for (String palabra : palabras) {
       palabra = palabra.substring(0, palabra.length()-1);
@@ -30,6 +35,14 @@ public class Exercise01 {
       if (esFecha)
         resultado.add(palabra);
     }
+=======
+    if (Pattern.matches(patron,text)){
+      resultado.add(text);
+      }
+    array = text.split("-");
+
+
+>>>>>>> origin/main
     return resultado;
 }
 }

@@ -9,6 +9,11 @@ public final class Ejercicio7 {
     private Ejercicio7() {}
 
     public static boolean isOpenInclusive(LocalTime t, LocalTime open, LocalTime close) {
-         return false;
+         if (t == null || open == null || close == null || close.isBefore(open)){
+            throw new NullPointerException();
+         }
+         
+        
+        return false;
     }
 }

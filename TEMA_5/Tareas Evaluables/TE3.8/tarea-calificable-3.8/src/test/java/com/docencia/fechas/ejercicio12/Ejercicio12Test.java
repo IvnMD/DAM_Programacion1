@@ -1,4 +1,4 @@
-package com.docencia.fechas.ejercicio12;
+owpackage com.docencia.fechas.ejercicio12;
 
 import org.junit.jupiter.api.Test;
 import com.docencia.fechas.EventComparison;

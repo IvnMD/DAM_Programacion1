@@ -11,7 +11,21 @@ public final class Ejercicio12 {
 
     private Ejercicio12() {}
 
-    public static EventComparison compareEvents(ZonedDateTime a, ZonedDateTime b) {
-         return null;
-    }
+public static EventComparison compareEvents(ZonedDateTime a, ZonedDateTime b) {
+    
+
+
+    Instant instantA = a.toInstant();
+    Instant instantB = b.toInstant();
+
+    // 3. Determinar cuál ocurre primero
+    ZonedDateTime first = instantA.isBefore(instantB) ? a : b;
+
+    // 4. Calcular la diferencia absoluta (siempre positiva)
+    Duration absoluteDiff = Duration.between(instantA, instantB).abs();
+
+    // 5. Retornar el objeto de comparación
+    // Asumiendo que el constructor de EventComparison es (ZonedDateTime primero, Duration diferencia)
+    return new EventComparison(first, absoluteDiff);
+}
 }

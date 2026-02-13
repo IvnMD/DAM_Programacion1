@@ -11,7 +11,8 @@ public final class Ejercicio11 {
 
     public static ZonedDateTime toUserZoneSameInstant(LocalDateTime meetingLocal, ZoneId originZone, ZoneId targetZone) {
         
+        ZonedDateTime zona = meetingLocal.atZone(originZone);
 
-        return null;
+        return zona.withZoneSameInstant(targetZone);
     }
 }

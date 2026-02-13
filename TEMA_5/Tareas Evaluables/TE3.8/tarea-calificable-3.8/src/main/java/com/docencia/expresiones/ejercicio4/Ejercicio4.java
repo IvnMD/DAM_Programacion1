@@ -10,6 +10,20 @@ public final class Ejercicio4 {
 
 
     public static ZoneId parseZoneCommand(String input) {
-         return null;
+        if (input == null || input.isBlank()){
+            throw new IllegalArgumentException();
+        }
+        String patron = "^SET TZ=([a-zA-Z_]+/[a-zA-Z_]+)$";
+        Pattern pattern = Pattern.compile(patron);
+        Matcher matcher = pattern.matcher(input);
+        
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException();
+        }
+        
+
+        String zonaHoraria = matcher.group(1);
+
+        return ZoneId.of(zonaHoraria);
     }
 }

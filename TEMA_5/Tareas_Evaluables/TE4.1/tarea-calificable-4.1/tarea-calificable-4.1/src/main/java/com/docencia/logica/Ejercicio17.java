@@ -6,8 +6,11 @@ public class Ejercicio17 {
    * Implementar usando lógica tradicional (iterativo).
    */
   public static boolean estaOrdenadoAsc(int[] arreglo) {
-    if (arreglo == null || arreglo.length == 0){
-      throw new IllegalArgumentException();
+    if (arreglo == null){
+      return false;
+    }
+    if (arreglo.length == 0){
+      return true;
     }
 
     if (arreglo.length < 2){

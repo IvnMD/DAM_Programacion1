@@ -13,7 +13,7 @@ public class Ejercicio01 {
             throw new IllegalArgumentException();
         }
         
-        if (n <= 1) {
+        if (n <= 1) { //! No es necesario poner <= 1 porque el resultado es igual a == 1 y nos ahorramos una llamada al sistema
             return 1;
         }
         

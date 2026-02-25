@@ -5,6 +5,9 @@ public class Ejercicio12 {
    * Máximo elemento
    */
   public static int maximoArreglo(int[] arreglo) {
+      if (arreglo == null || arreglo.length == 0){
+      return 0;
+    }
     return maxDesde(arreglo, 0);
   }
 

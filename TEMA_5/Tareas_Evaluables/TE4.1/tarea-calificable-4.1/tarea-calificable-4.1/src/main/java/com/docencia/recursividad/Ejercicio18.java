@@ -11,7 +11,7 @@ public class Ejercicio18 {
     return merge(a,0,b,0);
   }
 
-  Private static int[] merge (int[] a, int i, int[] b, int j ){
+  private static int[] merge (int[] a, int i, int[] b, int j ){
     if (j == a.length){
       int[] subArray = Arrays.copyOfRange(a, j, a.length-1);
       return subArray;
@@ -24,6 +24,7 @@ public class Ejercicio18 {
       int[] resultado = a.length[i] + merge(a, i+1, b, j);
       return  resultado;
     }
-    return b.length[j]+merge(a, i, b, j+1);
+    // return b.length[j]+merge(a, i, b, j+1);
+    return a; //!FAKE, solo para callar acompilador
   }
 }

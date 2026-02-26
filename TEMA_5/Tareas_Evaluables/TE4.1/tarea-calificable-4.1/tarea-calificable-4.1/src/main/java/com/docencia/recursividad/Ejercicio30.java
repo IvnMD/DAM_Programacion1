@@ -6,6 +6,6 @@ public class Ejercicio30 {
    * TODO: Implementar usando recursividad.
    */
   public static boolean existeSubconjuntoSuma(int[] arreglo, int objetivo) {
-    throw new UnsupportedOperationException("Pendiente de implementar");
+
   }
 }

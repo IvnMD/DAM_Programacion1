@@ -6,6 +6,11 @@ public class Ejercicio19 {
    * TODO: Implementar usando recursividad.
    */
   public static int busquedaBinaria(int[] arregloOrdenado, int objetivo) {
-    throw new UnsupportedOperationException("Pendiente de implementar");
+    if (arregloOrdenado == null || arregloOrdenado.length == 0 || objetivo <=0){
+      throw new IllegalArgumentException();
+    }
+    return binario(int a, int objetivo, int bajo, int alto){
+      
+    }
   }
 }

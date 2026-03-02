@@ -3,9 +3,9 @@ package com.docencia.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
 import java.util.Objects;
-import com.docencia.util;
-
+import com.docencia.util.Validaciones;
 
 abstract public class Persona {
     private final int id;
@@ -13,14 +13,13 @@ abstract public class Persona {
     private String documento;
     private String email;
     private LocalDate fechaNacimiento;
-    private final LocalDate fechaRegistro;
+    private final LocalDate fechaRegistro = LocalDate.now();
     
     /**
      * Constructor por defecto/vacio
      */
     public Persona() {
         this.id = 0;
-        fechaRegistro = LocalDate.now();
     };
     /**
      * Constructor por identificador unico
@@ -28,7 +27,6 @@ abstract public class Persona {
      */
     public Persona(int id){
         this.id = id;
-        fechaRegistro = LocalDate.now();
     }
     /**
      * Constructor de la clase persona
@@ -40,16 +38,17 @@ abstract public class Persona {
      * @param fechaRegistro en el sistema 
      */
     public Persona(int id, String nombre, String documento, String email, LocalDate fechaNacimiento, LocalDate fechaRegistro) {
+        this.id = 0;
         getId(id);
         setNombre(nombre);
         setDocumento(documento);
         setEmail(email);
         setFechaNacimiento(fechaNacimiento);
-        getfechaRegistro(fecharegistro);
+        getFechaRegistro(fechaRegistro);
     }
     // Getters y setters
 
-    public int getId() {
+    public int getId(int id) {
         if (id <= 0){
             throw new IllegalArgumentException("ID no valido <= 0");
         }
@@ -76,10 +75,10 @@ abstract public class Persona {
     }
 
     public void setDocumento(String documento) {
-        if (!documentoValido(documento)){
+        if (!Validaciones.validacionDocumento(documento)){
             throw new IllegalArgumentException("Documento no valido");
         }
-        this.documento = documento.trim().toUpperCase;
+        this.documento = documento.trim().toUpperCase();
     }
 
     public String getEmail() {
@@ -87,7 +86,7 @@ abstract public class Persona {
     }
 
     public void setEmail(String email) {
-        if (!emailValido(email.trim().toLowerCase)){
+        if (!Validaciones.validacionEmail(email.trim().toLowerCase())){
             throw new IllegalArgumentException("Email no valido");
         }
         this.email = email;
@@ -109,9 +108,9 @@ abstract public class Persona {
         return resultado.getYears();
     }
 
-    public LocalDate getFechaRegistro() {
-        if (fechaRegistro == null || fechaRegistro.isAfter(LocalTime.now())){
-            throw new IllegalArgumentException("Fecha de registro no valida")
+    public LocalDate getFechaRegistro(LocalDate fechaRegistro) {
+        if (fechaRegistro == null || fechaRegistro.isAfter(LocalDate.now())){
+            throw new IllegalArgumentException("Fecha de registro no valida");
         }
         return this.fechaRegistro;
     }
@@ -146,6 +145,10 @@ abstract public class Persona {
             return false;
         Persona other = (Persona) obj;
         return id == other.id;
+    }
+    public String getTipo() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTipo'");
     }
 
     

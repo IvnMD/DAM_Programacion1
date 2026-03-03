@@ -1,13 +1,20 @@
 package com.docencia.app;
 
-import com.docencia.model.Alumno;
-import com.docencia.model.Persona;
-import com.docencia.model.Profesor;
-import com.docencia.service.CentroEducativo;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+import com.docencia.model.Alumno;
+import com.docencia.model.Persona;
+import com.docencia.model.Profesor;
+import com.docencia.service.CentroEducativo;
+/**
+ * @author IvnMD
+ * @date 02/03/2026
+ * @version 1.0.0
+ * 
+ * @brief Menu de la app
+ */
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

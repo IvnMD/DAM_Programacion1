@@ -1,58 +1,70 @@
 package com.docencia.model;
 
-
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.Period;
 import java.util.Objects;
-import com.docencia.util.Validaciones;
 
+import com.docencia.util.Validaciones;
+/**
+ * @author IvnMD
+ * @date 02/03/2026
+ * @version 1.0.0
+ * 
+ * @brief Clase persona
+ */
 abstract public class Persona {
     private final int id;
     private String nombre;
     private String documento;
     private String email;
     private LocalDate fechaNacimiento;
-    private final LocalDate fechaRegistro = LocalDate.now();
-    
+    private final LocalDate fechaRegistro;
+
     /**
-     * Constructor por defecto/vacio
-     */
-    public Persona() {
-        this.id = 0;
-    };
-    /**
-     * Constructor por identificador unico
+     * Constructor por identificador unico/ atributos final
+     * 
      * @param id
      */
-    public Persona(int id){
+    public Persona(int id, LocalDate fechaRegistro) {
+        if (id <= 0)
+            throw new IllegalArgumentException("ID invalido");
         this.id = id;
+        if (fechaRegistro == null ||
+                fechaRegistro.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Fecha de registro invalida");
+        }
+        this.fechaRegistro = LocalDate.now();
     }
+
     /**
      * Constructor de la clase persona
-     * @param id identificador unico
-     * @param nombre de la persona
-     * @param documento Documento de identificacion fisica
-     * @param email correo electronico de la persona
+     * 
+     * @param id              identificador unico
+     * @param nombre          de la persona
+     * @param documento       Documento de identificacion fisica
+     * @param email           correo electronico de la persona
      * @param fechaNacimiento de la persona
-     * @param fechaRegistro en el sistema 
+     * @param fechaRegistro   en el sistema
      */
-    public Persona(int id, String nombre, String documento, String email, LocalDate fechaNacimiento, LocalDate fechaRegistro) {
-        this.id = 0;
-        getId(id);
+    public Persona(int id, String nombre, String documento, String email, LocalDate fechaNacimiento,
+            LocalDate fechaRegistro) {
+        if (id <= 0)
+            throw new IllegalArgumentException("ID invalido");
+        this.id = id;
         setNombre(nombre);
         setDocumento(documento);
         setEmail(email);
         setFechaNacimiento(fechaNacimiento);
-        getFechaRegistro(fechaRegistro);
+        if (fechaRegistro == null || fechaRegistro.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Fecha de registro invalida");
+        }
+        this.fechaRegistro = LocalDate.now();
     }
+
     // Getters y setters
 
-    public int getId(int id) {
-        if (id <= 0){
-            throw new IllegalArgumentException("ID no valido <= 0");
-        }
-        return this.id;
+    public final int getId() {
+        return id;
     }
 
     public String getNombre() {
@@ -61,12 +73,12 @@ abstract public class Persona {
 
     public void setNombre(String nombre) {
         if (nombre == null) {
-            throw new IllegalArgumentException( "Nombre nulo");
-        }
-        if (nombre.length()>= 2) {
-            throw new IllegalArgumentException("Nombre demasiado corto");
+            throw new IllegalArgumentException("Nombre nulo");
         }
         nombre = nombre.trim();
+        if (nombre.length() < 2) {
+            throw new IllegalArgumentException("Nombre demasiado corto");
+        }
         this.nombre = nombre;
     }
 
@@ -75,7 +87,7 @@ abstract public class Persona {
     }
 
     public void setDocumento(String documento) {
-        if (!Validaciones.validacionDocumento(documento)){
+        if (!Validaciones.validacionDocumento(documento.trim().toLowerCase())) {
             throw new IllegalArgumentException("Documento no valido");
         }
         this.documento = documento.trim().toUpperCase();
@@ -86,7 +98,7 @@ abstract public class Persona {
     }
 
     public void setEmail(String email) {
-        if (!Validaciones.validacionEmail(email.trim().toLowerCase())){
+        if (!Validaciones.validacionEmail(email.trim().toLowerCase())) {
             throw new IllegalArgumentException("Email no valido");
         }
         this.email = email;
@@ -97,37 +109,37 @@ abstract public class Persona {
     }
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        if (fecha == null || fechaNacimiento.isBefore(LocalDate.now())){
+        if (fechaNacimiento == null || !fechaNacimiento.isBefore(LocalDate.now())) {
             throw new IllegalArgumentException("Fecha de nacimiento no valida");
         }
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public int getEdad(LocalDate fechaRegistro, LocalDate fechaNacimiento){
-        Period resultado = Period.between(fechaNacimiento, fechaRegistro); 
-        return resultado.getYears();
+    /**
+     * Calcula la edad de nacimiento haciendo Period entre fecha de nacimiento y
+     * registro
+     * 
+     * @return edad de la persona
+     */
+    public int getEdad() {
+        return Period.between(fechaNacimiento, LocalDate.now()).getYears();
     }
 
-    public LocalDate getFechaRegistro(LocalDate fechaRegistro) {
-        if (fechaRegistro == null || fechaRegistro.isAfter(LocalDate.now())){
-            throw new IllegalArgumentException("Fecha de registro no valida");
-        }
-        return this.fechaRegistro;
+    public final LocalDate getFechaRegistro() {
+        return fechaRegistro;
     }
-
-
-
+    /**
+     * Metodos toString, HashCode y qeuals
+     */
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", nombre='" + getNombre() + "'" +
-            ", documento='" + getDocumento() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", fechaNacimiento='" + getFechaNacimiento() + "'" +
-            ", fechaRegistro='" + getFechaRegistro() + "'" +
-            ", edad='" + getEdad() + 
-            "}";
+        return getTipo() + ";" +
+                getId() + ";" +
+                getNombre() + ";" +
+                getDocumento() + ";" +
+                getEmail() + ";" +
+                getFechaNacimiento() + ";" +
+                getFechaRegistro();
     }
 
     @Override
@@ -146,12 +158,9 @@ abstract public class Persona {
         Persona other = (Persona) obj;
         return id == other.id;
     }
-    public String getTipo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTipo'");
-    }
-
-    
-    
+    /**
+     * Metodo abstracto
+     */
+    abstract public String getTipo();
 
 }

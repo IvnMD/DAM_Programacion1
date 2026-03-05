@@ -2,7 +2,18 @@ package com.docencia.service.impl;
 
 import java.util.regex.Pattern;
 
-public class AuthServiceImpl {
+import com.docencia.model.Usuario;
+import com.docencia.repository.IUserRepository;
+import com.docencia.repository.impl.UserRepositoryImpl;
+import com.docencia.service.IAuthService;
+
+public class AuthServiceImpl implements IAuthService{
+
+    final IUserRepository = userRepository;
+
+    public AuthServiceImpl(){
+        this.userRepository = new UserRepositoryImpl();
+    }
 
 
     // public static boolean validacionDocumento(String documento) {
@@ -12,16 +23,29 @@ public class AuthServiceImpl {
 
     // }
 
-    /**
-     * Validacion del email
-     * @param email de la poersona
-     * @return true o false
-     */
-    public static boolean validacionEmail(String email) {
-        String patron = "^[a-z]+@[a-z]+\\.[a-z]{2,}$"; // ! IMPORTANTISIMO, RECUERDA "\\." PARA ESCAPAR EL PUNTO
-                                                       //! (recuerda revisar si en el examen te fallo eso)
 
-        return Pattern.matches(patron, email);
+    @Override
+    public Usuario register(int id, String nombre, String email, String password) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'register'");
+    }
+
+    @Override
+    public boolean login(String email, String password) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'login'");
+    }
+
+    @Override
+    public boolean isBloqueado(String email) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isBloqueado'");
+    }
+
+    @Override
+    public void desbloquear(String email) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'desbloquear'");
     }
 
 }

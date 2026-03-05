@@ -15,9 +15,9 @@ public class Validaciones {
      * @param password del usuario
      * @return true o false
      */
-    public static boolean validacionPassword(String password) {
+    public static boolean passwordValida(String password) {
         String patron = "^\\w{6,}$"; 
-                                                                               
+
         return Pattern.matches(patron, password);
 
     }
@@ -30,7 +30,9 @@ public class Validaciones {
     public static boolean emailValido(String email) {
         String patron = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"; // ! IMPORTANTISIMO, RECUERDA "\\." PARA ESCAPAR EL PUNTO
                                                        // (recuerda revisar si en el examen te fallo eso)
-
+        if(!Pattern.matches(patron, email)){
+            throw new IllegalArgumentException("Email invalido");
+        }
         return Pattern.matches(patron, email);
     }
 
@@ -49,7 +51,10 @@ public class Validaciones {
     }
 
   
-
+    /**
+     * Funcion que valida el nombre
+     * @param nombre de la persona
+     */
     public static void validarNombre(String nombre){
         if (nombre == null) {
             throw new IllegalArgumentException("Nombre nulo");
@@ -60,10 +65,17 @@ public class Validaciones {
         }
     }
 
-    public static void validarEmail(String email)
-    Función: lanza IllegalArgumentException si email inválido.
-    public static void validarPassword(String password)
-    Función: lanza IllegalArgumentException si password inválida.
+    public static void validarEmail(String email){
+        if (emailValido(email) == false){
+            throw new IllegalArgumentException("Email no valido");
+        }
+    }
 
+
+    public static void validarPassword(String password){
+        if(!passwordValida(password)){
+            throw new IllegalArgumentException("Password invalido");
+        }
+    }
 }
 

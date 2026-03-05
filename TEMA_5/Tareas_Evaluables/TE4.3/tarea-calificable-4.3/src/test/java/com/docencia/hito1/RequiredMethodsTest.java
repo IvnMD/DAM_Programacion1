@@ -2,6 +2,8 @@ package com.docencia.hito1;
 
 import org.junit.jupiter.api.Test;
 
+import com.docencia.model.Usuario;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.Optional;
@@ -111,7 +113,7 @@ public class RequiredMethodsTest {
     Class<?> usuario = mustLoad("com.docencia.model.Usuario");
 
     mustHaveMethod(repo, "save", void.class, usuario);
-    mustHaveMethod(repo, "findByEmail", Optional.class, String.class);
+    mustHaveMethod(repo, "findByEmail", Usuario.class, String.class);
     mustHaveMethod(repo, "existsByEmail", boolean.class, String.class);
 
     Method findAll = mustHaveMethodAnyReturn(repo, "findAll");

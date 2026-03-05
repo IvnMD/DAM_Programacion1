@@ -37,5 +37,23 @@ public class UserRepositoryImpl implements IUserRepository{
         return false;
         }
 
+    @Override
+    public void save(Usuario usuario) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    }
+
+    @Override
+    public Set<Usuario> findAll(Set<Usuario> usuarios) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    }
+
+    @Override
+    public boolean deleByEmail() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleByEmail'");
+    }
+
 
 }

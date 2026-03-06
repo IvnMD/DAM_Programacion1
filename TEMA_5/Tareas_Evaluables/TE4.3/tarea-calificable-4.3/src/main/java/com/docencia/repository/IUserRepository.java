@@ -42,7 +42,7 @@ public interface IUserRepository {
      * @param email del usuario a eliminar
      * @return
      */
-    public boolean deleByEmail(String email);
+    public boolean deleteByEmail(String email);
 
     
         

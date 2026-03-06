@@ -15,8 +15,9 @@ public class Main {
 
   public static void main(String[] args) {
     
-    IUserService userService = new UserServiceImpl();
-    IAuthService authService = new AuthServiceImpl();
+    IUserRepository userRepository = new UserRepositoryImpl();
+    IUserService userService = new UserServiceImpl(userRepository);
+    IAuthService authService = new AuthServiceImpl(userRepository);
 
     boolean running = true;
     while (running) {
@@ -91,7 +92,11 @@ public class Main {
     System.out.print("Email a buscar: ");
     String email = SC.nextLine();
     var u = users.buscarPorEmail(email);
-    System.out.println(u.map(Object::toString).orElse("No encontrado"));
+    if (u == null){
+      System.out.println("No encontrado");
+    } else {
+      System.out.println(u.toString());
+    }
   }
 
   private static void eliminar(IUserService users) {
@@ -100,4 +105,6 @@ public class Main {
     boolean ok = users.eliminarPorEmail(email);
     System.out.println(ok ? "Eliminado." : "No existía.");
   }
+
+  
 }

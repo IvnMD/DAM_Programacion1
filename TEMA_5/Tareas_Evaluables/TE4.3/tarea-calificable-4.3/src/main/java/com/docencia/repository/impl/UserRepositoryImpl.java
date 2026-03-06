@@ -31,26 +31,26 @@ public class UserRepositoryImpl implements IUserRepository{
     @Override
     public boolean existsByEmail(String email) {
         Usuario usuarioBuscar = new Usuario(email);
-        if (usuarios.contains(usuarioBuscar)){
-            return true;
-        }
-        return false;
+        return usuarios.contains(usuarioBuscar);
         }
 
     @Override
     public void save(Usuario usuario) {
+        usuarios.add(usuario);
         
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    }
+
+    /**
+     * Funcion que retorna todos los elementos del repositorio
+     * @set<usuarios>
+     */
+    @Override
+    public Set<Usuario> findAll() {
+        return usuarios;
     }
 
     @Override
-    public Set<Usuario> findAll(Set<Usuario> usuarios) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
-
-    @Override
-    public boolean deleByEmail() {
+    public boolean deleteByEmail(String email) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleByEmail'");
     }

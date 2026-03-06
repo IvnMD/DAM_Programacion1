@@ -46,7 +46,9 @@ abstract public class Persona {
     /**
      * Setters y getters
      */
-    abstract public int getId();
+    public int getId() {
+        return id;
+    }
 
     public int getId(int id) {
         return id;

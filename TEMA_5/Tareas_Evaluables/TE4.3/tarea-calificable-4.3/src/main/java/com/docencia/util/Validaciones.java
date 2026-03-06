@@ -28,26 +28,26 @@ public class Validaciones {
      * @return true o false
      */
     public static boolean emailValido(String email) {
-        String patron = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"; // ! IMPORTANTISIMO, RECUERDA "\\." PARA ESCAPAR EL PUNTO
-                                                       // (recuerda revisar si en el examen te fallo eso)
+        String patron = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"; //! IMPORTANTISIMO, RECUERDA "\\." PARA ESCAPAR EL PUNTO
+                                                         //! (recuerda revisar si en el examen te fallo eso)
         if(!Pattern.matches(patron, email)){
             throw new IllegalArgumentException("Email invalido");
         }
-        return Pattern.matches(patron, email);
+        // return Pattern.matches(patron, email);   
+        return email.matches(patron);  //! Metodo Jorge. En vez de varible podria ir directamente la RegEX
     }
 
-    /**
+    /** 
      * Funcion que normaliza el email
      * @param email
      * @return
      */
     public static String normalizarEmail(String email){
-        if(email == null){
-            throw new IllegalArgumentException("Email nulo");
+        if(email == null || email.isBlank()){
+            throw new IllegalArgumentException("Email nulo o vacio");
         }
-        String emailNormalizado = email.trim().toLowerCase();
+        return email.trim().toLowerCase();
 
-        return emailNormalizado;
     }
 
   
@@ -65,6 +65,10 @@ public class Validaciones {
         }
     }
 
+    /**
+     * Funcion que valida un email
+     * @param email String 
+     */
     public static void validarEmail(String email){
         if (emailValido(email) == false){
             throw new IllegalArgumentException("Email no valido");

@@ -6,36 +6,37 @@ import com.docencia.model.Usuario;
 import com.docencia.repository.IUserRepository;
 import com.docencia.repository.impl.UserRepositoryImpl;
 import com.docencia.service.IUserService;
+import com.docencia.util.Validaciones;
 
 public class UserServiceImpl implements IUserService{
     private final IUserRepository userRepository;
     
-    public UserServiceImpl(){
-        this.userRepository = new UserRepositoryImpl();
+    public UserServiceImpl(IUserRepository userRepository){
+        this.userRepository = userRepository;
     }
 
     @Override
     public Usuario crearUsuario(int id, String nombre, String email, String password) {
-        Usuario usuario = new Usuario();
         throw new UnsupportedOperationException("Unimplemented method 'crearUsuario'");
     }
-
+    
     @Override
     public Set<Usuario> listarUsuarios() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarUsuarios'");
+       return userRepository.findAll();
     }
 
     @Override
     public Usuario buscarPorEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorEmail'");
+        return userRepository.findByEmail(email);
     }
 
     @Override
     public boolean eliminarPorEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarPorEmail'");
+        if(!Validaciones.emailValido(email)){
+            return false;
+        }
+        email = Validaciones.normalizarEmail(email);
+        return userRepository.deleteByEmail(email);
     }
 
     @Override

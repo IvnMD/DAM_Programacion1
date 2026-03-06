@@ -21,71 +21,24 @@ public class Usuario extends Persona {
     private boolean bloqueado;
     private final LocalDate fechaRegistro;
 
-    /**
-     * Construtor por identificador unico
-     * 
-     * @param id unico de la persona que hereda usuario
-     */
-    public Usuario(int id) {
-        super(id);
-        email = null;
-        fechaRegistro = null;
 
-    }
-
-    /**
-     * Constructor por parametro final email (id unico de usuario)
-     * 
-     * @param email del usuario.
-     */
     public Usuario(String email) {
         super(0);
         this.email = email;
-        fechaRegistro = null;
-
+        fechaRegistro = LocalDate.now();
     }
 
-    /**
-     * Constructor parametrico
-     * 
-     * @param id            unico de la persona que hereda usuario
-     * @param email         del usuario.
-     * @param fechaRegistro fecha de registro en la plataforma
-     */
-    public Usuario(int id, String email, LocalDate fechaRegistro) {
-        super(id);
-        if (!Validaciones.validacionEmail(email.trim().toLowerCase())) {
-            throw new IllegalArgumentException("Email no valido");
-        }
+    public Usuario(String email, String password, int intentosFallidos) {
         this.email = email;
+        this.password = password;
+        this.intentosFallidos = intentosFallidos;
+        this.bloqueado = false;
         this.fechaRegistro = LocalDate.now();
     }
 
-    /**
-     *  Constructor parametrico
-     * @param id id del usuario
-     * @param email
-     * @param password
-     */
-    public Usuario(int id, String email, String password) {
-        super(id);
-        if (!Validaciones.validacionEmail(email.trim().toLowerCase())) {
-            throw new IllegalArgumentException("Email no valido");
-        }
-        this.email = email;
-        this.fechaRegistro = LocalDate.now();
-
-    }
-    /**
-     * Constructor parametrico 
-     * @param id
-     * @param nombre
-     * @param email
-     * @param password
-     */
     public Usuario(int id, String nombre, String email, String password) {
         super(id, nombre);
-        if (!Validaciones.validacionEmail(email.trim().toLowerCase())) {
+        if (!Validaciones.emailValido(email.trim().toLowerCase())) {
             throw new IllegalArgumentException("Email no valido");
         }
         this.email = email;
@@ -94,22 +47,20 @@ public class Usuario extends Persona {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
+
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
-        if (!Validaciones.validacionPassword(password)) {
-            throw new IllegalArgumentException("Password no valido");
-        }
         this.password = password;
     }
 
     public int getIntentosFallidos() {
-        return intentosFallidos;
+        return this.intentosFallidos;
     }
 
     public void setIntentosFallidos(int intentosFallidos) {
@@ -117,7 +68,11 @@ public class Usuario extends Persona {
     }
 
     public boolean isBloqueado() {
-        return bloqueado;
+        return this.bloqueado;
+    }
+
+    public boolean getBloqueado() {
+        return this.bloqueado;
     }
 
     public void setBloqueado(boolean bloqueado) {
@@ -125,30 +80,10 @@ public class Usuario extends Persona {
     }
 
     public LocalDate getFechaRegistro() {
-        return fechaRegistro;
+        return this.fechaRegistro;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + Objects.hash(email);
-        return result;
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null)
-            return false;
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Usuario other = (Usuario) obj;
-        return Objects.equals(email, other.email);
-    }
 
     @Override
     public String toString() {
@@ -157,6 +92,23 @@ public class Usuario extends Persona {
                 + ", getFechaRegistro()=" + getFechaRegistro() + ", getClass()=" + getClass() + "]";
     }
 
-    
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Usuario)) {
+            return false;
+        }
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(email, usuario.email) ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
+    }
+
+
+   
 }

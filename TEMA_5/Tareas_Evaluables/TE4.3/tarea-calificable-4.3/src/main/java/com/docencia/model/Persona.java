@@ -9,13 +9,15 @@
 
 package com.docencia.model;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 abstract public class Persona {
     private final int id;
     private String nombre;
 
+    /**
+     * Constructor vacio/por defecto
+     */
     protected Persona(){
         this.id = 0;
     }

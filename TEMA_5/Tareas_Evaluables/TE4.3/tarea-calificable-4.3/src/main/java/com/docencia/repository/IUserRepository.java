@@ -2,12 +2,10 @@ package com.docencia.repository;
 
 import com.docencia.model.Usuario;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
  
-
+/**
+ * Interfaz de la clase userRepository
+ */
 public interface IUserRepository {
 
     /**
@@ -40,7 +38,7 @@ public interface IUserRepository {
     /**
      * Funcion que elimina un usuario buscando por su email
      * @param email del usuario a eliminar
-     * @return
+     * @return true si elimina el usuario exitosamente, false si no existe el usuairo
      */
     public boolean deleteByEmail(String email);
 

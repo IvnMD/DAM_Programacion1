@@ -3,7 +3,7 @@
  * @author IvnMD
  * @date 04/03/26
  * @version 1.0.0
- * @brief Clase abstracta que define una persona
+ * @brief Clase que define al usuario y hereda de persona
  * 
  */
 
@@ -11,7 +11,7 @@ package com.docencia.model;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import com.docencia.service.impl.*;
+
 import com.docencia.util.Validaciones;
 
 public class Usuario extends Persona {
@@ -21,13 +21,33 @@ public class Usuario extends Persona {
     private boolean bloqueado;
     private final LocalDate fechaRegistro;
 
+    /**
+     * Constructor vacio/por defecto
+     */
+    public Usuario() {
+        super();
+        this.email = "";
+        this.fechaRegistro = LocalDate.now();
+    }
 
+    /**
+     * Constructor por idenfiticador unico de la clase
+     * 
+     * @param email email del usuairo
+     */
     public Usuario(String email) {
-        super(0);
+        super();
         this.email = email;
         fechaRegistro = LocalDate.now();
     }
 
+    /**
+     * Constructor parametrico para el login
+     * 
+     * @param email            del usuairo
+     * @param password         contrasenya del usuario
+     * @param intentosFallidos numero de intentos fallidos en el login
+     */
     public Usuario(String email, String password, int intentosFallidos) {
         this.email = email;
         this.password = password;
@@ -36,6 +56,14 @@ public class Usuario extends Persona {
         this.fechaRegistro = LocalDate.now();
     }
 
+    /**
+     * Constructor parametrico
+     * 
+     * @param id       de la persona (identificador unico de la clase padre)
+     * @param nombre   de la persona
+     * @param email    del usuario (identificador unico de esta clase)
+     * @param password contrasenya del usuario
+     */
     public Usuario(int id, String nombre, String email, String password) {
         super(id, nombre);
         if (!Validaciones.emailValido(email.trim().toLowerCase())) {
@@ -46,10 +74,12 @@ public class Usuario extends Persona {
         this.fechaRegistro = LocalDate.now();
     }
 
+    /**
+     * Setters y getters
+     */
     public String getEmail() {
         return this.email;
     }
-
 
     public String getPassword() {
         return this.password;
@@ -83,16 +113,37 @@ public class Usuario extends Persona {
         return this.fechaRegistro;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "Usuario [getNombre()=" + getNombre() + ", getEmail()=" + getEmail() + ", getPassword()=" + getPassword()
-                + ", getIntentosFallidos()=" + getIntentosFallidos() + ", isBloqueado()=" + isBloqueado()
-                + ", getFechaRegistro()=" + getFechaRegistro() + ", getClass()=" + getClass() + "]";
+    public void incrementarIntentosFallidos() {
+        this.intentosFallidos++;
+        if (this.intentosFallidos >= 3) {
+            this.bloqueado = true;
+        }
     }
 
+    public void resetearIntentosFallidos() {
+        this.intentosFallidos = 0;
+    }
 
+    public void bloquear() {
+        this.bloqueado = true;
+    }
+
+    /**
+     * funcion toString
+     */
+    @Override
+    public String toString() {
+        return "Usuario [nombre =" + getNombre()
+                + ", email =" + getEmail()
+                + ", password =" + getPassword()
+                + ", num intentos fallidos =" + getIntentosFallidos()
+                + ", bloqueado =" + isBloqueado()
+                + ", fecha registro =" + getFechaRegistro() + "]";
+    }
+
+    /**
+     * Equals y HashSet
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -101,7 +152,7 @@ public class Usuario extends Persona {
             return false;
         }
         Usuario usuario = (Usuario) o;
-        return Objects.equals(email, usuario.email) ;
+        return Objects.equals(email, usuario.email);
     }
 
     @Override
@@ -109,6 +160,4 @@ public class Usuario extends Persona {
         return Objects.hash(email);
     }
 
-
-   
 }

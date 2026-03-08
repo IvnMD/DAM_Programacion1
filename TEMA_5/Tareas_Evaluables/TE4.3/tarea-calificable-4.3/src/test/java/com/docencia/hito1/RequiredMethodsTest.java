@@ -1,14 +1,24 @@
 package com.docencia.hito1;
 
-import org.junit.jupiter.api.Test;
-
-import com.docencia.model.Usuario;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.util.Optional;
 
-import static com.docencia.hito1.ReflectUtils.*;
+import org.junit.jupiter.api.Test;
+
+import static com.docencia.hito1.ReflectUtils.mustBeAbstract;
+import static com.docencia.hito1.ReflectUtils.mustBeInterface;
+import static com.docencia.hito1.ReflectUtils.mustBePrivate;
+import static com.docencia.hito1.ReflectUtils.mustBeProtected;
+import static com.docencia.hito1.ReflectUtils.mustBePublic;
+import static com.docencia.hito1.ReflectUtils.mustBeStatic;
+import static com.docencia.hito1.ReflectUtils.mustHaveConstructor;
+import static com.docencia.hito1.ReflectUtils.mustHaveDeclaredMethod;
+import static com.docencia.hito1.ReflectUtils.mustHaveMethod;
+import static com.docencia.hito1.ReflectUtils.mustHaveMethodAnyReturn;
+import static com.docencia.hito1.ReflectUtils.mustLoad;
+import static com.docencia.hito1.ReflectUtils.mustReturnSetOrList;
+import static com.docencia.hito1.ReflectUtils.optionalMethod;
+import com.docencia.model.Usuario;
 
 public class RequiredMethodsTest {
 
@@ -142,7 +152,7 @@ public class RequiredMethodsTest {
     Method listar = mustHaveMethodAnyReturn(svc, "listarUsuarios");
     mustReturnSetOrList(listar);
 
-    mustHaveMethod(svc, "buscarPorEmail", Optional.class, String.class);
+    mustHaveMethod(svc, "buscarPorEmail", usuario, String.class);
     mustHaveMethod(svc, "eliminarPorEmail", boolean.class, String.class);
 
     optionalMethod(svc, "cambiarNombre", usuario, String.class, String.class);

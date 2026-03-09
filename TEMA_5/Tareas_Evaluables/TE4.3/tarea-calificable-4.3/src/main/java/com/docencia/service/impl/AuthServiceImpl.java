@@ -4,6 +4,7 @@ import com.docencia.model.Usuario;
 import com.docencia.repository.IUserRepository;
 import com.docencia.service.IAuthService;
 import com.docencia.util.Validaciones;
+
 /**
  * @author IvnMD
  * @date 08/03/26
@@ -16,6 +17,7 @@ public class AuthServiceImpl implements IAuthService {
 
     /**
      * Constructor que introduce el repositorio de usuarios
+     * 
      * @param userRepository repositorio usado para persistir y consultar usuarios
      */
     public AuthServiceImpl(IUserRepository userRepository) {
@@ -46,18 +48,27 @@ public class AuthServiceImpl implements IAuthService {
         email = Validaciones.normalizarEmail(email);
 
         Usuario usuario = userRepository.findByEmail(email);
-        if (usuario == null)
-            return false;
-        if (usuario.isBloqueado())
-            return false;
 
-        if (usuario.getPassword().equals(password)) {
-            usuario.resetearIntentosFallidos();
-            return true;
-        } else {
-            usuario.incrementarIntentosFallidos();
+        if (usuario == null) {
             return false;
         }
+        if (usuario.isBloqueado()) {
+            return false;
+        }
+        for (int i = 0; i <= 3; i++) {
+            if (usuario.getPassword().equals(password)) {
+                usuario.resetearIntentosFallidos();
+                return true;
+            } else {
+                usuario.incrementarIntentosFallidos();
+                if (usuario.getIntentosFallidos() == 3) {
+                    usuario.setBloqueado(true);
+                    return false;
+                }
+                return false;
+            }
+        }
+        return false;
     }
 
     @Override

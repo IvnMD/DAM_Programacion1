@@ -88,7 +88,7 @@ public class Main {
     String pass = SC.nextLine();
 
     auth.register(id, nombre, email, pass);
-    System.out.println("Usuario registrado correctamente.");
+    System.out.println("Usuario registrado correctamente."); //! Habria que añadir una forma de imprimir cuando la creacion de un usuario da error. 
   }
 
   private static void login(IAuthService auth) {

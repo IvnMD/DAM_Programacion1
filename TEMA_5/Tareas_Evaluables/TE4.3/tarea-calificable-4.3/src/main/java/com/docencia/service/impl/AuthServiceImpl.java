@@ -43,8 +43,9 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public boolean login(String email, String password) {
-        if (!Validaciones.emailValido(email))
+        if (!Validaciones.emailValido(email)) {
             return false;
+        }
         email = Validaciones.normalizarEmail(email);
 
         Usuario usuario = userRepository.findByEmail(email);
@@ -55,20 +56,20 @@ public class AuthServiceImpl implements IAuthService {
         if (usuario.isBloqueado()) {
             return false;
         }
-        for (int i = 0; i <= 3; i++) {
-            if (usuario.getPassword().equals(password)) {
-                usuario.resetearIntentosFallidos();
-                return true;
-            } else {
-                usuario.incrementarIntentosFallidos();
-                if (usuario.getIntentosFallidos() == 3) {
-                    usuario.setBloqueado(true);
-                    return false;
-                }
-                return false;
+        if (usuario.getPassword().equals(password)) {
+            usuario.resetearIntentosFallidos();
+            userRepository.save(usuario);
+            return true;
+        } else {
+            usuario.incrementarIntentosFallidos();
+            userRepository.save(usuario);
+            System.out.println("Intentos restantes: " + (3 - usuario.getIntentosFallidos()));
+            if (usuario.getIntentosFallidos() >= 3) {
+                usuario.setBloqueado(true);
+                System.out.println("Usuario bloqueado");
             }
+            return false;
         }
-        return false;
     }
 
     @Override
@@ -92,6 +93,7 @@ public class AuthServiceImpl implements IAuthService {
         }
         usuario.setBloqueado(false);
         usuario.resetearIntentosFallidos();
+        userRepository.save(usuario);
     }
 
     @Override

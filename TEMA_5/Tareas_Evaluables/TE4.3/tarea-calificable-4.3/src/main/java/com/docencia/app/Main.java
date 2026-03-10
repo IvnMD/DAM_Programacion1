@@ -98,7 +98,7 @@ public class Main {
     String pass = SC.nextLine();
 
     boolean ok = auth.login(email, pass);
-    System.out.println(ok ? "✅ Login correcto" : "❌ Login incorrecto");
+    System.out.println(ok ? "✅ Login correcto" : "❌ Login incorrecto"); //! Lo ideal seria que al hacer login incorrecto, dijese numero de intentos restantes
   }
 
   private static void listar(IUserService users) {

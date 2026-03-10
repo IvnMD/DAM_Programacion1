@@ -86,6 +86,7 @@ public class Usuario extends Persona {
     }
 
     public void setPassword(String password) {
+        Validaciones.validarPassword(password);
         this.password = password;
     }
 

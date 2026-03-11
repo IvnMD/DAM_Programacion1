@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.docencia.model.Usuario;
 import com.docencia.repository.IUserRepository;
+import com.docencia.repository.file.FileCsv;
 import com.docencia.util.Validaciones;
 /**
  * @author IvnMD
@@ -12,14 +13,16 @@ import com.docencia.util.Validaciones;
  * @version 1.0.0
  * @brief Implementación del repositorio de usuarios usando un HashSet en memoria
  */
-public class UserRepositoryImpl implements IUserRepository {
+public class UserRepositoryImpl extends FileCsv implements IUserRepository {
     final Set<Usuario> usuarios;
+    String path;
 
     /**
      * Construcotr que inicializa un set vacio
      */
     public UserRepositoryImpl() {
-        usuarios = new HashSet<>();
+        super(path);
+        usuarios = super.read();
     }
 
     @Override

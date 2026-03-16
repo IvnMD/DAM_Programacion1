@@ -23,10 +23,15 @@ public abstract class FileAbstract{
         if (!file.exists() || !file.isFile()){
             System.err.println("La ruta " + path + ", no es una ruta valida o un fichero");
             //!  throw new IllegalArgumentException(path);  Pararia el codigo rompiendolo, Serr no,
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public void write(File file, String data) {
+    public void write(String data) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             writer.write(data);
             writer.newLine(); // Añadir una nueva línea después del registro

@@ -1,6 +1,5 @@
 package com.docencia.repository.impl;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import com.docencia.model.Usuario;
@@ -64,6 +63,24 @@ public class UserRepositoryImpl extends FileCsv implements IUserRepository {
     @Override
     public boolean deleteByEmail(String email) {
         email = Validaciones.normalizarEmail(email);
-        return usuarios.remove(new Usuario(email));
+        usuarios.remove(new Usuario(email));
+        // usuarios contiene ahora la lista actualizada
+        this.delete();
+        for (Usuario usuario : usuarios) {
+            this.write(usuario.toCSV());
+        }
+        return true;
+
+    }
+
+    public boolean update(Usuario usuarioUpdate){
+        usuarios.remove(usuarioUpdate);
+        usuarios.add(usuarioUpdate);
+
+              this.delete();
+        for (Usuario usuario : usuarios) {
+            this.write(usuario.toCSV());
+        }
+        return true;
     }
 }

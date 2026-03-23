@@ -50,8 +50,8 @@ public class Validaciones {
      * @throws IllegalArgumentException si el email es nulo o vacio
      */
     public static String normalizarEmail(String email) {
-        if (email == null || email.isBlank()) {
-            throw new IllegalArgumentException("Email nulo o vacio");
+        if (email == null || email.isBlank() ||!emailValido(email)) {
+            throw new IllegalArgumentException("Email nulo, invalido o vacio");
         }
         return email.trim().toLowerCase();
 

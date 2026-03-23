@@ -1,8 +1,6 @@
 package com.docencia.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.docencia.model.Usuario;
@@ -74,7 +72,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Usuario cambiarPassword(String email, String nuevaPassword) {
-        
+        if (!(Validaciones.emailValido(email)) || !Validaciones.passwordValida(nuevaPassword)) {
+            return null;
+        }
         email = Validaciones.normalizarEmail(email);
         Validaciones.validarEmail(email);
         Validaciones.validarPassword(nuevaPassword);

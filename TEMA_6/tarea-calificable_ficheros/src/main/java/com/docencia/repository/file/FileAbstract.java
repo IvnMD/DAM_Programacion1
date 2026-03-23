@@ -57,4 +57,28 @@ public abstract class FileAbstract{
         }
         return usuariosLectura;
     }
+
+    public void delete(){
+        if(!file.exists()){
+            return;
+        }
+        file.delete();
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    // public boolean update(List<Object> elementos){
+    //     delete();
+    //     for (Object object : elementos) {  
+
+            
+    //     }
+
+    //     return true;
+    // }
+    
 }

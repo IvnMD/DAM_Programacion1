@@ -5,9 +5,9 @@ import com.docencia.repository.IUserRepository;
 import com.docencia.service.IAuthService;
 import com.docencia.util.Validaciones;
 
-public class AuthServiceImpl implements IAuthService{
+public class AuthServiceImpl implements IAuthService {
 
-        final IUserRepository userRepository;
+    final IUserRepository userRepository;
 
     /**
      * Constructor que introduce el repositorio de usuarios
@@ -20,42 +20,83 @@ public class AuthServiceImpl implements IAuthService{
 
     @Override
     public Usuario register(int id, String nombre, String email, String password) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'register'");
+        if (id < 1 || !Validaciones.emailValido(email) || !Validaciones.passwordValida(password)) {
+            return null;
+        }
+
+        Validaciones.validarPassword(password);
+        email = Validaciones.normalizarEmail(email);
+
+        if (userRepository.existsByEmail(email)) {
+            throw new IllegalArgumentException("Usuario ya registrado");
+        }
+        Usuario usuario = new Usuario(id, nombre, email, password);
+        userRepository.save(usuario);
+        return usuario;
     }
 
     @Override
     public boolean login(String email, String password) {
-        if (!Validaciones.emailValido(email)){
+        if (!Validaciones.emailValido(email)) {
             return false;
         }
 
         email = Validaciones.normalizarEmail(email);
         Usuario usuario = userRepository.findByEmail(email);
-        
-        if (usuario == null){
+
+        if (usuario == null) {
             return false;
         }
-        if (usuario.isBloqueado()){
+        if (usuario.isBloqueado()) {
             return false;
         }
-        if(usuario.getPassword().equals(password)){
+        if (usuario.getPassword().equals(password)) {
             usuario.resetearIntentosFallidos(0);
             userRepository.save(usuario);
+            return true;
+        } else {
+            usuario.inscrementarIntentosFallidos(0);
+            userRepository.save(usuario);
+            if (usuario.getIntentosFallidos() >= 3) {
+                usuario.setBloqueado(true);
+                System.out.println("Usuario bloqueado");
+            }
+            return false;
         }
 
     }
 
     @Override
     public boolean isBloqueado(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isBloqueado'");
+        if(!Validaciones.emailValido(email)){
+            return false;
+        }
+        email = Validaciones.normalizarEmail(email);
+        Usuario usuario = userRepository.findByEmail(email);
+        return usuario != null && usuario.isBloqueado();
+        
     }
 
     @Override
     public void desbloquear(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'desbloquear'");
+        if(!Validaciones.emailValido(email)){
+            throw new IllegalArgumentException("Email no valido");
+        }
+        email = Validaciones.normalizarEmail(email);
+        Usuario usuario = userRepository.findByEmail(email);
+        if(usuario == null){
+            throw new IllegalArgumentException("Usuario no encontrado");
+        }
+        usuario.setBloqueado(false);
+        usuario.resetearIntentosFallidos(0);
+        userRepository.save(usuario);
+        
+    }
+
+
+    @Override
+    public boolean validacionEmail(String email) {
+        return Validaciones.emailValido(email);
     }
 
 }

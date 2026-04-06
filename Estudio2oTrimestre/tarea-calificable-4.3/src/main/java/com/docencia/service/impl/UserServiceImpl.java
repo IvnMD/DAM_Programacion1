@@ -4,15 +4,33 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.docencia.model.Usuario;
+import com.docencia.repository.IUserRepository;
 import com.docencia.service.IUserService;
-import com.docencia.util.validaciones.Validaciones;
+import com.docencia.util.Validaciones;
 
-public class UserServiceImp implements IUserService{
+public class UserServiceImpl implements IUserService{
+
+    private final IUserRepository userRepository;
+
+    public UserServiceImpl (IUserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     @Override
     public Usuario crearUsuario(int id, String nombre, String email, String password) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crearUsuario'");
+        if (id < 1)
+            throw new IllegalArgumentException("Id invalido");
+        Validaciones.validarEmail(email);
+        Validaciones.validarPassword(password);
+        email = Validaciones.normalizarEmail(email);
+
+        if (userRepository.existsByEmail(email)) {
+            throw new IllegalArgumentException("El email ya está registrado");
+        }
+
+        Usuario usuario = new Usuario(id, nombre, email, password);
+        userRepository.save(usuario);
+        return usuario;
     }
 
     @Override

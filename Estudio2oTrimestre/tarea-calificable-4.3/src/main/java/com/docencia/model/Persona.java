@@ -3,7 +3,7 @@ package com.docencia.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import com.docencia.util.validaciones.Validaciones;
+import com.docencia.util.Validaciones;
 
 abstract public class Persona {
     private final int id;

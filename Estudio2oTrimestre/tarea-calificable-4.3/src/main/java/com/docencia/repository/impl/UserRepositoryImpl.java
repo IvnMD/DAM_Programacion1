@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.docencia.model.Usuario;
 import com.docencia.repository.IUserRepository;
-import com.docencia.util.validaciones.Validaciones;
+import com.docencia.util.Validaciones;
 
 
 public class UserRepositoryImpl implements IUserRepository{

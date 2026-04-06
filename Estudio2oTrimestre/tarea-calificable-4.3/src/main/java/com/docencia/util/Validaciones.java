@@ -1,4 +1,4 @@
-package com.docencia.util.validaciones;
+package com.docencia.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

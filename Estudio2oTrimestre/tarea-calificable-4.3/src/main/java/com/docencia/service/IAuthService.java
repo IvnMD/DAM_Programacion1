@@ -12,4 +12,6 @@ public interface IAuthService {
   boolean isBloqueado(String email);
 
   void desbloquear(String email);
+
+  boolean validacionEmail(String email);
 }

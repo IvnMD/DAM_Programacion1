@@ -3,7 +3,7 @@ package com.docencia.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import com.docencia.util.validaciones.Validaciones;
+import com.docencia.util.Validaciones;
 
 public class Usuario extends Persona{
     private final String email;
@@ -33,6 +33,24 @@ public class Usuario extends Persona{
         this.bloqueado = false;
         this.fechaRegistro = LocalDate.now();
         
+    }
+
+    /**
+     * Constructor parametrico
+     * 
+     * @param id       de la persona (identificador unico de la clase padre)
+     * @param email    del usuario (identificador unico de esta clase)
+     * @param nombre   de la persona
+     * @param password contrasenya del usuario
+     */
+    public Usuario(int id, String email, String nombre, String password) {
+        super(id, nombre);
+        if (!Validaciones.emailValido(email.trim().toLowerCase())) {
+            throw new IllegalArgumentException("Email no valido");
+        }
+        this.email = email;
+        setPassword(password);
+        this.fechaRegistro = LocalDate.now();
     }
 
     public String getEmail() {

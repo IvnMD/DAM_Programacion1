@@ -1,0 +1,16 @@
+{
+  "profesores": [
+    {
+      "id": "P001",
+      "nombre": "Ana Perez",
+      "departamento": "Informatica",
+      "activo": true
+    },
+    {
+      "id": "P002",
+      "nombre": "Luis Martin",
+      "departamento": "FOL",
+      "activo": true
+    }
+  ]
+}

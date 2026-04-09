@@ -35,26 +35,26 @@ class A01CentroXmlRepositoryImplTest {
 
     @Test @Order(3)
     void xmlRecuperaProfesorExistentePorIdTest() {
-        Optional<Profesor> profesor = repository.findProfesorById("P01");
-        assertTrue(profesor.isPresent());
-        assertEquals("Ana Pérez", profesor.get().getNombre());
+        Profesor profesor = repository.findProfesorById("P01");
+        assertNotNull(profesor);
+        assertEquals("Ana Pérez", profesor.getNombre());
     }
 
     @Test @Order(4)
     void xmlNoRecuperaProfesorInexistentePorIdTest() {
-        assertTrue(repository.findProfesorById("P99").isEmpty());
+        assertNull(repository.findProfesorById("P99"));
     }
 
     @Test @Order(5)
     void xmlRecuperaModuloExistentePorIdTest() {
-        Optional<Modulo> modulo = repository.findModuloById("M02");
-        assertTrue(modulo.isPresent());
-        assertEquals("Acceso a datos", modulo.get().getNombre());
+        Modulo modulo = repository.findModuloById("M02");
+        assertNotNull(modulo);
+        assertEquals("Acceso a datos", modulo.getNombre());
     }
 
     @Test @Order(6)
     void xmlNoRecuperaModuloInexistentePorIdTest() {
-        assertTrue(repository.findModuloById("M99").isEmpty());
+        assertNull(repository.findModuloById("M99"));
     }
 
     @Test @Order(7)

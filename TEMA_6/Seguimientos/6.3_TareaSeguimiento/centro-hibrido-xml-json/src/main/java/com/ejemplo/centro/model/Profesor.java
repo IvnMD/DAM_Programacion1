@@ -13,6 +13,10 @@ public class Profesor {
     public Profesor() {
     }
 
+    public Profesor (String id){
+        this.id = id;
+    }
+
     public Profesor(String id, String nombre, String departamento) {
         this.id = id;
         this.nombre = nombre;

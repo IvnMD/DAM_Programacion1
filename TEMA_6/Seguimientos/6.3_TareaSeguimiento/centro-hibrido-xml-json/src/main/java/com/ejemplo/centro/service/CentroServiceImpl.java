@@ -22,8 +22,8 @@ public class CentroServiceImpl implements CentroService {
 
     @Override
     public Profesor buscarProfesor(String profesorId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarProfesor'");
+        Profesor profesorBuscar = new Profesor(profesorId);
+        int indice = profesores.indexOf(profesorBuscar);
     }
 
     @Override

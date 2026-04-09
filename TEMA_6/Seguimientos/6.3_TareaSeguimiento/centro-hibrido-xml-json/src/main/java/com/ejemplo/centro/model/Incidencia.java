@@ -10,6 +10,10 @@ public class Incidencia {
     public Incidencia() {
     }
 
+    public Incidencia (String profesorId){
+        setProfesorId(profesorId);
+    }
+
     public Incidencia(String profesorId, String descripcion, String fecha) {
         this.profesorId = profesorId;
         this.descripcion = descripcion;

@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 public class EstadoJsonRepositoryImpl implements EstadoJsonRepository {
     private final Path jsonPath;
     private final JsonManager jsonManager;
+    List<Incidencia> incidencias;
+    List<Evaluacion> evaluaciones;
 
     public EstadoJsonRepositoryImpl(Path jsonPath) {
         this(jsonPath, new JsonManager());
@@ -21,35 +23,40 @@ public class EstadoJsonRepositoryImpl implements EstadoJsonRepository {
         this.jsonPath = jsonPath;
         this.jsonManager = jsonManager;
     }
+    
 
     @Override
     public void saveEvaluacion(Evaluacion evaluacion) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveEvaluacion'");
+        if (evaluaciones.contains(evaluacion)){
+           
+        }
+        
     }
 
     @Override
     public List<Evaluacion> findAllEvaluaciones() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAllEvaluaciones'");
+       return evaluaciones;
     }
 
     @Override
     public List<Evaluacion> findEvaluacionesByModuloId(String moduloId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findEvaluacionesByModuloId'");
+        Evaluacion evaluacionBuscar = new Evaluacion(moduloId);
+        int indice = evaluaciones.indexOf(evaluacionBuscar);
+        List<Evaluacion> evaluacioneL
+        return evaluaciones.get(indice);
     }
 
     @Override
     public void saveIncidencia(Incidencia incidencia) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveIncidencia'");
+        if (incidencias.contains(incidencia)){
+           throw new IllegalArgumentException("La incidencia ya existe en la lista");
+        }
+        incidencias.add(incidencia);
     }
 
     @Override
     public List<Incidencia> findAllIncidencias() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAllIncidencias'");
+        return incidencias;
     }
 
     @Override
@@ -58,5 +65,7 @@ public class EstadoJsonRepositoryImpl implements EstadoJsonRepository {
         throw new UnsupportedOperationException("Unimplemented method 'findIncidenciasByProfesorId'");
     }
 
+
+    
     
 }

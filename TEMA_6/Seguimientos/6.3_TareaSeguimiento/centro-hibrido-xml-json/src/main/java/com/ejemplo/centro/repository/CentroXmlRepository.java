@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface CentroXmlRepository {
     List<Profesor> findAllProfesores();
     List<Modulo> findAllModulos();
-    Optional<Profesor> findProfesorById(String id);
-    Optional<Modulo> findModuloById(String id);
+    Profesor findProfesorById(String id);
+    Modulo findModuloById(String id);
 }

@@ -13,6 +13,10 @@ public class Modulo {
     public Modulo() {
     }
 
+    public Modulo (String id){
+        this.id = id;
+    }
+
     public Modulo(String id, String nombre, String profesorId) {
         this.id = id;
         this.nombre = nombre;

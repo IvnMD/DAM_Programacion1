@@ -18,36 +18,35 @@ public class CentroServiceImpl implements CentroService {
     public CentroServiceImpl(CentroXmlRepository xmlRepository, EstadoJsonRepository jsonRepository) {
         this.xmlRepository = Objects.requireNonNull(xmlRepository);
         this.jsonRepository = Objects.requireNonNull(jsonRepository);
+        
     }
 
     @Override
     public Profesor buscarProfesor(String profesorId) {
-        Profesor profesorBuscar = new Profesor(profesorId);
-        int indice = profesores.indexOf(profesorBuscar);
+        return xmlRepository.findProfesorById(profesorId);
+        
     }
 
     @Override
     public Modulo buscarModulo(String moduloId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarModulo'");
+        return xmlRepository.findModuloById(moduloId);
     }
 
     @Override
     public List<Modulo> listarModulosDeProfesor(String profesorId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarModulosDeProfesor'");
+        return xmlRepository.findAllModulos();
     }
 
     @Override
     public Evaluacion registrarEvaluacion(String alumno, String moduloId, double nota) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registrarEvaluacion'");
+        Evaluacion evaluacionGuardar = new Evaluacion(alumno, moduloId, nota);
+        jsonRepository.saveEvaluacion(evaluacionGuardar);
+        return evaluacionGuardar;
     }
 
     @Override
     public List<Evaluacion> listarEvaluacionesDeModulo(String moduloId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarEvaluacionesDeModulo'");
+        return jsonRepository.findEvaluacionesByModuloId(moduloId);
     }
 
     @Override
@@ -64,14 +63,15 @@ public class CentroServiceImpl implements CentroService {
 
     @Override
     public Incidencia registrarIncidencia(String profesorId, String descripcion, String fecha) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registrarIncidencia'");
+        Incidencia incidenciaGuardar = new Incidencia(profesorId, descripcion, fecha);
+        jsonRepository.saveIncidencia(incidenciaGuardar);
+        return incidenciaGuardar;
     }
 
     @Override
     public List<Incidencia> listarIncidenciasDeProfesor(String profesorId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarIncidenciasDeProfesor'");
+        return jsonRepository.findIncidenciasByProfesorId(profesorId);
     }
 
+    
 }

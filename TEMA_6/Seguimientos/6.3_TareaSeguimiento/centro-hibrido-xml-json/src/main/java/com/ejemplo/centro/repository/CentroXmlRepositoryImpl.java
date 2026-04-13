@@ -1,6 +1,7 @@
 package com.ejemplo.centro.repository;
 
 import com.ejemplo.centro.model.CentroData;
+import com.ejemplo.centro.model.EstadoCentro;
 import com.ejemplo.centro.model.Modulo;
 import com.ejemplo.centro.model.Profesor;
 import com.ejemplo.centro.util.XmlManager;
@@ -24,6 +25,13 @@ public class CentroXmlRepositoryImpl implements CentroXmlRepository {
     public CentroXmlRepositoryImpl(Path xmlPath, XmlManager xmlManager) {
         this.xmlPath = xmlPath;
         this.xmlManager = xmlManager;
+        CentroData estado = xmlManager.read(xmlPath);
+        this.modulos = new ArrayList<>(estado.getModulos());
+        this.profesores = new ArrayList<>(estado.getProfesores());
+    }
+
+    private void persistir(){
+        xmlManager.write(xmlPath, new CentroData(profesores, modulos));
     }
 
     public CentroXmlRepositoryImpl(Path xmlPath, XmlManager xmlManager, List<Profesor> profesores){
@@ -35,13 +43,13 @@ public class CentroXmlRepositoryImpl implements CentroXmlRepository {
 
     @Override
     public List<Profesor> findAllProfesores() {
-        return profesores;
+        return new ArrayList<> (profesores);
         
     }
 
     @Override
     public List<Modulo> findAllModulos() {
-        return modulos;
+        return new ArrayList<> (modulos);
     }
 
     @Override

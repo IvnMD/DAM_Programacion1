@@ -22,50 +22,67 @@ public class EstadoJsonRepositoryImpl implements EstadoJsonRepository {
     public EstadoJsonRepositoryImpl(Path jsonPath, JsonManager jsonManager) {
         this.jsonPath = jsonPath;
         this.jsonManager = jsonManager;
+        EstadoCentro estado = jsonManager.read(jsonPath);
+        this.evaluaciones = new ArrayList<>(estado.getEvaluaciones());
+        this.incidencias = new ArrayList<>(estado.getIncidencias());
     }
-    
+
+    private void persistir() {
+        jsonManager.write(jsonPath, new EstadoCentro(evaluaciones, incidencias));
+    }
 
     @Override
     public void saveEvaluacion(Evaluacion evaluacion) {
-        if (evaluaciones.contains(evaluacion)){
-           
+        int indice = evaluaciones.indexOf(evaluacion);
+        if (indice >= 0) {
+            evaluaciones.set(indice, evaluacion); // sobreescribe (upsert)
+        } else {
+            evaluaciones.add(evaluacion);
         }
-        
+        persistir();
     }
 
     @Override
     public List<Evaluacion> findAllEvaluaciones() {
-       return evaluaciones;
+        return new ArrayList<>(evaluaciones);
     }
 
     @Override
     public List<Evaluacion> findEvaluacionesByModuloId(String moduloId) {
-        Evaluacion evaluacionBuscar = new Evaluacion(moduloId);
-        int indice = evaluaciones.indexOf(evaluacionBuscar);
-        List<Evaluacion> evaluacioneL
-        return evaluaciones.get(indice);
+        List<Evaluacion> evaluacionesBuscar = new ArrayList<>();
+
+        for (Evaluacion evaluacion : evaluaciones) {
+            if(evaluacion.getModuloId().equals(moduloId)){
+                evaluacionesBuscar.add(evaluacion);
+            }
+        }
+                return evaluacionesBuscar;
     }
 
     @Override
     public void saveIncidencia(Incidencia incidencia) {
-        if (incidencias.contains(incidencia)){
-           throw new IllegalArgumentException("La incidencia ya existe en la lista");
+        if (!incidencias.contains(incidencia)) {
+            incidencias.add(incidencia);
+            persistir();
         }
-        incidencias.add(incidencia);
     }
 
     @Override
     public List<Incidencia> findAllIncidencias() {
-        return incidencias;
+        return new ArrayList<>(incidencias);
     }
 
     @Override
     public List<Incidencia> findIncidenciasByProfesorId(String profesorId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findIncidenciasByProfesorId'");
+        List<Incidencia> incidenciaBuscar = new ArrayList<>();
+
+        for (Incidencia incidencia : incidencias) {
+            if (incidencia.getProfesorId().equals(profesorId)) {
+                incidenciaBuscar.add(incidencia);
+            }
+        }
+
+        return incidenciaBuscar;
     }
 
-
-    
-    
 }

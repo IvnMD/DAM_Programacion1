@@ -1,0 +1,17 @@
+<hoteles>
+    <hotel>
+        <id>201</id>
+        <nombre>Hotel Sol</nombre>
+        <precioNoche>80.0</precioNoche>
+    </hotel>
+    <hotel>
+        <id>202</id>
+        <nombre>Hotel Mar</nombre>
+        <precioNoche>120.0</precioNoche>
+    </hotel>
+    <hotel>
+        <id>203</id>
+        <nombre>Hotel Sierra</nombre>
+        <precioNoche>100.0</precioNoche>
+    </hotel>
+</hoteles>

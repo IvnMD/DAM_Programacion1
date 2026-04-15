@@ -1,7 +1,5 @@
 package com.ejemplo.support;
 
-import com.ejemplo.repository.sqlite.SQLiteConnectionManager;
-import com.ejemplo.repository.sqlite.SchemaRepository;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;

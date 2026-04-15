@@ -21,7 +21,7 @@ class JsonRepositoriesTest {
     }
 
     @Test
-    void clienteJsonCrudWorks() throws Exception {
+    void clienteJsonCrudWorks(){
         com.ejemplo.repository.json.ClienteJsonRepository repo = new com.ejemplo.repository.json.ClienteJsonRepository(backupManager.restaurarJson("clientes.json").toString());
         com.ejemplo.model.Cliente item = TestDataFactory.cliente1();
 
@@ -36,7 +36,7 @@ class JsonRepositoriesTest {
     }
 
     @Test
-    void productoJsonCrudWorks() throws Exception {
+    void productoJsonCrudWorks(){
         com.ejemplo.repository.json.ProductoJsonRepository repo = new com.ejemplo.repository.json.ProductoJsonRepository(backupManager.restaurarJson("productos.json").toString());
         com.ejemplo.model.Producto item = TestDataFactory.producto1();
 
@@ -51,7 +51,7 @@ class JsonRepositoriesTest {
     }
 
     @Test
-    void proveedorJsonCrudWorks() throws Exception {
+    void proveedorJsonCrudWorks(){
         com.ejemplo.repository.json.ProveedorJsonRepository repo = new com.ejemplo.repository.json.ProveedorJsonRepository(backupManager.restaurarJson("proveedores.json").toString());
         com.ejemplo.model.Proveedor item = TestDataFactory.proveedor1();
 
@@ -66,7 +66,7 @@ class JsonRepositoriesTest {
     }
 
     @Test
-    void inventarioJsonCrudWorks() throws Exception {
+    void inventarioJsonCrudWorks(){
         com.ejemplo.repository.json.InventarioJsonRepository repo = new com.ejemplo.repository.json.InventarioJsonRepository(backupManager.restaurarJson("inventarios.json").toString());
         com.ejemplo.model.Inventario item = TestDataFactory.inventario1();
 
@@ -81,7 +81,7 @@ class JsonRepositoriesTest {
     }
 
     @Test
-    void pedidoJsonCrudWorks() throws Exception {
+    void pedidoJsonCrudWorks(){
         com.ejemplo.repository.json.PedidoJsonRepository repo = new com.ejemplo.repository.json.PedidoJsonRepository(backupManager.restaurarJson("pedidos.json").toString());
         com.ejemplo.model.Pedido item = TestDataFactory.pedido1();
 
@@ -96,7 +96,7 @@ class JsonRepositoriesTest {
     }
 
     @Test
-    void lineapedidoJsonCrudWorks() throws Exception {
+    void lineapedidoJsonCrudWorks(){
         com.ejemplo.repository.json.LineaPedidoJsonRepository repo = new com.ejemplo.repository.json.LineaPedidoJsonRepository(backupManager.restaurarJson("lineas_pedido.json").toString());
         com.ejemplo.model.LineaPedido item = TestDataFactory.linea1();
 
@@ -111,7 +111,7 @@ class JsonRepositoriesTest {
     }
 
     @Test
-    void jsonRepositoryCreatesFileIfItDoesNotExist() throws Exception {
+    void jsonRepositoryCreatesFileIfItDoesNotExist(){
         Path ruta = Path.of(tempDir.toString(), "clientes_nuevo.json");
         assertFalse(ruta.toFile().exists());
 
@@ -121,7 +121,7 @@ class JsonRepositoriesTest {
     }
 
     @Test
-    void jsonRepositoryRejectsRepeatedId() throws Exception {
+    void jsonRepositoryRejectsRepeatedId(){
         com.ejemplo.repository.json.ClienteJsonRepository repo = new com.ejemplo.repository.json.ClienteJsonRepository(backupManager.restaurarJson("clientes_repetidos.json").toString());
 
         assertTrue(repo.create(TestDataFactory.cliente1()));

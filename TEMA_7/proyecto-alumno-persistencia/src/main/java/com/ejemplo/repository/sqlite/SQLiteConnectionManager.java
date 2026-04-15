@@ -1,7 +1,6 @@
 package com.ejemplo.repository.sqlite;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,28 +10,39 @@ public abstract class SQLiteConnectionManager {
 
     private String url;
 
-    public SQLiteConnectionManager(String rutaDB) {
+    SQLiteConnectionManager(String rutaDB) {
         try {
             File file = new File(rutaDB);
             if (!file.exists()) {
                 Path path = Path.of(rutaDB);
 
                 file.createNewFile();
-                // inicializamos la BBDD
-                Connection connection = connectionManager.getConnection();
+                // inicializar la bbd
             }
             this.url = rutaDB;
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (Exception e) {
+            // TODO: handle exception
         }
 
         this.url = "jdbc:sqlite:" + rutaDB;
-        // this.url = "jdbc:postgresql:" + rutaDB;
-        // this.url = "jdbc:oracle;" + rutaDB;
+
     }
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url);
+    }
+
+    public boolean closseConnection(Connection connection) {
+        try {
+            if (connection != null) {
+                if (!connection.isClosed()) {
+                    connection.close();
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Se ha producido un error cerrando la conecciton");
+            return false;
+        }
+        return true;
     }
 }

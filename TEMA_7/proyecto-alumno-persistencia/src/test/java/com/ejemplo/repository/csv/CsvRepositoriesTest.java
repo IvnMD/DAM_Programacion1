@@ -1,5 +1,6 @@
 package com.ejemplo.repository.csv;
 
+import com.ejemplo.model.*;
 import com.ejemplo.support.TestBackupManager;
 import com.ejemplo.support.TestDataFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CsvRepositoriesTest {
+class CsvRepositoriesTest {
 
     @TempDir
     Path tempDir;
@@ -21,9 +22,9 @@ public class CsvRepositoriesTest {
     }
 
     @Test
-    void clienteCsvCrudWorks() throws Exception {
-        com.ejemplo.repository.csv.ClienteCsvRepository repo = new ClienteCsvRepository(backupManager.restaurarCsv("clientes.csv").toString(), ";", ";");
-        com.ejemplo.model.Cliente item = TestDataFactory.cliente1();
+    void clienteCsvCrudWorks() {
+        ClienteCsvRepository repo = new ClienteCsvRepository(backupManager.restaurarCsv("clientes.csv").toString(), ";", ";");
+        Cliente item = TestDataFactory.cliente1();
 
         assertTrue(repo.create(item));
         assertEquals(1, repo.findAll().size());
@@ -36,9 +37,9 @@ public class CsvRepositoriesTest {
     }
 
     @Test
-    void productoCsvCrudWorks() throws Exception {
-        com.ejemplo.repository.csv.ProductoCsvRepository repo = new ProductoCsvRepository(backupManager.restaurarCsv("productos.csv").toString(), ";", ";");
-        com.ejemplo.model.Producto item = TestDataFactory.producto1();
+    void productoCsvCrudWorks() {
+        ProductoCsvRepository repo = new ProductoCsvRepository(backupManager.restaurarCsv("productos.csv").toString(), ";", ";");
+        Producto item = TestDataFactory.producto1();
 
         assertTrue(repo.create(item));
         assertEquals(1, repo.findAll().size());
@@ -51,9 +52,9 @@ public class CsvRepositoriesTest {
     }
 
     @Test
-    void proveedorCsvCrudWorks() throws Exception {
-        com.ejemplo.repository.csv.ProveedorCsvRepository repo = new com.ejemplo.repository.csv.ProveedorCsvRepository(backupManager.restaurarCsv("proveedores.csv").toString(), "\\|", "|");
-        com.ejemplo.model.Proveedor item = TestDataFactory.proveedor1();
+    void proveedorCsvCrudWorks() {
+        ProveedorCsvRepository repo = new ProveedorCsvRepository(backupManager.restaurarCsv("proveedores.csv").toString(), "\\|", "|");
+        Proveedor item = TestDataFactory.proveedor1();
 
         assertTrue(repo.create(item));
         assertEquals(1, repo.findAll().size());
@@ -66,9 +67,9 @@ public class CsvRepositoriesTest {
     }
 
     @Test
-    void inventarioCsvCrudWorks() throws Exception {
-        com.ejemplo.repository.csv.InventarioCsvRepository repo = new com.ejemplo.repository.csv.InventarioCsvRepository(backupManager.restaurarCsv("inventarios.csv").toString(), "\\t", "\t");
-        com.ejemplo.model.Inventario item = TestDataFactory.inventario1();
+    void inventarioCsvCrudWorks() {
+        InventarioCsvRepository repo = new InventarioCsvRepository(backupManager.restaurarCsv("inventarios.csv").toString(), "\\t", "\t");
+        Inventario item = TestDataFactory.inventario1();
 
         assertTrue(repo.create(item));
         assertEquals(1, repo.findAll().size());
@@ -81,9 +82,9 @@ public class CsvRepositoriesTest {
     }
 
     @Test
-    void pedidoCsvCrudWorks() throws Exception {
-        com.ejemplo.repository.csv.PedidoCsvRepository repo = new com.ejemplo.repository.csv.PedidoCsvRepository(backupManager.restaurarCsv("pedidos.csv").toString(), ",", ",");
-        com.ejemplo.model.Pedido item = TestDataFactory.pedido1();
+    void pedidoCsvCrudWorks() {
+        PedidoCsvRepository repo = new PedidoCsvRepository(backupManager.restaurarCsv("pedidos.csv").toString(), ",", ",");
+        Pedido item = TestDataFactory.pedido1();
 
         assertTrue(repo.create(item));
         assertEquals(1, repo.findAll().size());
@@ -96,9 +97,9 @@ public class CsvRepositoriesTest {
     }
 
     @Test
-    void lineapedidoCsvCrudWorks() throws Exception {
-        com.ejemplo.repository.csv.LineaPedidoCsvRepository repo = new com.ejemplo.repository.csv.LineaPedidoCsvRepository(backupManager.restaurarCsv("lineas_pedido.csv").toString(), "#", "#");
-        com.ejemplo.model.LineaPedido item = TestDataFactory.linea1();
+    void lineapedidoCsvCrudWorks() {
+        LineaPedidoCsvRepository repo = new LineaPedidoCsvRepository(backupManager.restaurarCsv("lineas_pedido.csv").toString(), "#", "#");
+        LineaPedido item = TestDataFactory.linea1();
 
         assertTrue(repo.create(item));
         assertEquals(1, repo.findAll().size());
@@ -111,7 +112,7 @@ public class CsvRepositoriesTest {
     }
 
     @Test
-    void clienteCsvCreateFailsWhenIdRepeated() throws Exception {
+    void clienteCsvCreateFailsWhenIdRepeated() {
         ClienteCsvRepository repo = new ClienteCsvRepository(backupManager.restaurarCsv("clientes_repetidos.csv").toString(), ";", ";");
 
         assertTrue(repo.create(TestDataFactory.cliente1()));
@@ -120,7 +121,7 @@ public class CsvRepositoriesTest {
     }
 
     @Test
-    void csvRepositoryCreatesFileIfItDoesNotExist() throws Exception {
+    void csvRepositoryCreatesFileIfItDoesNotExist() {
         Path ruta = Path.of(tempDir.toString(), "nuevo_clientes.csv");
         assertFalse(ruta.toFile().exists());
 

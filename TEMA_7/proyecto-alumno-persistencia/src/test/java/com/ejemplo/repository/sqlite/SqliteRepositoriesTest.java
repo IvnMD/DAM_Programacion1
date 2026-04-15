@@ -2,6 +2,8 @@ package com.ejemplo.repository.sqlite;
 
 import com.ejemplo.support.TestBackupManager;
 import com.ejemplo.support.TestDataFactory;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -13,19 +15,22 @@ class SqliteRepositoriesTest {
     @TempDir
     Path tempDir;
 
-    private SQLiteConnectionManager connectionManager;
     private TestBackupManager backupManager;
 
     @BeforeEach
-    void init() throws Exception {
-        backupManager = new TestBackupManager(tempDir);
-        backupManager.restaurarSqlite("test.db");
+    void init() {
+        try {
+            backupManager = new TestBackupManager(tempDir);
+            backupManager.restaurarSqlite("test.db");   
+        } catch (Exception e) {
+            Assertions.fail("Se produjo un error al preparar la base de datos de prueba: " + e.getMessage());
+        }
     }
 
 
     @Test
-    void clienteSqliteCrudWorks() throws Exception {
-        com.ejemplo.repository.sqlite.ClienteSqliteRepository repo = new com.ejemplo.repository.sqlite.ClienteSqliteRepository(connectionManager);
+    void clienteSqliteCrudWorks() {
+        ClienteSqliteRepository repo = new ClienteSqliteRepository();
         com.ejemplo.model.Cliente item = TestDataFactory.cliente1();
 
         assertTrue(repo.create(item));
@@ -36,8 +41,8 @@ class SqliteRepositoriesTest {
     }
 
     @Test
-    void productoSqliteCrudWorks() throws Exception {
-        com.ejemplo.repository.sqlite.ProductoSqliteRepository repo = new com.ejemplo.repository.sqlite.ProductoSqliteRepository(connectionManager);
+    void productoSqliteCrudWorks()  {
+        ProductoSqliteRepository repo = new ProductoSqliteRepository();
         com.ejemplo.model.Producto item = TestDataFactory.producto1();
 
         assertTrue(repo.create(item));
@@ -48,8 +53,8 @@ class SqliteRepositoriesTest {
     }
 
     @Test
-    void proveedorSqliteCrudWorks() throws Exception {
-        com.ejemplo.repository.sqlite.ProveedorSqliteRepository repo = new com.ejemplo.repository.sqlite.ProveedorSqliteRepository(connectionManager);
+    void proveedorSqliteCrudWorks() {
+        ProveedorSqliteRepository repo = new ProveedorSqliteRepository();
         com.ejemplo.model.Proveedor item = TestDataFactory.proveedor1();
 
         assertTrue(repo.create(item));
@@ -60,8 +65,8 @@ class SqliteRepositoriesTest {
     }
 
     @Test
-    void inventarioSqliteCrudWorks() throws Exception {
-        com.ejemplo.repository.sqlite.InventarioSqliteRepository repo = new com.ejemplo.repository.sqlite.InventarioSqliteRepository(connectionManager);
+    void inventarioSqliteCrudWorks() {
+        InventarioSqliteRepository repo = new InventarioSqliteRepository();
         com.ejemplo.model.Inventario item = TestDataFactory.inventario1();
 
         assertTrue(repo.create(item));
@@ -72,8 +77,8 @@ class SqliteRepositoriesTest {
     }
 
     @Test
-    void pedidoSqliteCrudWorks() throws Exception {
-        com.ejemplo.repository.sqlite.PedidoSqliteRepository repo = new com.ejemplo.repository.sqlite.PedidoSqliteRepository(connectionManager);
+    void pedidoSqliteCrudWorks() {
+        PedidoSqliteRepository repo = new PedidoSqliteRepository();
         com.ejemplo.model.Pedido item = TestDataFactory.pedido1();
 
         assertTrue(repo.create(item));
@@ -84,8 +89,8 @@ class SqliteRepositoriesTest {
     }
 
     @Test
-    void lineapedidoSqliteCrudWorks() throws Exception {
-        com.ejemplo.repository.sqlite.LineaPedidoSqliteRepository repo = new com.ejemplo.repository.sqlite.LineaPedidoSqliteRepository(connectionManager);
+    void lineapedidoSqliteCrudWorks() {
+        LineaPedidoSqliteRepository repo = new LineaPedidoSqliteRepository();
         com.ejemplo.model.LineaPedido item = TestDataFactory.linea1();
 
         assertTrue(repo.create(item));
@@ -96,8 +101,8 @@ class SqliteRepositoriesTest {
     }
 
     @Test
-    void sqliteRepositoryRejectsRepeatedId() throws Exception {
-        com.ejemplo.repository.sqlite.ClienteSqliteRepository repo = new com.ejemplo.repository.sqlite.ClienteSqliteRepository(connectionManager);
+    void sqliteRepositoryRejectsRepeatedId() {
+        ClienteSqliteRepository repo = new ClienteSqliteRepository();
 
         assertTrue(repo.create(TestDataFactory.cliente1()));
         assertFalse(repo.create(TestDataFactory.cliente1()));

@@ -8,12 +8,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductoSqliteRepository implements IProductoRepository {
+public class ProductoSqliteRepository extends SQLiteConnectionManager implements IProductoRepository {
 
-    private SQLiteConnectionManager connectionManager;
+    private static String  rutaDB = "src/main/resources/sqlite/demo.db";
 
-    public ProductoSqliteRepository(SQLiteConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
+
+    public ProductoSqliteRepository() {
+        super(rutaDB);
     }
 
     @Override

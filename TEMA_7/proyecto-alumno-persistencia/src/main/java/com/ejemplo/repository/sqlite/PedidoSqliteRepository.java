@@ -8,12 +8,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PedidoSqliteRepository implements IPedidoRepository {
+public class PedidoSqliteRepository extends SQLiteConnectionManager  implements IPedidoRepository {
 
-    private SQLiteConnectionManager connectionManager;
 
-    public PedidoSqliteRepository(SQLiteConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
+    private static String  rutaDB = "src/main/resources/sqlite/demo.db";
+
+    public PedidoSqliteRepository() {
+        super(rutaDB);
     }
 
     @Override

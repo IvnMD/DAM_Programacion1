@@ -8,13 +8,20 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProveedorSqliteRepository implements IProveedorRepository {
+public class ProveedorSqliteRepository extends SQLiteConnectionManager implements IProveedorRepository {
+    private static String  rutaDB = "src/main/resources/sqlite/demo.db";
+    
+    ProveedorSqliteRepository() {
+    super(rutaDB);
+    }
+    ProveedorSqliteRepository(String rutaDB) {
+        super(rutaDB);
+        //TODO Auto-generated constructor stub
+    }
 
     private SQLiteConnectionManager connectionManager;
 
-    public ProveedorSqliteRepository(SQLiteConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
-    }
+
 
     @Override
     public boolean create(Proveedor proveedor) {

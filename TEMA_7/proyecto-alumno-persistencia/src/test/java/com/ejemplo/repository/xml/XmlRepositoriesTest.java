@@ -21,8 +21,8 @@ class XmlRepositoriesTest {
     }
 
     @Test
-    void clienteXmlCrudWorks() throws Exception {
-        com.ejemplo.repository.xml.ClienteXmlRepository repo = new com.ejemplo.repository.xml.ClienteXmlRepository(backupManager.restaurarXml("clientes.xml").toString());
+    void clienteXmlCrudWorks(){
+        ClienteXmlRepository repo = new ClienteXmlRepository(backupManager.restaurarXml("clientes.xml").toString());
         com.ejemplo.model.Cliente item = TestDataFactory.cliente1();
 
         assertTrue(repo.create(item));
@@ -36,8 +36,8 @@ class XmlRepositoriesTest {
     }
 
     @Test
-    void productoXmlCrudWorks() throws Exception {
-        com.ejemplo.repository.xml.ProductoXmlRepository repo = new com.ejemplo.repository.xml.ProductoXmlRepository(backupManager.restaurarXml("productos.xml").toString());
+    void productoXmlCrudWorks(){
+        ProductoXmlRepository repo = new ProductoXmlRepository(backupManager.restaurarXml("productos.xml").toString());
         com.ejemplo.model.Producto item = TestDataFactory.producto1();
 
         assertTrue(repo.create(item));
@@ -51,8 +51,8 @@ class XmlRepositoriesTest {
     }
 
     @Test
-    void proveedorXmlCrudWorks() throws Exception {
-        com.ejemplo.repository.xml.ProveedorXmlRepository repo = new com.ejemplo.repository.xml.ProveedorXmlRepository(backupManager.restaurarXml("proveedores.xml").toString());
+    void proveedorXmlCrudWorks(){
+        ProveedorXmlRepository repo = new ProveedorXmlRepository(backupManager.restaurarXml("proveedores.xml").toString());
         com.ejemplo.model.Proveedor item = TestDataFactory.proveedor1();
 
         assertTrue(repo.create(item));
@@ -66,8 +66,8 @@ class XmlRepositoriesTest {
     }
 
     @Test
-    void inventarioXmlCrudWorks() throws Exception {
-        com.ejemplo.repository.xml.InventarioXmlRepository repo = new com.ejemplo.repository.xml.InventarioXmlRepository(backupManager.restaurarXml("inventarios.xml").toString());
+    void inventarioXmlCrudWorks(){
+        InventarioXmlRepository repo = new InventarioXmlRepository(backupManager.restaurarXml("inventarios.xml").toString());
         com.ejemplo.model.Inventario item = TestDataFactory.inventario1();
 
         assertTrue(repo.create(item));
@@ -81,8 +81,8 @@ class XmlRepositoriesTest {
     }
 
     @Test
-    void pedidoXmlCrudWorks() throws Exception {
-        com.ejemplo.repository.xml.PedidoXmlRepository repo = new com.ejemplo.repository.xml.PedidoXmlRepository(backupManager.restaurarXml("pedidos.xml").toString());
+    void pedidoXmlCrudWorks(){
+        PedidoXmlRepository repo = new PedidoXmlRepository(backupManager.restaurarXml("pedidos.xml").toString());
         com.ejemplo.model.Pedido item = TestDataFactory.pedido1();
 
         assertTrue(repo.create(item));
@@ -96,8 +96,8 @@ class XmlRepositoriesTest {
     }
 
     @Test
-    void lineapedidoXmlCrudWorks() throws Exception {
-        com.ejemplo.repository.xml.LineaPedidoXmlRepository repo = new com.ejemplo.repository.xml.LineaPedidoXmlRepository(backupManager.restaurarXml("lineas_pedido.xml").toString());
+    void lineapedidoXmlCrudWorks(){
+        LineaPedidoXmlRepository repo = new LineaPedidoXmlRepository(backupManager.restaurarXml("lineas_pedido.xml").toString());
         com.ejemplo.model.LineaPedido item = TestDataFactory.linea1();
 
         assertTrue(repo.create(item));
@@ -111,18 +111,18 @@ class XmlRepositoriesTest {
     }
 
     @Test
-    void xmlRepositoryCreatesFileIfItDoesNotExist() throws Exception {
+    void xmlRepositoryCreatesFileIfItDoesNotExist(){
         Path ruta = Path.of(tempDir.toString(), "clientes_nuevo.xml");
         assertFalse(ruta.toFile().exists());
 
-        new com.ejemplo.repository.xml.ClienteXmlRepository(ruta.toString());
+        new ClienteXmlRepository(ruta.toString());
 
         assertTrue(ruta.toFile().exists());
     }
 
     @Test
-    void xmlRepositoryRejectsRepeatedId() throws Exception {
-        com.ejemplo.repository.xml.ClienteXmlRepository repo = new com.ejemplo.repository.xml.ClienteXmlRepository(backupManager.restaurarXml("clientes_repetidos.xml").toString());
+    void xmlRepositoryRejectsRepeatedId(){
+        ClienteXmlRepository repo = new ClienteXmlRepository(backupManager.restaurarXml("clientes_repetidos.xml").toString());
 
         assertTrue(repo.create(TestDataFactory.cliente1()));
         assertFalse(repo.create(TestDataFactory.cliente1()));

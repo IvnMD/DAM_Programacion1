@@ -8,52 +8,77 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class InventarioSqliteRepository extends SQLiteConnectionManager implements IInventarioRepository {
 
-    private static String  rutaDB = "src/main/resources/sqlite/demo.db";
-InventarioSqliteRepository() {
+
+    InventarioSqliteRepository() {
         super(rutaDB);
-        //TODO Auto-generated constructor stub
+        // TODO Auto-generated constructor stub
     }
 
-InventarioSqliteRepository(String rutaDB) {
+    InventarioSqliteRepository(String rutaDB) {
         super(rutaDB);
-        //TODO Auto-generated constructor stub
+        // TODO Auto-generated constructor stub
     }
 
+    @Override
+    public boolean create(Inventario inventario) {
+       /*
+        Connection connection = null;
+        try {
 
+            connection = this.getConnection();
 
-@Override
-public boolean create(Inventario inventario) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'create'");
-}
+            PreparedStatement sentencia = connection.prepareStatement("INSERT INTO cliente(id, nif, nombre, email, telefono, ciudad, pais, activo)"
+                            + " values(?,?,?,?,?,?,?,?)");
+            sentencia.setLong(1, cliente.getId());
+            sentencia.setString(2, cliente.getNif());
+            sentencia.setString(3, cliente.getNombre());
+            sentencia.setString(4, cliente.getEmail());
+            sentencia.setString(5, cliente.getTelefono());
+            sentencia.setString(6, cliente.getCiudad());
+            sentencia.setString(7, cliente.getPais());
+            sentencia.setBoolean(8, cliente.isActivo());
 
-@Override
-public List<Inventario> findAll() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-}
+            sentencia.execute();
 
-@Override
-public Inventario findById(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'findById'");
-}
+        } catch (Exception e) {
+            System.err.println("No se ha podido almacenar el cliente " + cliente.getId());
+            return false;
+        } finally {
+            this.closseConnection(connection);
+        }*/
 
-@Override
-public boolean update(Inventario inventario) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'update'");
-}
+        try {
+              Connection connection = this.getConnection();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return true;
+    }
 
-@Override
-public boolean deleteById(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
-}
-       
+    @Override
+    public List<Inventario> findAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    }
 
-    
+    @Override
+    public Inventario findById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
+    @Override
+    public boolean update(Inventario inventario) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+    }
+
 }

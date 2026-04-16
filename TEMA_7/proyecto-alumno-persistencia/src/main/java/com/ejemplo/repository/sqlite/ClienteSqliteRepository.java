@@ -10,7 +10,6 @@ import java.util.List;
 
 public class ClienteSqliteRepository extends SQLiteConnectionManager implements IClienteRepository {
 
-    private static String rutaDB = "src/main/resources/sqlite/demo.db";
 
     public ClienteSqliteRepository(String rutaDB) {
         super(rutaDB);
@@ -116,7 +115,7 @@ public class ClienteSqliteRepository extends SQLiteConnectionManager implements 
     @Override
     public boolean update(Cliente cliente) {
         Connection connection = null;
-        String sql = "UDATE cliente set nif = ?, nombre = ?, email = ?, telefono = ?,"
+        String sql = "UPDATE cliente as ci set nif = ?, nombre = ?, email = ?, telefono = ?,"
                 + " ciudad = ?, pais = ?, activo = ? where ci.id = ?";
         try {
             connection = this.getConnection();
@@ -132,7 +131,7 @@ public class ClienteSqliteRepository extends SQLiteConnectionManager implements 
 
             sentencia.setLong(8, cliente.getId());
 
-            sentencia.execute();
+            sentencia.executeUpdate();
 
         } catch (Exception e) {
             System.err.println("No se han podido obtener elementos" + cliente.getId());
@@ -153,7 +152,7 @@ public class ClienteSqliteRepository extends SQLiteConnectionManager implements 
             sentencia.executeUpdate();
             return false;
         } catch (Exception e) {
-            System.err.println("No se han podido obtener elementos");
+            System.err.println("No se han podido eliminar");
             return false;
 
         } finally {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LineaPedidoSqliteRepository  extends SQLiteConnectionManager implements ILineaPedidoRepository {
-    private static String  rutaDB = "src/main/resources/sqlite/demo.db";
+
     LineaPedidoSqliteRepository() {
         super(rutaDB);
         //TODO Auto-generated constructor stub

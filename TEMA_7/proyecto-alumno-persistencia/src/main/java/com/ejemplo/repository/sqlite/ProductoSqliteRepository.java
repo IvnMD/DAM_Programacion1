@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ProductoSqliteRepository extends SQLiteConnectionManager implements IProductoRepository {
 
-    private static String  rutaDB = "src/main/resources/sqlite/demo.db";
 
+    
 
     public ProductoSqliteRepository() {
         super(rutaDB);

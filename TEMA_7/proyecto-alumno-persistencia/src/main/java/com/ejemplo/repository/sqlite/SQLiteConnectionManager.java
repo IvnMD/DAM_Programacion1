@@ -4,9 +4,12 @@ import java.io.File;
 import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public abstract class SQLiteConnectionManager {
+
+    public static String rutaDB = "src/main/resources/data/sqlite/demo.db";
 
     private String url;
 
@@ -44,5 +47,18 @@ public abstract class SQLiteConnectionManager {
             return false;
         }
         return true;
+    }
+
+
+    public boolean deleteById(String sql) {
+        Connection connection = null;
+        try {
+            connection = this.getConnection();
+            PreparedStatement sentencia = connection.prepareStatement(sql);
+            return sentencia.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.err.println("No se han podido eliminar");
+            return false;
+        }
     }
 }

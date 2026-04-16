@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProveedorSqliteRepository extends SQLiteConnectionManager implements IProveedorRepository {
-    private static String  rutaDB = "src/main/resources/data/sqlite/demo.db";
+
     
     ProveedorSqliteRepository() {
     super(rutaDB);

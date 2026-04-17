@@ -23,14 +23,23 @@ public class ProveedorSqliteRepository extends SQLiteConnectionManager implement
 
     private SQLiteConnectionManager connectionManager;
 
+    /*
+     * private Long id;
+     * private String codigo;
+     * private String nombre;
+     * private String contacto;
+     * private String email;
+     * private String pais;
+     */
+
     @Override
     public boolean create(Proveedor proveedor) {
         Connection connection = null;
-        String sql = "INSERT INTO cliente(id, nif, nombre, email, telefono, ciudad, pais, activo values(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO proveedor(codigo, nombre, email, contacto, email, pais, id) VALUES (?,?,?,?,?,?)";
         try {
             connection = this.getConnection();
             PreparedStatement sentencia = connection.prepareStatement(sql);
-            sentencia.executeUpdate();
+            
             sentencia.setString(1, proveedor.getCodigo());
             sentencia.setString(2, proveedor.getNombre());
             sentencia.setString(3, proveedor.getContacto());
@@ -50,30 +59,28 @@ public class ProveedorSqliteRepository extends SQLiteConnectionManager implement
         return true;
     }
 
-    @Override
+@Override
     public List<Proveedor> findAll() {
         Connection connection = null;
-        ArrayList<Proveedor> proveedores = new ArrayList<Proveedor>();
-        String sql = "SELECT * FROM proveedores";
+        List<Proveedor> proveedores = new ArrayList<>();
+        String sql = "SELECT * FROM proveedor"; 
         try {
             connection = this.getConnection();
             PreparedStatement sentencia = connection.prepareStatement(sql);
             ResultSet resultado = sentencia.executeQuery();
             while (resultado.next()) {
-                long miId = Long.valueOf(id);
+             
+                long miId = resultado.getLong("id"); 
                 String nombre = resultado.getString("nombre");
                 String codigo = resultado.getString("codigo");
                 String contacto = resultado.getString("contacto");
                 String email = resultado.getString("email");
                 String pais = resultado.getString("pais");
 
-                Proveedor proveedor = new Proveedor(miId, codigo, nombre, contacto, email, pais);
-
-                proveedores.add(proveedor);
+                proveedores.add(new Proveedor(miId, codigo, nombre, contacto, email, pais));
             }
         } catch (Exception e) {
-            System.err.println("No se han podido obtener elementos");
-            return new ArrayList<Proveedor>();
+            System.err.println("Error en findAll: " + e.getMessage());
         } finally {
             this.closseConnection(connection);
         }

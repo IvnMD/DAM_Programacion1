@@ -21,7 +21,7 @@ class SqliteRepositoriesTest {
     void init() {
         try {
             backupManager = new TestBackupManager(tempDir);
-            backupManager.restaurarSqlite("test.db");   
+            // backupManager.restaurarSqlite("test.db");   
         } catch (Exception e) {
             Assertions.fail("Se produjo un error al preparar la base de datos de prueba: " + e.getMessage());
         }

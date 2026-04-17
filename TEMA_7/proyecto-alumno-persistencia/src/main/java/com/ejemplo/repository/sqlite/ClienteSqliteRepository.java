@@ -135,7 +135,7 @@ public class ClienteSqliteRepository extends SQLiteConnectionManager implements 
             sentencia.executeUpdate();
 
         } catch (Exception e) {
-            System.err.println("No se han podido obtener elementos" + cliente.getId());
+            System.err.println("No se han podido actualizar elementos" + cliente.getId());
             return false;
         } finally {
             this.closseConnection(connection);

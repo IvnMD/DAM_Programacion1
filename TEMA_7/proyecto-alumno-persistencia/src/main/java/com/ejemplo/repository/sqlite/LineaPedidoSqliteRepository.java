@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ejemplo.model.lineaPedido;
 import com.ejemplo.model.LineaPedido;
 import com.ejemplo.repository.ILineaPedidoRepository;
 
@@ -14,12 +13,12 @@ public class LineaPedidoSqliteRepository extends SQLiteConnectionManager impleme
 
     LineaPedidoSqliteRepository() {
         super(rutaDB);
-        // TODO Auto-generated constructor stub
+        
     }
 
     LineaPedidoSqliteRepository(String rutaDB) {
         super(rutaDB);
-        // TODO Auto-generated constructor stub
+        
     }
 
     /*
@@ -88,7 +87,7 @@ public class LineaPedidoSqliteRepository extends SQLiteConnectionManager impleme
             }
         } catch (Exception e) {
             System.err.println("No se han podido obtener elementos");
-            return new ArrayList<lineaPedido>();
+            return new ArrayList<LineaPedido>();
         } finally {
             this.closseConnection(connection);
         }

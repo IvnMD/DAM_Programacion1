@@ -17,7 +17,7 @@ public class PedidoSqliteRepository extends SQLiteConnectionManager implements I
     /**
      * private Long id;
      * private String numero;
-     * private Long clienteId;
+     * private Long pedidoId;
      * private String fecha;
      * private String estado;
      * private double total;
@@ -48,20 +48,97 @@ public class PedidoSqliteRepository extends SQLiteConnectionManager implements I
 
     @Override
     public List<Pedido> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        Connection connection = null;
+        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+        String sql = "SELECT * FROM pedido as pe where pe.id =";
+        try {
+            connection = this.getConnection();
+            PreparedStatement sentencia = connection.prepareStatement(sql);
+            ResultSet resultado = sentencia.executeQuery();
+            while (resultado.next()) {
+                int id = resultado.getInt("id");
+                long miId = Long.valueOf(id);
+                String numero = resultado.getString("numero");
+                Long clienteId = resultado.getLong("clienteId");
+                String fecha = resultado.getString("fecha");
+                String estado = resultado.getString("estado");
+                double total = resultado.getDouble("total");
+                Pedido pedido = new Pedido(miId, numero, clienteId, fecha, estado, total);
+                pedidos.add(pedido);
+                return pedidos;
+            }
+        } catch (Exception e) {
+            System.err.println("No se han podido obtener elementos");
+
+        } finally {
+            this.closseConnection(connection);
+        }
+        return pedidos;
     }
 
+    /*
+     * private Long id;
+     * private String numero;
+     * private Long clienteId;
+     * private String fecha;
+     * private String estado;
+     * private double total;
+     */
     @Override
     public Pedido findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        Connection connection = null;
+        Pedido pedido = null;
+        String sql = "SELECT * FROM pedido as pe where pe.id =";
+        try {
+            connection = this.getConnection();
+            PreparedStatement sentencia = connection.prepareStatement(sql);
+            ResultSet resultado = sentencia.executeQuery();
+            while (resultado.next()) {
+                long miId = Long.valueOf(id);
+                String numero = resultado.getString("numero");
+                Long clienteId = resultado.getLong("clienteId");
+                String fecha = resultado.getString("fecha");
+                String estado = resultado.getString("estado");
+                double total = resultado.getDouble("total");
+                pedido = new Pedido(miId, numero, clienteId, fecha, estado, total);
+
+                return pedido;
+            }
+        } catch (Exception e) {
+            System.err.println("No se han podido obtener elementos");
+
+        } finally {
+            this.closseConnection(connection);
+        }
+        return pedido;
     }
 
     @Override
     public boolean update(Pedido pedido) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        Connection connection = null;
+        String sql = "UPDATE pedido as pe set numero = ?, clienteId = ?, fecha = ?, estado = ?,"
+                + " total = ? where pe.id = ?";
+        try {
+            connection = this.getConnection();
+            PreparedStatement sentencia = connection.prepareStatement(sql);
+            sentencia.executeUpdate();
+            sentencia.setString(1, pedido.getNumero());
+            sentencia.setLong(2, pedido.getClienteId());
+            sentencia.setString(3, pedido.getFecha());
+            sentencia.setString(4, pedido.getEstado());
+            sentencia.setDouble(5, pedido.getTotal());
+
+            sentencia.setLong(6, pedido.getId());
+
+            sentencia.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("No se han podido actulizar elementos" + pedido.getId());
+            return false;
+        } finally {
+            this.closseConnection(connection);
+        }
+        return true;
     }
 
     @Override

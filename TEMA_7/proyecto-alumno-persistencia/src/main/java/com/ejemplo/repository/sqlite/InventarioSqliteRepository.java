@@ -1,12 +1,10 @@
 package com.ejemplo.repository.sqlite;
 
+import java.sql.Connection;
+import java.util.List;
+
 import com.ejemplo.model.Inventario;
 import com.ejemplo.repository.IInventarioRepository;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 public class InventarioSqliteRepository extends SQLiteConnectionManager implements IInventarioRepository {
 
@@ -75,10 +73,11 @@ public class InventarioSqliteRepository extends SQLiteConnectionManager implemen
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
+
     @Override
     public boolean deleteById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
-    }
+        String sql = "DELETE * FROM inventario as inv where inv.id =" + id;
+        return super.deleteById(sql);
 
+    }
 }

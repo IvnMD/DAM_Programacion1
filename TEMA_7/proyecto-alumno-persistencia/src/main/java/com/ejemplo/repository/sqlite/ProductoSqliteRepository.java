@@ -1,12 +1,9 @@
 package com.ejemplo.repository.sqlite;
 
+import java.util.List;
+
 import com.ejemplo.model.Producto;
 import com.ejemplo.repository.IProductoRepository;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProductoSqliteRepository extends SQLiteConnectionManager implements IProductoRepository {
 
@@ -41,11 +38,12 @@ public class ProductoSqliteRepository extends SQLiteConnectionManager implements
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
+
     @Override
     public boolean deleteById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
-    }
+        String sql = "DELETE * FROM producto as pr where pr.id =" + id;
+        return super.deleteById(sql);
 
+    }
     
 }

@@ -85,9 +85,10 @@ public class ClienteSqliteRepository extends SQLiteConnectionManager implements 
     public Cliente findById(Long id) {
         Connection connection = null;
         Cliente cliente = null;
+        String sql = "SELECT * FROM cliente as ci where ci.id =";
         try {
             connection = this.getConnection();
-            PreparedStatement sentencia = connection.prepareStatement("SELECT * FROM cliente as ci where ci.id =");
+            PreparedStatement sentencia = connection.prepareStatement(sql);
             ResultSet resultado = sentencia.executeQuery();
             while (resultado.next()) {
                 long miId = Long.valueOf(id);

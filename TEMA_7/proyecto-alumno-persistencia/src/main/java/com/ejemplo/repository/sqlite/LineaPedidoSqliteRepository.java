@@ -1,12 +1,9 @@
 package com.ejemplo.repository.sqlite;
 
+import java.util.List;
+
 import com.ejemplo.model.LineaPedido;
 import com.ejemplo.repository.ILineaPedidoRepository;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LineaPedidoSqliteRepository  extends SQLiteConnectionManager implements ILineaPedidoRepository {
 
@@ -43,10 +40,12 @@ public class LineaPedidoSqliteRepository  extends SQLiteConnectionManager implem
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
+
     @Override
     public boolean deleteById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+        String sql = "DELETE * FROM linea_pedido as pe where pe.id =" + id;
+        return super.deleteById(sql);
+
     }
 
    }

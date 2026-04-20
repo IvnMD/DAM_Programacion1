@@ -133,8 +133,8 @@ public class VehiculoSqliteRepository extends SQLiteConnectionManager implements
         try {
             connection = this.getConnection();
             PreparedStatement sentencia = connection
-                    .prepareStatement("UPDATE INTO vehiculo as ve matricula = ?, marca = ?, modelo = ?, color = ?, anio = ?,"
-                                     +" kilometros = ?, precio = ?, vendido = ?, dniCliente = ? where ve.id = ?");
+                    .prepareStatement("UPDATE vehiculo SET matricula = ?, marca = ?, modelo = ?, color = ?, anio = ?,"
+                                     +" kilometros = ?, precio = ?, vendido = ?, dni_cliente = ? where id = ?");
             sentencia.setLong(1, vehiculo.getId());
             sentencia.setString(2, vehiculo.getMatricula());
             sentencia.setString(3, vehiculo.getMarca());

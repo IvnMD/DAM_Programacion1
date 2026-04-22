@@ -3,6 +3,7 @@ package com.ejemplo.repository.sqlite;
 import com.ejemplo.model.Employee;
 import com.ejemplo.repository.IEmployeeRepository;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,8 +24,19 @@ public class EmployeeSqliteRepository extends SQLiteConnectionManager implements
 
     @Override
     public Employee findById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        String sql = "SELECT * FROM Employee where id = ?";
+        try (Connection connection = SQLiteConnectionManager.openConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setInt(1, id);
+
+                ResultSet resultado = ps.executeQuery();
+
+                while (resultado.next()){
+                    resultado.getString(1);
+                }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 
     @Override

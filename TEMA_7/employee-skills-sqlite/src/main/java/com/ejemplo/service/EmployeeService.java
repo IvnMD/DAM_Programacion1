@@ -5,6 +5,7 @@ import com.ejemplo.repository.IEmployeeRepository;
 import com.ejemplo.repository.sqlite.EmployeeSqliteRepository;
 import com.ejemplo.repository.sqlite.SQLiteConnectionManager;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,14 +22,22 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public boolean crear(Employee employee) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crear'");
+        if (!Utils(employee)) {
+            return false;
+        }
+        Employee employeeBuscar = buscarPorId(employee.getId());
+        if (!(employee == null)) {
+            return false;
+        }
+        return repository.create(employeeBuscar);
     }
 
     @Override
     public Employee buscarPorId(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
+        if (id == null) {
+            return null;
+        }
+        return repository.findById(id);
     }
 
     @Override
@@ -39,8 +48,16 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public boolean actualizar(Employee employee) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actualizar'");
+        if (!Utils(employee)) {
+            return false;
+        }
+        Employee employeeBuscar = buscarPorId(employee.getId());
+        if (!(employee == null)) {
+            return false;
+        }
+        return repository.update(employeeBuscar);
+    }
+
     }
 
     @Override

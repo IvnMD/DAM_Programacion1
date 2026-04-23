@@ -1,5 +1,6 @@
 package com.ejemplo.service;
 
+import com.ejemplo.model.Employee;
 import com.ejemplo.model.Skill;
 import com.ejemplo.repository.ISkillRepository;
 import com.ejemplo.repository.sqlite.SQLiteConnectionManager;
@@ -22,32 +23,45 @@ public class SkillService implements ISkillService {
 
     @Override
     public boolean crear(Skill skill) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crear'");
+        if (!Utils.validSkill(skill)){
+            return false;
+        }
+       Skill skillBuscar = buscarPorId(skill.getId());
+        if (skillBuscar == null) {
+            return false;
+        }
+        return repository.create(skillBuscar);
     }
 
     @Override
     public Skill buscarPorId(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
+        if (id == null) {
+            return null;
+        }
+        return repository.findById(id);
     }
 
     @Override
     public List<Skill> listarTodas() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarTodas'");
+        return repository.findAll();
     }
 
     @Override
     public boolean actualizar(Skill skill) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actualizar'");
+        if (!Utils.validSkill(skill)){
+            return false;
+        }
+       Skill skillBuscar = buscarPorId(skill.getId());
+        if (skillBuscar == null) {
+            return false;
+        }
+        return repository.update(skillBuscar);
     }
+    
 
     @Override
     public boolean eliminar(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+        return repository.deleteById(id);
     }
 
     @Override
@@ -80,5 +94,5 @@ public class SkillService implements ISkillService {
         throw new UnsupportedOperationException("Unimplemented method 'listarSinAsignar'");
     }
 
-    
 }
+

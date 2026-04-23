@@ -22,11 +22,11 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public boolean crear(Employee employee) {
-        if (!Utils(employee)) {
+        if (!Utils.validEmployee(employee)) {
             return false;
         }
         Employee employeeBuscar = buscarPorId(employee.getId());
-        if (!(employee == null)) {
+        if (employeeBuscar == null) {
             return false;
         }
         return repository.create(employeeBuscar);
@@ -42,13 +42,12 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public List<Employee> listarTodos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarTodos'");
+        return repository.findAll();
     }
 
     @Override
     public boolean actualizar(Employee employee) {
-        if (!Utils(employee)) {
+        if (!Utils.validEmployee(employee)) {
             return false;
         }
         Employee employeeBuscar = buscarPorId(employee.getId());
@@ -58,12 +57,11 @@ public class EmployeeService implements IEmployeeService {
         return repository.update(employeeBuscar);
     }
 
-    }
+    
 
     @Override
     public boolean eliminar(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+        return repository.deleteById(id);
     }
 
     @Override
@@ -74,8 +72,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public List<Employee> listarManagers() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarManagers'");
+        return repository.findAll();  //! TAMOS SEGUROS DE ESTO??
     }
 
     @Override

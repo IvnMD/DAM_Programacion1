@@ -12,8 +12,10 @@ public class ClienteService implements IClienteService {
     public ClienteService() { this.repository = new ClienteSqliteRepository(); }
     @Override
     public boolean create(Cliente cliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        if (cliente == null){
+            return false;
+        }
+        
     }
     @Override
     public Cliente findByDni(String dni) {

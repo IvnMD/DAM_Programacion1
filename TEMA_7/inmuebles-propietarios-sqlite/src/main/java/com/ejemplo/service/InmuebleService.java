@@ -4,6 +4,7 @@ import com.ejemplo.model.Inmueble;
 import com.ejemplo.repository.IPropietarioRepository;
 import com.ejemplo.repository.IInmuebleRepository;
 import com.ejemplo.repository.sqlite.PropietarioSqliteRepository;
+import com.ejemplo.utils.Validacion;
 import com.ejemplo.repository.sqlite.InmuebleSqliteRepository;
 
 import java.util.List;
@@ -21,14 +22,19 @@ public class InmuebleService implements IInmuebleService {
 
     @Override
     public boolean crear(Inmueble inmueble) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crear'");
+        if (!(Validacion.validInmueble(inmueble))){
+            return false;
+        }
+        return inmuebleRepository.create(inmueble);
     }
 
     @Override
     public Inmueble buscarPorId(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
+        if (id == null){
+            return null;
+        }
+        
+        return inmuebleRepository.findById(id);
     }
 
     @Override

@@ -6,54 +6,71 @@ import com.ejemplo.model.*;
 import com.ejemplo.repository.*;
 import com.ejemplo.repository.sqlite.*;
 import com.ejemplo.validation.ValidationUtils;
+import java.util.Collections;
 
 public class VentaService implements IVentaService {
     private final IVentaRepository repository;
     public VentaService() { this.repository = new VentaSqliteRepository(); }
     @Override
     public boolean create(Venta venta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        if (!ValidationUtils.isValidVenta(venta)){
+            return false;
+        }
+        return repository.crear(venta);
+        
     }
     @Override
     public Venta findById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return repository.buscarPorId(id);
+        
     }
+
     @Override
     public List<Venta> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return repository.listarTodos();
+        
     }
+
     @Override
     public boolean update(Venta venta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        if (!ValidationUtils.isValidVenta(venta)){
+            return false;
+        }
+        return repository.actualizar(venta);
     }
+
     @Override
     public boolean deleteById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+        return repository.borrarPorId(id);
     }
+
     @Override
     public List<Venta> findByCliente(String dniCliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByCliente'");
+        if (!ValidationUtils.isValidDni(dniCliente)){
+            return Collections.emptyList(); //! Null para los test?
+        }
+        return repository.buscarPorCliente(dniCliente);
+        
     }
+
     @Override
     public Venta findByTicket(String ticket) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByTicket'");
+        if (!ValidationUtils.isValidTicket(ticket)){
+            return null;
+        }
+        return repository.buscarPorTicket(ticket);
     }
+
     @Override
     public List<VentaDetalle> findDetallesByVenta(Integer idVenta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findDetallesByVenta'");
+        return repository.buscarDetallesPorVenta(idVenta);
+        
     }
+
     @Override
     public List<VentaResumen> findResumenVentas() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findResumenVentas'");
+        return repository.buscarResumenVentas();
+        
     }
 
 

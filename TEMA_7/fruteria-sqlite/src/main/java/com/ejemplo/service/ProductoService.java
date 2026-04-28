@@ -12,54 +12,55 @@ public class ProductoService implements IProductoService {
     public ProductoService() { this.repository = new ProductoSqliteRepository(); }
     @Override
     public boolean create(Producto producto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        if (!ValidationUtils.isValidProducto(producto)){
+            return false;
+        }
+        return repository.crear(producto);
+        
     }
     @Override
     public Producto findById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return repository.buscarPorId(id);        
     }
+
     @Override
     public List<Producto> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return repository.listarTodos();
     }
+
     @Override
     public boolean update(Producto producto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        if (!ValidationUtils.isValidProducto(producto)){
+            return false;
+        }
+        return repository.actualizar(producto);
     }
     @Override
     public boolean deleteById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+        return repository.borrarPorId(id);
     }
     @Override
     public List<Producto> findActivos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findActivos'");
+        return repository.listarActivos();
+        
     }
     @Override
     public List<Producto> findByCategoria(Integer idCategoria) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByCategoria'");
+        return repository.listarPorCategoria(idCategoria);
+        
     }
     @Override
     public List<Producto> findBajoStock() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findBajoStock'");
+        return repository.buscarBajoStock();
     }
     @Override
     public List<ProductoCatalogo> findCatalogo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findCatalogo'");
+        return repository.buscarCatalogo();
+        
     }
     @Override
     public List<MovimientoStock> findMovimientosByProducto(Integer idProducto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findMovimientosByProducto'");
+        return repository.buscarMovimientosPorProducto(idProducto);
     }
-
 
 }

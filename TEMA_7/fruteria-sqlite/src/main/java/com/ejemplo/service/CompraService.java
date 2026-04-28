@@ -9,46 +9,61 @@ import com.ejemplo.validation.ValidationUtils;
 
 public class CompraService implements ICompraService {
     private final ICompraRepository repository;
+    
     public CompraService() { this.repository = new CompraSqliteRepository(); }
+
     @Override
     public boolean create(Compra compra) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        if (!ValidationUtils.isValidCompra(compra)){
+            return false;
+        }
+        return repository.crear(compra);
+        
     }
     @Override
     public Compra findById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return repository.buscarPorId(id);
+        
     }
     @Override
     public List<Compra> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return repository.listarTodos();
+        
     }
     @Override
     public boolean update(Compra compra) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        if (!ValidationUtils.isValidCompra(compra)){
+            return false;
+        }
+        return repository.actualizar(compra);
+        
     }
     @Override
     public boolean deleteById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+        return repository.borrarPorId(id);
     }
     @Override
     public List<Compra> findByProveedor(String cifProveedor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByProveedor'");
+        if (ValidationUtils.isValidCif(cifProveedor)){
+            return null;
+        }
+        return repository.buscarPorProveedor(cifProveedor);
+        
     }
     @Override
     public Compra findByNumeroFactura(String numeroFactura) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByNumeroFactura'");
+        if (!ValidationUtils.isValidFactura(numeroFactura)){
+            return null;
+        }
+        return repository.buscarPorNumeroFactura(numeroFactura);
+
     }
     @Override
     public List<CompraDetalle> findDetallesByCompra(Integer idCompra) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findDetallesByCompra'");
+        if (!ValidationUtils.isValidCompra(findById(idCompra))){
+            return null;
+        }
+        return repository.buscarDetallesPorCompra(idCompra);
     }
 
     }

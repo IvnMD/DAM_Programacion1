@@ -15,42 +15,59 @@ public class ClienteService implements IClienteService {
         if (cliente == null){
             return false;
         }
-        
+        if (!ValidationUtils.isValidCliente(cliente)){
+            return false;
+        }
+        return repository.crear(cliente);
     }
     @Override
     public Cliente findByDni(String dni) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByDni'");
+        if (!ValidationUtils.isValidDni(dni)){
+            return null;
+        }
+        return repository.buscarPorId(dni);
+        
     }
     @Override
     public List<Cliente> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return repository.listarTodos();
+        
     }
     @Override
     public boolean update(Cliente cliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        if (!ValidationUtils.isValidCliente(cliente)){
+            return false;
+        }
+
+        return repository.actualizar(cliente);
+        
     }
     @Override
     public boolean deleteByDni(String dni) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteByDni'");
+        if (!ValidationUtils.isValidDni(dni)){
+            return false;
+        }
+        return repository.borrarPorDni(dni);    
     }
+
     @Override
     public List<Cliente> findActivos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findActivos'");
+        return repository.buscarActivos();
+        
     }
     @Override
     public List<Cliente> findByCiudad(String ciudad) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByCiudad'");
+      if (!ValidationUtils.isValidCiudad(ciudad)){
+        return null;
+      }
+       return repository.buscarPorCiudad(ciudad); 
     }
     @Override
     public Cliente findByEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByEmail'");
+        if (!ValidationUtils.isValidEmail(email)){
+            return null;
+        }
+        return repository.buscarPorEmail(email);
     }
 
    }

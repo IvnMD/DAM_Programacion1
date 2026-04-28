@@ -12,43 +12,59 @@ public class ProveedorService implements IProveedorService {
     public ProveedorService() { this.repository = new ProveedorSqliteRepository(); }
     @Override
     public boolean create(Proveedor proveedor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        if (!ValidationUtils.isValidProveedor(proveedor)){
+            return false;
+        }
+        return repository.crear(proveedor);
+        
     }
     @Override
     public Proveedor findByCif(String cif) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByCif'");
+        if (!ValidationUtils.isValidCif(cif)){
+            return null;
+        }
+        return repository.buscarPorCif(cif);
+        
     }
     @Override
     public List<Proveedor> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+ 
+        return repository.listarTodos();
     }
     @Override
     public boolean update(Proveedor proveedor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        if (!ValidationUtils.isValidProveedor(proveedor)){
+            return false;
+        }
+        return repository.actualizar(proveedor);
     }
+
     @Override
     public boolean deleteByCif(String cif) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteByCif'");
+        if (!ValidationUtils.isValidCif(cif)){
+            return false;
+        }
+        return repository.borrarPorCif(cif);
     }
     @Override
     public List<Proveedor> findActivos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findActivos'");
+        return repository.listarActivos();
+        
     }
     @Override
     public List<Proveedor> findByCiudad(String ciudad) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByCiudad'");
+        if (!ValidationUtils.isValidCiudad(ciudad)){
+            return null;
+        }
+        return repository.buscarPorCiudad(ciudad);
+        
     }
     @Override
     public Proveedor findByEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByEmail'");
+        if (!ValidationUtils.isValidEmail(email)){
+            return null;
+        }
+        return repository.buscarPorEmail(email);
     }
 
 

@@ -2,11 +2,12 @@ package com.ejemplo.service;
 
 import java.util.List;
 
-import com.ejemplo.model.*;
-import com.ejemplo.repository.*;
-import com.ejemplo.repository.sqlite.*;
+import com.ejemplo.model.Venta;
+import com.ejemplo.model.VentaDetalle;
+import com.ejemplo.model.VentaResumen;
+import com.ejemplo.repository.IVentaRepository;
+import com.ejemplo.repository.sqlite.VentaSqliteRepository;
 import com.ejemplo.validation.ValidationUtils;
-import java.util.Collections;
 
 public class VentaService implements IVentaService {
     private final IVentaRepository repository;
@@ -47,7 +48,7 @@ public class VentaService implements IVentaService {
     @Override
     public List<Venta> findByCliente(String dniCliente) {
         if (!ValidationUtils.isValidDni(dniCliente)){
-            return Collections.emptyList(); //! Null para los test?
+            return null;
         }
         return repository.buscarPorCliente(dniCliente);
         

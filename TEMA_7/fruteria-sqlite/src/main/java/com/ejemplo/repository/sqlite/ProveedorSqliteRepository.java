@@ -76,7 +76,7 @@ public class ProveedorSqliteRepository implements IProveedorRepository {
 
     @Override
     public boolean actualizar(Proveedor proveedor) {
-        String sql = "UPDATE proveedor SET cif = ?, nombre = ?, telefono = ?, email = ?, ciudad = ?, activo = ? WEHERE cif = ?";
+        String sql = "UPDATE proveedor SET nombre = ?, telefono = ?, email = ?, ciudad = ?, activo = ? WHERE cif = ?";
         try (Connection cn = SQLiteConnectionManager.getConnection();
                 PreparedStatement ps = cn.prepareStatement(sql)) {
             ps.setString(1, proveedor.getNombre());
@@ -85,7 +85,6 @@ public class ProveedorSqliteRepository implements IProveedorRepository {
             ps.setString(4, proveedor.getCiudad());
             ps.setInt(5, proveedor.getActivo());
             ps.setString(6, proveedor.getCif());
-
             return ps.executeUpdate() == 1;
         } catch (Exception e) {
             return false;

@@ -1,6 +1,10 @@
 package com.ejemplo.validation;
 
-import com.ejemplo.model.*;
+import com.ejemplo.model.Cliente;
+import com.ejemplo.model.Compra;
+import com.ejemplo.model.Producto;
+import com.ejemplo.model.Proveedor;
+import com.ejemplo.model.Venta;
 
 public final class ValidationUtils {
     static String dniPatron = "^[\\d]{8}[A-Z]$";
@@ -86,7 +90,9 @@ public final class ValidationUtils {
             return false;
         return isValidDni(cliente.getDni())
                 && isValidNombre(cliente.getNombre())
-                && isValidCiudad(cliente.getCiudad());
+                && isValidCiudad(cliente.getCiudad())
+                && isValidEmail(cliente.getEmail())
+                && isValidTelefono(cliente.getTelefono()) ;
     }
 
     public static boolean isValidProveedor(Proveedor proveedor) {
@@ -94,7 +100,9 @@ public final class ValidationUtils {
             return false;
         return isValidCif(proveedor.getCif())
                 && isValidNombre(proveedor.getNombre())
-                && isValidCiudad(proveedor.getCiudad());
+                && isValidCiudad(proveedor.getCiudad())
+                && isValidEmail(proveedor.getEmail())
+                && isValidTelefono(proveedor.getTelefono()) ;
     }
 
     public static boolean isValidProducto(Producto producto) {

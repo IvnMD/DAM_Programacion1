@@ -151,24 +151,21 @@ public class CompraSqliteRepository implements ICompraRepository {
         }
     }
 
-    @Override
-    public List<CompraDetalle> buscarDetallesPorCompra(Integer idCompra) {
-        String sql = "SELECT * FROM compra WHERE idCompra = ?";
-        List<CompraDetalle> detalles = new ArrayList<>();
-        try (Connection cn = SQLiteConnectionManager.getConnection();
-                PreparedStatement ps = cn.prepareStatement(sql)) {
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    detalles.add(mapDetalle(rs));
-                }
-                return detalles;
-            }
-
-        } catch (Exception e) {
-            return new ArrayList<>();
+@Override
+public List<CompraDetalle> buscarDetallesPorCompra(Integer idCompra) {
+    String sql = "SELECT * FROM compra_detalle WHERE id_compra = ?"; 
+    List<CompraDetalle> detalles = new ArrayList<>();
+    try (Connection cn = SQLiteConnectionManager.getConnection();
+         PreparedStatement ps = cn.prepareStatement(sql)) {
+        ps.setInt(1, idCompra);  
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) detalles.add(mapDetalle(rs));
+            return detalles;
         }
-
+    } catch (Exception e) {
+        return new ArrayList<>();
     }
+}
 
     private Compra mapCompra(ResultSet rs) throws SQLException {
         return new Compra(

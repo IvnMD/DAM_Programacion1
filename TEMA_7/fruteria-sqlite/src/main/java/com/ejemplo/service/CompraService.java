@@ -1,10 +1,12 @@
 package com.ejemplo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.ejemplo.model.*;
-import com.ejemplo.repository.*;
-import com.ejemplo.repository.sqlite.*;
+import com.ejemplo.model.Compra;
+import com.ejemplo.model.CompraDetalle;
+import com.ejemplo.repository.ICompraRepository;
+import com.ejemplo.repository.sqlite.CompraSqliteRepository;
 import com.ejemplo.validation.ValidationUtils;
 
 public class CompraService implements ICompraService {
@@ -45,7 +47,7 @@ public class CompraService implements ICompraService {
     @Override
     public List<Compra> findByProveedor(String cifProveedor) {
         if (!ValidationUtils.isValidCif(cifProveedor)){
-            return null;
+            return new ArrayList<>();
         }
         return repository.buscarPorProveedor(cifProveedor);
         

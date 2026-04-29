@@ -1,12 +1,23 @@
 package com.ejemplo.repository.sqlite;
 
-import com.ejemplo.model.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.ejemplo.model.Proveedor;
 import com.ejemplo.repository.IProveedorRepository;
-import java.sql.*;
-import java.util.*;
 
 public class ProveedorSqliteRepository implements IProveedorRepository {
 
+    /**
+     * CREATE TABLE proveedor (
+     * cif TEXT PRIMARY KEY,
+     * nombre TEXT NOT NULL,
+     * telefono TEXT,
+     * email TEXT,
+     * ciudad TEXT,
+     * activo INTEGER NOT NULL DEFAULT 1 CHECK (activo IN (0,1)));
+     */
     @Override
     public boolean crear(Proveedor proveedor) {
         // TODO Auto-generated method stub
@@ -55,6 +66,25 @@ public class ProveedorSqliteRepository implements IProveedorRepository {
         throw new UnsupportedOperationException("Unimplemented method 'buscarPorEmail'");
     }
 
+        /**
+     * CREATE TABLE proveedor (
+     * cif TEXT PRIMARY KEY,
+     * nombre TEXT NOT NULL,
+     * telefono TEXT,
+     * email TEXT,
+     * ciudad TEXT,
+     * activo INTEGER NOT NULL DEFAULT 1 CHECK (activo IN (0,1)));
+     */
+    private  Proveedor mapProveedor(ResultSet rs) throws SQLException {
+        return new Proveedor(
+            rs.getString("cif"),
+            rs.getString("nombre"),
+            rs.getString("telefono"),
+            rs.getString("email"),
+            rs.getString("ciudad"),
+            rs.getInt("activo"));
+            
+        }
     
 
 }

@@ -44,7 +44,7 @@ public class CompraService implements ICompraService {
     }
     @Override
     public List<Compra> findByProveedor(String cifProveedor) {
-        if (ValidationUtils.isValidCif(cifProveedor)){
+        if (!ValidationUtils.isValidCif(cifProveedor)){
             return null;
         }
         return repository.buscarPorProveedor(cifProveedor);

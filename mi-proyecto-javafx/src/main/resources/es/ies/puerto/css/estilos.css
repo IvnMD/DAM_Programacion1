@@ -1,0 +1,10 @@
+.contenedor {
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #00ff6a;
+    -fx-border-width: 4;
+}
+
+.titulo {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}

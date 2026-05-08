@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.IIOException;
+
 public class ClienteSqliteRepository implements ClienteRepository {
     private final String url;
 
@@ -27,8 +29,18 @@ public class ClienteSqliteRepository implements ClienteRepository {
 
     @Override
     public Boolean save(Cliente cliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        String sql = "INSERTO INTO cliente dni = ?, nombre = ?, email = ?, ciudad = ? VALUES (?,?,?,?)";
+        try (Connection cn = getConnection();
+            PreparedStatement ps = cn.prepareStatement(sql)){
+            ps.setString(1, cliente.getDni());
+            ps.setString(2, cliente.getNombre());
+            ps.setString(3, cliente.getEmail());
+            ps.setString(4, cliente.getCiudad());
+
+            return ps.executeUpdate() == 1;
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
     }
 
     @Override

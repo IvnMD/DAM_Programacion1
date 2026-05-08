@@ -113,7 +113,8 @@ public class CsvServiceImpl implements CsvService {
             throw new IllegalArgumentException();
         }
 
-        Map<String, Integer> frecuencia = new LinkedHashMap<>(); // Preserva orden
+        Map<String, Integer> frecuencia = new LinkedHashMap<>(); 
+        
         List<String[]> registros = leerRegistrosCsv(ruta);
 
         for (String[] registro : registros) {

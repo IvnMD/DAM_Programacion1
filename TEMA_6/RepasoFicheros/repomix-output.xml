@@ -1,0 +1,2060 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+backup/
+  resources/
+    alumnos_matriculados.csv
+    alumnos.csv
+    asignaturas.csv
+src/
+  main/
+    java/
+      com/
+        docente/
+          app/
+            Main.java
+          ficheros/
+            FicheroAbstract.java
+          modelo/
+            Alumno.java
+            AlumnoMatriculado.java
+            Asignatura.java
+            PersonaAbstracta.java
+          persistencia/
+            impl/
+              AlumnoMatriculadoRepositorioCSV.java
+              AlumnoRepositorioCSV.java
+              AsignaturaRepositorioCSV.java
+            IAlumnoMatriculadoRepositorio.java
+            IAlumnoRepositorio.java
+            IAsignaturaRepositorio.java
+          servicio/
+            AlumnoMatriculadoService.java
+            AlumnoService.java
+            AsignaturaService.java
+            IAlumnoMatriculadoService.java
+            IAlumnoService.java
+            IAsignaturaService.java
+          utils/
+            Utilidades.java
+          validacion/
+            Validaciones.java
+    resources/
+      alumnos_matriculados.csv
+      alumnos.csv
+      asignaturas.csv
+  test/
+    java/
+      com/
+        docente/
+          modelo/
+            AlumnoTest.java
+          servicio/
+            AlumnoMatriculadoServiceTest.java
+            AlumnoServiceTest.java
+            AsignaturaServiceTest.java
+    resources/
+      alumnos_matriculados.csv
+      alumnos.csv
+      asignaturas.csv
+pom.xml
+README.md
+README.pdf
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="backup/resources/alumnos_matriculados.csv">
+ALM001|Lucia|19|1DAM|PROG,BBDD
+ALM002|Mario|20|1DAM|LM
+</file>
+
+<file path="backup/resources/alumnos.csv">
+00000000H| pepe| 18| 1DAM
+88888888T| maria| 22| 1DAW
+999999999R| juan| 28| 1DAM
+</file>
+
+<file path="backup/resources/asignaturas.csv">
+PROG|Programación|8
+BBDD|Bases de Datos|6
+LM|Lenguajes de Marcas|4
+</file>
+
+<file path="src/main/java/com/docente/app/Main.java">
+package com.docente.app;
+
+import com.docente.modelo.Alumno;
+import com.docente.modelo.AlumnoMatriculado;
+import com.docente.modelo.Asignatura;
+import com.docente.servicio.AlumnoMatriculadoService;
+import com.docente.servicio.AlumnoService;
+import com.docente.servicio.AsignaturaService;
+import com.docente.servicio.IAlumnoMatriculadoService;
+import com.docente.servicio.IAlumnoService;
+import com.docente.servicio.IAsignaturaService;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        IAlumnoService alumnoService = new AlumnoService();
+        IAsignaturaService asignaturaService = new AsignaturaService();
+        IAlumnoMatriculadoService alumnoMatriculadoService = new AlumnoMatriculadoService();
+
+        int opcion;
+        do {
+            mostrarMenu();
+            opcion = leerEntero(scanner, "Seleccione una opción: ");
+            scanner.nextLine();
+
+            switch (opcion) {
+                case 1 -> crearAlumno(scanner, alumnoService);
+                case 2 -> listarAlumnos(alumnoService);
+                case 3 -> crearAsignatura(scanner, asignaturaService);
+                case 4 -> listarAsignaturas(asignaturaService);
+                case 5 -> buscarAsignatura(scanner, asignaturaService);
+                case 6 -> modificarAsignatura(scanner, asignaturaService);
+                case 7 -> eliminarAsignatura(scanner, asignaturaService);
+                case 8 -> crearAlumnoMatriculado(scanner, alumnoMatriculadoService);
+                case 9 -> listarAlumnosMatriculados(alumnoMatriculadoService);
+                case 10 -> matricularAsignatura(scanner, alumnoMatriculadoService);
+                case 11 -> desmatricularAsignatura(scanner, alumnoMatriculadoService);
+                case 12 -> consultarNumeroAsignaturas(scanner, alumnoMatriculadoService);
+                case 13 -> consultarMatriculacion(scanner, alumnoMatriculadoService);
+                case 14 -> buscarAlumnoMatriculado(scanner, alumnoMatriculadoService);
+                case 0 -> System.out.println("Programa finalizado.");
+                default -> System.out.println("Opción no válida.");
+            }
+        } while (opcion != 0);
+
+        scanner.close();
+    }
+
+    private static void mostrarMenu() {
+        System.out.println("\n--- MENÚ CRUD ACADEMIA ---");
+        System.out.println("1. Crear alumno");
+        System.out.println("2. Listar alumnos");
+        System.out.println("3. Crear asignatura");
+        System.out.println("4. Listar asignaturas");
+        System.out.println("5. Buscar asignatura");
+        System.out.println("6. Modificar asignatura");
+        System.out.println("7. Eliminar asignatura");
+        System.out.println("8. Crear alumno matriculado");
+        System.out.println("9. Listar alumnos matriculados");
+        System.out.println("10. Matricular alumno en asignatura");
+        System.out.println("11. Desmatricular alumno de asignatura");
+        System.out.println("12. Consultar número de asignaturas de un alumno");
+        System.out.println("13. Consultar si un alumno está matriculado en una asignatura");
+        System.out.println("14. Buscar alumno matriculado");
+        System.out.println("0. Salir");
+    }
+
+    private static void crearAlumno(Scanner scanner, IAlumnoService servicio) {
+        System.out.print("Identificador (ej. ALU001): ");
+        String identificador = scanner.nextLine();
+        System.out.print("Nombre: ");
+        String nombre = scanner.nextLine();
+        int edad = leerEntero(scanner, "Edad: ");
+        scanner.nextLine();
+        System.out.print("Curso (ej. 1DAM, 2ESO, 1BACH): ");
+        String curso = scanner.nextLine();
+
+        boolean resultado = servicio.crearAlumno(identificador, nombre, edad, curso);
+        System.out.println(resultado ? "El alumno se ha creado correctamente" : "Se ha producido un error creando el alumno");
+    }
+
+    private static void listarAlumnos(IAlumnoService servicio) {
+        List<String> alumnos = servicio.read();
+        if (alumnos.isEmpty()) {
+            System.out.println("No hay alumnos registrados.");
+            return;
+        }
+        alumnos.forEach(System.out::println);
+    }
+
+    private static void crearAsignatura(Scanner scanner, IAsignaturaService servicio) {
+        System.out.print("Código: ");
+        String codigo = scanner.nextLine();
+        System.out.print("Nombre: ");
+        String nombre = scanner.nextLine();
+        int horas = leerEntero(scanner, "Horas semanales: ");
+        scanner.nextLine();
+
+        boolean resultado = servicio.crearAsignatura(codigo, nombre, horas);
+        System.out.println(resultado ? "Asignatura creada correctamente" : "No se pudo crear la asignatura");
+    }
+
+    private static void listarAsignaturas(IAsignaturaService servicio) {
+        List<String> asignaturas = servicio.read();
+        if (asignaturas.isEmpty()) {
+            System.out.println("No hay asignaturas registradas.");
+            return;
+        }
+        asignaturas.forEach(System.out::println);
+    }
+
+    private static void buscarAsignatura(Scanner scanner, IAsignaturaService servicio) {
+        System.out.print("Código de la asignatura: ");
+        String codigo = scanner.nextLine();
+        Asignatura asignatura = servicio.buscarAsignatura(codigo);
+        System.out.println(asignatura != null ? asignatura : "Asignatura no encontrada");
+    }
+
+    private static void modificarAsignatura(Scanner scanner, IAsignaturaService servicio) {
+        System.out.print("Código de la asignatura a modificar: ");
+        String codigo = scanner.nextLine();
+        System.out.print("Nuevo nombre: ");
+        String nombre = scanner.nextLine();
+        int horas = leerEntero(scanner, "Nuevas horas semanales: ");
+        scanner.nextLine();
+
+        boolean resultado = servicio.actualizarAsignatura(codigo, nombre, horas);
+        System.out.println(resultado ? "Asignatura modificada correctamente" : "No se pudo modificar la asignatura");
+    }
+
+    private static void eliminarAsignatura(Scanner scanner, IAsignaturaService servicio) {
+        System.out.print("Código de la asignatura a eliminar: ");
+        String codigo = scanner.nextLine();
+        boolean resultado = servicio.deleteAsignatura(codigo);
+        System.out.println(resultado ? "Asignatura eliminada correctamente" : "No se pudo eliminar la asignatura");
+    }
+
+    private static void crearAlumnoMatriculado(Scanner scanner, IAlumnoMatriculadoService servicio) {
+        System.out.print("Identificador: ");
+        String identificador = scanner.nextLine();
+        System.out.print("Nombre: ");
+        String nombre = scanner.nextLine();
+        int edad = leerEntero(scanner, "Edad: ");
+        scanner.nextLine();
+        System.out.print("Curso: ");
+        String curso = scanner.nextLine();
+
+        boolean resultado = servicio.crearAlumnoMatriculado(identificador, nombre, edad, curso);
+        System.out.println(resultado ? "Alumno matriculado creado correctamente" : "No se pudo crear el alumno matriculado");
+    }
+
+    private static void listarAlumnosMatriculados(IAlumnoMatriculadoService servicio) {
+        List<String> alumnos = servicio.read();
+        if (alumnos.isEmpty()) {
+            System.out.println("No hay alumnos matriculados.");
+            return;
+        }
+        alumnos.forEach(System.out::println);
+    }
+
+    private static void matricularAsignatura(Scanner scanner, IAlumnoMatriculadoService servicio) {
+        System.out.print("Identificador del alumno: ");
+        String identificador = scanner.nextLine();
+        System.out.print("Código de la asignatura: ");
+        String codigo = scanner.nextLine();
+        boolean resultado = servicio.matricularAsignatura(identificador, codigo);
+        System.out.println(resultado ? "Matrícula realizada correctamente" : "No se pudo realizar la matrícula");
+    }
+
+    private static void desmatricularAsignatura(Scanner scanner, IAlumnoMatriculadoService servicio) {
+        System.out.print("Identificador del alumno: ");
+        String identificador = scanner.nextLine();
+        System.out.print("Código de la asignatura: ");
+        String codigo = scanner.nextLine();
+        boolean resultado = servicio.desmatricularAsignatura(identificador, codigo);
+        System.out.println(resultado ? "Desmatriculación realizada correctamente" : "No se pudo desmatricular la asignatura");
+    }
+
+    private static void consultarNumeroAsignaturas(Scanner scanner, IAlumnoMatriculadoService servicio) {
+        System.out.print("Identificador del alumno: ");
+        String identificador = scanner.nextLine();
+        int numero = servicio.getNumeroAsignaturas(identificador);
+        System.out.println(numero >= 0 ? "Número de asignaturas: " + numero : "Alumno no encontrado");
+    }
+
+    private static void consultarMatriculacion(Scanner scanner, IAlumnoMatriculadoService servicio) {
+        System.out.print("Identificador del alumno: ");
+        String identificador = scanner.nextLine();
+        System.out.print("Código de la asignatura: ");
+        String codigo = scanner.nextLine();
+        boolean resultado = servicio.estaMatriculadoEn(identificador, codigo);
+        System.out.println(resultado ? "Sí, el alumno está matriculado en esa asignatura" : "No, el alumno no está matriculado en esa asignatura");
+    }
+
+    private static void buscarAlumnoMatriculado(Scanner scanner, IAlumnoMatriculadoService servicio) {
+        System.out.print("Identificador del alumno: ");
+        String identificador = scanner.nextLine();
+        AlumnoMatriculado alumno = servicio.buscarAlumnoMatriculado(identificador);
+        System.out.println(alumno != null ? alumno : "Alumno matriculado no encontrado");
+    }
+
+    private static int leerEntero(Scanner scanner, String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            if (scanner.hasNextInt()) {
+                return scanner.nextInt();
+            }
+            System.out.println("Debe introducir un número entero.");
+            scanner.nextLine();
+        }
+    }
+}
+</file>
+
+<file path="src/main/java/com/docente/ficheros/FicheroAbstract.java">
+package com.docente.ficheros;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.docente.modelo.Alumno;
+import com.docente.modelo.Asignatura;
+import static com.docente.utils.Utilidades.DELIMITER;
+
+public abstract class FicheroAbstract {
+
+    File file;
+    String path;
+
+    public FicheroAbstract(String path) {
+        this.path = path;
+        file = new File(path);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.err.println("No se ha podido crear el fichero:" + path);
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public boolean cleanFile() {
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            System.err.printf("No se ha podido crear el fichero :%s", path);
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+
+    public List<Alumno> read() {
+        List<Alumno> alumnos= new ArrayList<>();
+        try {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(DELIMITER);
+                alumnos.add(new Alumno(values[0],values[1], Integer.parseInt(values[2].strip()), values[3]));
+            }
+        }
+        } catch (Exception e) {
+            System.err.printf("No se ha podido leer el fichero :%s", path);
+        }
+        return alumnos;
+    }
+    // datos = 00000000H| pepe| 18| DAM
+    // Alumno alumno, alumno.toCSV  
+    public void write(Alumno alumno) {
+       try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            bw.write(alumno.toCsv());
+            bw.newLine();
+        } catch (IOException e) {
+            throw new IllegalStateException("Error al guardar el fichero CSV.", e);
+        }
+    }
+
+    /**
+     * Funcion que actualiza toda la lista dentro del fichero
+     * @param alumnos lista de alumnos
+     */
+    public void updateFichero(List<Alumno> alumnos) {
+        cleanFile();
+        for (Alumno alumno : alumnos) {
+            write(alumno);
+        }
+    }
+
+        public List<Asignatura> readAsignatura() {
+        List<Asignatura> asignaturas= new ArrayList<>();
+        try {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(DELIMITER);
+                asignaturas.add(new Asignatura(values[0],values[1], Integer.parseInt(values[2].strip())));
+            }
+        }
+        } catch (Exception e) {
+            System.err.printf("No se ha podido leer el fichero :%s", path);
+        }
+        return asignaturas;
+    }
+
+}
+</file>
+
+<file path="src/main/java/com/docente/modelo/Alumno.java">
+package com.docente.modelo;
+
+import static com.docente.utils.Utilidades.CSV_DELIMITER;
+
+public class Alumno extends PersonaAbstracta {
+
+    private String curso;
+
+    public Alumno(String identificador) {
+        super(identificador);
+    }
+
+    public Alumno(String identificador, String nombre, int edad, String curso) {
+        super(identificador, nombre, edad);
+        this.curso = curso;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    public String toCsv() {
+        return String.format("%s" + CSV_DELIMITER + "%s" + CSV_DELIMITER + "%d" + CSV_DELIMITER + "%s",
+                getIdentificador(), getNombre(), getEdad(), getCurso());
+    }
+
+    @Override
+    public String toString() {
+        return "Alumno [getCurso()=" + getCurso() + ", getIdentificador()=" + getIdentificador() + ", getNombre()="
+                + getNombre() + ", getEdad()=" + getEdad() + "]";
+    }
+}
+</file>
+
+<file path="src/main/java/com/docente/modelo/AlumnoMatriculado.java">
+package com.docente.modelo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class AlumnoMatriculado extends Alumno {
+
+    private List<Asignatura> asignaturas;
+
+    public AlumnoMatriculado(String identificador) {
+        super(identificador);
+        this.asignaturas = new ArrayList<>();
+    }
+
+    public AlumnoMatriculado(String identificador, String nombre, int edad, String curso) {
+        super(identificador, nombre, edad, curso);
+        this.asignaturas = new ArrayList<>();
+    }
+
+    public AlumnoMatriculado(String identificador, String nombre, int edad, String curso, List<Asignatura> asignaturas) {
+        super(identificador, nombre, edad, curso);
+        // TODO implementar correctamente
+        this.asignaturas = asignaturas == null ? new ArrayList<>() : new ArrayList<>(asignaturas);
+    }
+
+    public List<Asignatura> getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(List<Asignatura> asignaturas) {
+        // TODO implementar correctamente
+        this.asignaturas = asignaturas == null ? new ArrayList<>() : new ArrayList<>(asignaturas);
+    }
+
+    public boolean addAsignatura(Asignatura asignatura) {
+        // TODO implementar evitando duplicados
+        if (asignatura == null || asignaturas.contains(asignatura)) {
+            return false;
+        }
+        asignaturas.add(asignatura);
+        return true;
+    }
+
+    public boolean removeAsignatura(String codigoAsignatura) {
+       
+            return false;
+       
+    }
+
+    public int getNumeroAsignaturas() {
+        // TODO implementar
+        return 0;
+    }
+
+    public boolean estaMatriculadoEn(String codigoAsignatura) {
+        // TODO implementar
+        return false;
+    }
+
+    public String toCsv() {
+        // TODO implementar correctamente
+        StringBuilder codigos = new StringBuilder();
+        for (int i = 0; i < asignaturas.size(); i++) {
+            codigos.append(asignaturas.get(i).getCodigo());
+            if (i < asignaturas.size() - 1) {
+                codigos.append(',');
+            }
+        }
+        return getIdentificador() + "|" + getNombre() + "|" + getEdad() + "|" + getCurso() + "|" + codigos;
+    }
+
+    @Override
+    public String toString() {
+        // TODO adaptar salida
+        return "AlumnoMatriculado [identificador=" + getIdentificador()
+                + ", nombre=" + getNombre()
+                + ", edad=" + getEdad()
+                + ", curso=" + getCurso()
+                + ", numeroAsignaturas=" + getNumeroAsignaturas()
+                + ", asignaturas=" + asignaturas + "]";
+    }
+}
+</file>
+
+<file path="src/main/java/com/docente/modelo/Asignatura.java">
+package com.docente.modelo;
+
+/**
+ * TODO alumnado:
+ * Implementa esta clase completa a partir del enunciado del README.
+ *
+ * Requisitos mínimos:
+ * - atributos: codigo, nombre, horasSemanales
+ * - constructores
+ * - getters y setters
+ * - equals y hashCode por codigo
+ * - toString
+ * - toCsv
+ */
+public class Asignatura {
+
+    private String codigo;
+    private String nombre;
+    private int horasSemanales;
+
+    public Asignatura(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public Asignatura(String codigo, String nombre, int horasSemanales) {
+        // TODO implementar
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.horasSemanales = horasSemanales;
+    }
+
+    public Asignatura() {
+    }
+
+    public Asignatura codigo(String codigo) {
+        setCodigo(codigo);
+        return this;
+    }
+
+    public Asignatura nombre(String nombre) {
+        setNombre(nombre);
+        return this;
+    }
+
+    public Asignatura horasSemanales(int horasSemanales) {
+        setHorasSemanales(horasSemanales);
+        return this;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getHorasSemanales() {
+        return horasSemanales;
+    }
+
+    public void setHorasSemanales(int horasSemanales) {
+        this.horasSemanales = horasSemanales;
+    }
+
+    public String toCsv() {
+        // TODO implementar correctamente
+        return codigo + "|" + nombre + "|" + horasSemanales;
+    }
+
+    @Override
+    public String toString() {
+        // TODO mejorar formato si lo consideras necesario
+        return "Asignatura [codigo=" + codigo + ", nombre=" + nombre + ", horasSemanales=" + horasSemanales + "]";
+    }
+
+    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (getClass() != obj.getClass())
+            return false;
+        Asignatura other = (Asignatura) obj;
+        if (codigo == null) {
+            if (other.codigo != null)
+                return false;
+        } else if (!codigo.equals(other.codigo))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+        return result;
+    }
+}
+</file>
+
+<file path="src/main/java/com/docente/modelo/PersonaAbstracta.java">
+package com.docente.modelo;
+
+import java.util.Objects;
+
+abstract class PersonaAbstracta {
+
+    private final String identificador;
+    private String nombre;
+    private int edad;
+
+    PersonaAbstracta(String identificador) {
+        this.identificador = identificador;
+    }
+
+    PersonaAbstracta(String identificador, String nombre, int edad) {
+        this.identificador = identificador;
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(identificador);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+
+        PersonaAbstracta other = (PersonaAbstracta) obj;
+        if (identificador == null || other.getIdentificador() == null) {
+            return false;
+        }
+        return identificador.equals(other.identificador);
+    }
+
+
+}
+</file>
+
+<file path="src/main/java/com/docente/persistencia/impl/AlumnoMatriculadoRepositorioCSV.java">
+package com.docente.persistencia.impl;
+
+import com.docente.modelo.AlumnoMatriculado;
+import com.docente.persistencia.IAlumnoMatriculadoRepositorio;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * TODO alumnado:
+ * Implementa la lectura y escritura en CSV de la entidad AlumnoMatriculado.
+ */
+public class AlumnoMatriculadoRepositorioCSV implements IAlumnoMatriculadoRepositorio {
+
+    private static final String PATH = "src/main/resources/alumnos_matriculados.csv";
+    private final File file;
+
+    public AlumnoMatriculadoRepositorioCSV() {
+        this(PATH);
+    }
+
+    public AlumnoMatriculadoRepositorioCSV(String path) {
+        this.file = new File(path);
+        try {
+            File parent = file.getParentFile();
+            if (parent != null && !parent.exists()) {
+                parent.mkdirs();
+            }
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            throw new IllegalStateException("No se ha podido crear el fichero de alumnos matriculados", e);
+        }
+    }
+
+    @Override
+    public List<AlumnoMatriculado> obtenerAlumnosMatriculados() {
+        // TODO implementar lectura real desde CSV
+        return new ArrayList<>();
+    }
+
+    @Override
+    public boolean guardarAlumnosMatriculados(List<AlumnoMatriculado> alumnosMatriculados) {
+        // TODO implementar escritura real en CSV
+        return true;
+    }
+}
+</file>
+
+<file path="src/main/java/com/docente/persistencia/impl/AlumnoRepositorioCSV.java">
+package com.docente.persistencia.impl;
+
+import java.util.List;
+
+import com.docente.ficheros.FicheroAbstract;
+import com.docente.modelo.Alumno;
+import com.docente.persistencia.IAlumnoRepositorio;
+
+public class AlumnoRepositorioCSV extends FicheroAbstract implements IAlumnoRepositorio{
+    private static String path = "src/main/resources/alumnos.csv";
+
+    public AlumnoRepositorioCSV() {
+        super(path);
+    }
+
+    @Override
+    public List<Alumno> obtenerAlumnos() {
+        return read();
+    }
+    
+    @Override
+    public boolean guardarAlumnos(List<Alumno> alumnos) {
+        updateFichero(alumnos);
+        return true;
+    }
+    
+}
+</file>
+
+<file path="src/main/java/com/docente/persistencia/impl/AsignaturaRepositorioCSV.java">
+package com.docente.persistencia.impl;
+
+import com.docente.modelo.Asignatura;
+import com.docente.persistencia.IAsignaturaRepositorio;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.docente.ficheros.FicheroAbstract;
+
+/**
+ * TODO alumnado:
+ * Implementa la lectura y escritura en CSV de la entidad Asignatura.
+ */
+public class AsignaturaRepositorioCSV extends FicheroAbstract implements IAsignaturaRepositorio {
+
+    private static final String PATH = "src/main/resources/asignaturas.csv";
+    private final File file;
+
+    public AsignaturaRepositorioCSV() {
+        this(PATH);
+    }
+
+    public AsignaturaRepositorioCSV(String path) {
+        super(path);
+        this.file = new File(path);
+        try {
+            File parent = file.getParentFile();
+            if (parent != null && !parent.exists()) {
+                parent.mkdirs();
+            }
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            throw new IllegalStateException("No se ha podido crear el fichero de asignaturas", e);
+        }
+    }
+
+    @Override
+    public List<Asignatura> obtenerAsignaturas() {
+        return readAsignatura();
+
+    }
+
+    @Override
+    public boolean guardarAsignaturas(List<Asignatura> asignaturas) {
+        // TODO implementar escritura real en CSV
+        return true;
+    }
+}
+</file>
+
+<file path="src/main/java/com/docente/persistencia/IAlumnoMatriculadoRepositorio.java">
+package com.docente.persistencia;
+
+import java.util.List;
+import com.docente.modelo.AlumnoMatriculado;
+
+public interface IAlumnoMatriculadoRepositorio {
+    List<AlumnoMatriculado> obtenerAlumnosMatriculados();
+    boolean guardarAlumnosMatriculados(List<AlumnoMatriculado> alumnosMatriculados);
+}
+</file>
+
+<file path="src/main/java/com/docente/persistencia/IAlumnoRepositorio.java">
+package com.docente.persistencia;
+
+import java.util.List;
+
+import com.docente.modelo.Alumno;
+
+public interface IAlumnoRepositorio {
+
+    /**
+     * Funcion que obtiene todos los alumnos del repositorio
+     * @return Lista de alumnos
+     * */
+    List<Alumno> obtenerAlumnos();
+
+    boolean guardarAlumnos(List<Alumno> alumnos);
+
+}
+</file>
+
+<file path="src/main/java/com/docente/persistencia/IAsignaturaRepositorio.java">
+package com.docente.persistencia;
+
+import java.util.List;
+import com.docente.modelo.Asignatura;
+
+public interface IAsignaturaRepositorio {
+    List<Asignatura> obtenerAsignaturas();
+    boolean guardarAsignaturas(List<Asignatura> asignaturas);
+}
+</file>
+
+<file path="src/main/java/com/docente/servicio/AlumnoMatriculadoService.java">
+package com.docente.servicio;
+
+import com.docente.modelo.AlumnoMatriculado;
+import com.docente.persistencia.IAlumnoMatriculadoRepositorio;
+import com.docente.persistencia.impl.AlumnoMatriculadoRepositorioCSV;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class AlumnoMatriculadoService implements IAlumnoMatriculadoService {
+
+    private final IAlumnoMatriculadoRepositorio alumnoRepositorio;
+    private final IAsignaturaService asignaturaService;
+    private final List<AlumnoMatriculado> alumnosMatriculados;
+
+    public AlumnoMatriculadoService() {
+        this(new AlumnoMatriculadoRepositorioCSV(), new AsignaturaService());
+    }
+
+    public AlumnoMatriculadoService(IAlumnoMatriculadoRepositorio alumnoRepositorio, IAsignaturaService asignaturaService) {
+        this.alumnoRepositorio = alumnoRepositorio;
+        this.asignaturaService = asignaturaService;
+        this.alumnosMatriculados = new ArrayList<>(alumnoRepositorio.obtenerAlumnosMatriculados());
+    }
+
+    @Override
+    public List<String> read() {
+        // TODO implementar
+        return new ArrayList<>();
+    }
+
+    public boolean updateLista() {
+        // TODO implementar
+        return false;
+    }
+
+    @Override
+    public boolean crearAlumnoMatriculado(String identificador, String nombre, int edad, String curso) {
+        // TODO implementar
+        return false;
+    }
+
+    @Override
+    public boolean actualizarAlumnoMatriculado(String identificador, String nombre, int edad, String curso) {
+        // TODO implementar
+        return false;
+    }
+
+    @Override
+    public boolean deleteAlumnoMatriculado(String identificador) {
+        // TODO implementar
+        return false;
+    }
+
+    @Override
+    public AlumnoMatriculado buscarAlumnoMatriculado(String identificador) {
+        // TODO implementar
+        return null;
+    }
+
+    @Override
+    public boolean matricularAsignatura(String identificadorAlumno, String codigoAsignatura) {
+        // TODO implementar
+        return false;
+    }
+
+    @Override
+    public boolean desmatricularAsignatura(String identificadorAlumno, String codigoAsignatura) {
+        // TODO implementar
+        return false;
+    }
+
+    @Override
+    public int getNumeroAsignaturas(String identificadorAlumno) {
+        // TODO implementar
+        return -1;
+    }
+
+    @Override
+    public boolean estaMatriculadoEn(String identificadorAlumno, String codigoAsignatura) {
+        // TODO implementar
+        return false;
+    }
+}
+</file>
+
+<file path="src/main/java/com/docente/servicio/AlumnoService.java">
+package com.docente.servicio;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.docente.modelo.Alumno;
+import com.docente.persistencia.IAlumnoRepositorio;
+import com.docente.persistencia.impl.AlumnoRepositorioCSV;
+import com.docente.validacion.Validaciones;
+
+public class AlumnoService implements IAlumnoService {
+
+    final IAlumnoRepositorio alumnoRepositorio;
+    List<Alumno> alumnos;
+
+    public AlumnoService() {
+        this(new AlumnoRepositorioCSV());
+    }
+
+    public AlumnoService(IAlumnoRepositorio alumnoRepositorio) {
+        this.alumnoRepositorio = alumnoRepositorio;
+        this.alumnos = new ArrayList<>(alumnoRepositorio.obtenerAlumnos());
+    }
+
+    public List<String> read() {
+        List<String> alumnosStr = new ArrayList<>();
+        for (Alumno alumno : alumnos) {
+            alumnosStr.add(alumno.toString());
+        }
+        return alumnosStr;
+    }
+
+    public boolean updateLista() {
+        alumnoRepositorio.guardarAlumnos(alumnos);
+        return true;
+    }
+
+    public boolean crearAlumno(String identificador, String nombre, int edad, String curso) {
+        if (!Validaciones.esIdentificadorValido(identificador)
+                || !Validaciones.esNombreValido(nombre)
+                || !Validaciones.esEdadValida(edad)
+                || !Validaciones.esCursoValido(curso)) {
+            return false;
+        }
+
+        Alumno alumnoNuevo = new Alumno(identificador, nombre, edad, curso);
+        if (alumnos.contains(alumnoNuevo)) {
+            return false;
+        }
+        alumnos.add(alumnoNuevo);
+        return updateLista();
+    }
+
+    public boolean actualizarAlumno(String identificador, String nombre, int edad, String curso) {
+        if (!Validaciones.esIdentificadorValido(identificador)
+                || !Validaciones.esNombreValido(nombre)
+                || !Validaciones.esEdadValida(edad)
+                || !Validaciones.esCursoValido(curso)) {
+            return false;
+        }
+
+        Alumno alumnoNuevo = new Alumno(identificador, nombre, edad, curso);
+        if (!alumnos.contains(alumnoNuevo)) {
+            return false;
+        }
+        int posicion = alumnos.indexOf(alumnoNuevo);
+        alumnos.set(posicion, alumnoNuevo);
+        return updateLista();
+    }
+
+    public boolean deleteAlumno(String indentificador) {
+        if (!Validaciones.esIdentificadorValido(indentificador)) {
+            return false;
+        }
+
+        Alumno alumnoNuevo = new Alumno(indentificador);
+        if (!alumnos.contains(alumnoNuevo)) {
+            return false;
+        }
+        int posicion = alumnos.indexOf(alumnoNuevo);
+        alumnos.remove(posicion);
+        return updateLista();
+    }
+
+    @Override
+    public Alumno buscarAlumno(String identificador) {
+        if (!Validaciones.esIdentificadorValido(identificador)) {
+            return null;
+        }
+        Alumno alumnoBusqueda = new Alumno(identificador);
+        if (!alumnos.contains(alumnoBusqueda)) {
+            return null;
+        }
+        int indice = alumnos.indexOf(alumnoBusqueda);
+        return alumnos.get(indice);
+    }
+}
+</file>
+
+<file path="src/main/java/com/docente/servicio/AsignaturaService.java">
+package com.docente.servicio;
+
+import com.docente.modelo.Asignatura;
+import com.docente.persistencia.IAsignaturaRepositorio;
+import com.docente.persistencia.impl.AsignaturaRepositorioCSV;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class AsignaturaService implements IAsignaturaService {
+
+    private final IAsignaturaRepositorio asignaturaRepositorio;
+    private final List<Asignatura> asignaturas;
+
+    public AsignaturaService() {
+        this(new AsignaturaRepositorioCSV());
+    }
+
+    public AsignaturaService(IAsignaturaRepositorio asignaturaRepositorio) {
+        this.asignaturaRepositorio = asignaturaRepositorio;
+        this.asignaturas = new ArrayList<>(asignaturaRepositorio.obtenerAsignaturas());
+    }
+
+    @Override
+    public List<String> read() {
+        // TODO implementar
+        return new ArrayList<>();
+    }
+
+    public boolean updateLista() {
+        // TODO implementar
+        return false;
+    }
+
+    @Override
+    public boolean crearAsignatura(String codigo, String nombre, int horasSemanales) {
+        // TODO implementar validaciones, duplicados y guardado
+        return false;
+    }
+
+    @Override
+    public boolean actualizarAsignatura(String codigo, String nombre, int horasSemanales) {
+        // TODO implementar
+        return false;
+    }
+
+    @Override
+    public boolean deleteAsignatura(String codigo) {
+        // TODO implementar
+        return false;
+    }
+
+    @Override
+    public Asignatura buscarAsignatura(String codigo) {
+        // TODO implementar
+        return null;
+    }
+}
+</file>
+
+<file path="src/main/java/com/docente/servicio/IAlumnoMatriculadoService.java">
+package com.docente.servicio;
+
+import java.util.List;
+import com.docente.modelo.AlumnoMatriculado;
+
+public interface IAlumnoMatriculadoService {
+    List<String> read();
+    boolean crearAlumnoMatriculado(String identificador, String nombre, int edad, String curso);
+    boolean actualizarAlumnoMatriculado(String identificador, String nombre, int edad, String curso);
+    boolean deleteAlumnoMatriculado(String identificador);
+    AlumnoMatriculado buscarAlumnoMatriculado(String identificador);
+    boolean matricularAsignatura(String identificadorAlumno, String codigoAsignatura);
+    boolean desmatricularAsignatura(String identificadorAlumno, String codigoAsignatura);
+    int getNumeroAsignaturas(String identificadorAlumno);
+    boolean estaMatriculadoEn(String identificadorAlumno, String codigoAsignatura);
+}
+</file>
+
+<file path="src/main/java/com/docente/servicio/IAlumnoService.java">
+package com.docente.servicio;
+
+import java.util.List;
+
+import com.docente.modelo.Alumno;
+
+public interface IAlumnoService {
+
+    public List<String> read();
+    public boolean crearAlumno(String identificador, String nombre, int edad, String curso);
+    public boolean actualizarAlumno(String identificador, String nombre, int edad, String curso);
+    public boolean deleteAlumno(String indentificador);
+    public Alumno buscarAlumno(String identificador);
+
+}
+</file>
+
+<file path="src/main/java/com/docente/servicio/IAsignaturaService.java">
+package com.docente.servicio;
+
+import java.util.List;
+import com.docente.modelo.Asignatura;
+
+public interface IAsignaturaService {
+    List<String> read();
+    boolean crearAsignatura(String codigo, String nombre, int horasSemanales);
+    boolean actualizarAsignatura(String codigo, String nombre, int horasSemanales);
+    boolean deleteAsignatura(String codigo);
+    Asignatura buscarAsignatura(String codigo);
+}
+</file>
+
+<file path="src/main/java/com/docente/utils/Utilidades.java">
+package com.docente.utils;
+
+public class Utilidades {
+    public static final String DELIMITER = "\\|";
+    public static final String CSV_DELIMITER = "|";
+
+    private Utilidades() {
+    }
+}
+</file>
+
+<file path="src/main/java/com/docente/validacion/Validaciones.java">
+package com.docente.validacion;
+
+public class Validaciones {
+
+    public static boolean esIdentificadorValido(String identificador) {
+        return esCadenaNoNula(identificador);
+    }
+
+    private static boolean esCadenaNoNula(String cadena) {
+        return cadena != null && !cadena.trim().isEmpty();
+    }
+
+    public static boolean esNombreValido(String nombre) {
+        return esCadenaNoNula(nombre);
+    }
+
+    public static boolean esCursoValido(String curso) {
+        return esCadenaNoNula(curso);
+    }
+
+    public static boolean esEdadValida(int edad) {
+        return edad >= 17 && edad < 100;
+    }
+
+    public static boolean esCodigoAsignaturaValido(String codigo) {
+        return false;
+    }
+
+    public static boolean esHorasSemanalesValidas(int horas) {
+        return false;
+    }
+}
+</file>
+
+<file path="src/main/resources/alumnos_matriculados.csv">
+ALM001|Lucia|19|1DAM|PROG,BBDD
+ALM002|Mario|20|1DAM|LM
+</file>
+
+<file path="src/main/resources/alumnos.csv">
+00000000H| pepe| 18| 1DAM
+88888888T| maria| 22| 1DAW
+999999999R| juan| 28| 1DAM
+</file>
+
+<file path="src/main/resources/asignaturas.csv">
+PROG|Programación|8
+BBDD|Bases de Datos|6
+LM|Lenguajes de Marcas|4
+</file>
+
+<file path="src/test/java/com/docente/modelo/AlumnoTest.java">
+package com.docente.modelo;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class AlumnoTest {
+
+    private Alumno alumno;
+
+    @BeforeEach
+    void setUp() {
+        alumno = new Alumno("A001", "Juan Perez", 20, "Matemáticas");
+    }
+
+
+    @Test
+    void testConstructor() {
+        assertNotNull(alumno);
+    }
+
+    @Test
+    void testIdentificador() {
+        alumno = new Alumno("A002");
+        assertNotNull(alumno);
+        assert alumno.getIdentificador().equals("A002");
+    }
+
+
+
+    @Test
+    void getterSetterTest() {
+        assert alumno.getIdentificador().equals("A001");
+        assert alumno.getNombre().equals("Juan Perez");
+        assert alumno.getEdad() == 20;
+        assert alumno.getCurso().equals("Matemáticas"); 
+    }
+
+    @Test
+    void equalsTestOk() {
+        Alumno alumnoEqualsAlumno = new Alumno("A001");
+         assertNotNull(alumnoEqualsAlumno);
+        assert alumno.equals(alumnoEqualsAlumno);
+    }
+
+    @Test
+    void equalsNullTestFalse() {
+        assertFalse(alumno.equals(null));
+    }
+
+    @Test
+    void equalsTestSame() {
+        assert(alumno.equals(alumno));
+    }
+
+    @Test
+    void equalsIdentificadorNullTest() {
+        Alumno alumnoEquals = new Alumno(null);
+        assertFalse(alumno.equals(alumnoEquals));
+        assertFalse(alumnoEquals.equals(alumno));
+    }
+
+    @Test
+    void splitToAlumnoTest() {
+        String line = "00000000H|pepe|18|1DAM";
+        String[] values = line.split("\\|");
+        assertEquals("00000000H", values[0]);
+    }
+
+}
+</file>
+
+<file path="src/test/java/com/docente/servicio/AlumnoMatriculadoServiceTest.java">
+package com.docente.servicio;
+
+import com.docente.modelo.AlumnoMatriculado;
+import com.docente.modelo.Asignatura;
+import com.docente.persistencia.IAlumnoMatriculadoRepositorio;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class AlumnoMatriculadoServiceTest {
+
+    private AlumnoMatriculadoService service;
+
+    @BeforeEach
+    void setUp() {
+        AlumnoMatriculado alumno = new AlumnoMatriculado("ALM001", "Lucia", 19, "1DAM");
+        IAlumnoMatriculadoRepositorio repo = new AlumnoMatriculadoRepositorioMemoria(List.of(alumno));
+        IAsignaturaService asignaturaService = new AsignaturaService(new AsignaturaRepositorioMemoria(List.of(
+                new Asignatura("PROG", "Programación", 8),
+                new Asignatura("BBDD", "Bases de Datos", 6)
+        )));
+        service = new AlumnoMatriculadoService(repo, asignaturaService);
+    }
+
+    @Test
+    void crearAlumnoMatriculadoOk() {
+        assertTrue(service.crearAlumnoMatriculado("ALM002", "Mario", 20, "1DAM"));
+        assertNotNull(service.buscarAlumnoMatriculado("ALM002"));
+    }
+
+    @Test
+    void matricularAsignaturaOk() {
+        assertTrue(service.matricularAsignatura("ALM001", "PROG"));
+        assertTrue(service.estaMatriculadoEn("ALM001", "PROG"));
+    }
+
+    @Test
+    void matricularAsignaturaDuplicadaDevuelveFalse() {
+        assertTrue(service.matricularAsignatura("ALM001", "PROG"));
+        assertFalse(service.matricularAsignatura("ALM001", "PROG"));
+    }
+
+    @Test
+    void getNumeroAsignaturasDevuelveTotalCorrecto() {
+        service.matricularAsignatura("ALM001", "PROG");
+        service.matricularAsignatura("ALM001", "BBDD");
+        assertEquals(2, service.getNumeroAsignaturas("ALM001"));
+    }
+
+    @Test
+    void estaMatriculadoEnDevuelveBooleanEsperado() {
+        service.matricularAsignatura("ALM001", "PROG");
+        assertTrue(service.estaMatriculadoEn("ALM001", "PROG"));
+        assertFalse(service.estaMatriculadoEn("ALM001", "BBDD"));
+    }
+
+    @Test
+    void desmatricularAsignaturaEliminaRelacion() {
+        service.matricularAsignatura("ALM001", "PROG");
+        assertTrue(service.desmatricularAsignatura("ALM001", "PROG"));
+        assertFalse(service.estaMatriculadoEn("ALM001", "PROG"));
+    }
+
+    private static class AlumnoMatriculadoRepositorioMemoria implements IAlumnoMatriculadoRepositorio {
+        private final List<AlumnoMatriculado> alumnos;
+
+        AlumnoMatriculadoRepositorioMemoria(List<AlumnoMatriculado> iniciales) {
+            this.alumnos = new ArrayList<>(iniciales);
+        }
+
+        @Override
+        public List<AlumnoMatriculado> obtenerAlumnosMatriculados() {
+            return new ArrayList<>(alumnos);
+        }
+
+        @Override
+        public boolean guardarAlumnosMatriculados(List<AlumnoMatriculado> alumnosMatriculados) {
+            this.alumnos.clear();
+            this.alumnos.addAll(alumnosMatriculados);
+            return true;
+        }
+    }
+
+    private static class AsignaturaRepositorioMemoria implements com.docente.persistencia.IAsignaturaRepositorio {
+        private final List<Asignatura> asignaturas;
+
+        AsignaturaRepositorioMemoria(List<Asignatura> iniciales) {
+            this.asignaturas = new ArrayList<>(iniciales);
+        }
+
+        @Override
+        public List<Asignatura> obtenerAsignaturas() {
+            return new ArrayList<>(asignaturas);
+        }
+
+        @Override
+        public boolean guardarAsignaturas(List<Asignatura> asignaturas) {
+            this.asignaturas.clear();
+            this.asignaturas.addAll(asignaturas);
+            return true;
+        }
+    }
+}
+</file>
+
+<file path="src/test/java/com/docente/servicio/AlumnoServiceTest.java">
+package com.docente.servicio;
+
+import com.docente.modelo.Alumno;
+import com.docente.persistencia.IAlumnoRepositorio;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class AlumnoServiceTest {
+
+    private AlumnoService service;
+
+    @BeforeEach
+    void setUp() {
+        service = new AlumnoService(new AlumnoRepositorioMemoria(List.of(
+                new Alumno("ALU001", "Ana", 18, "1DAM")
+        )));
+    }
+
+    @Test
+    void crearAlumnoOk() {
+        assertTrue(service.crearAlumno("ALU002", "Luis", 19, "1DAM"));
+        assertNotNull(service.buscarAlumno("ALU002"));
+    }
+
+    @Test
+    void crearAlumnoDuplicadoDevuelveFalse() {
+        assertFalse(service.crearAlumno("ALU001", "Ana", 18, "1DAM"));
+    }
+
+    @Test
+    void readDevuelveListaConContenido() {
+        List<String> resultado = service.read();
+        assertEquals(1, resultado.size());
+        assertTrue(resultado.get(0).contains("Ana"));
+    }
+
+    @Test
+    void buscarAlumnoExistenteDevuelveObjeto() {
+        Alumno alumno = service.buscarAlumno("ALU001");
+        assertNotNull(alumno);
+        assertEquals("Ana", alumno.getNombre());
+    }
+
+    @Test
+    void actualizarAlumnoExistenteModificaDatos() {
+        assertTrue(service.actualizarAlumno("ALU001", "Ana María", 19, "2DAM"));
+        Alumno actualizado = service.buscarAlumno("ALU001");
+        assertEquals("Ana María", actualizado.getNombre());
+        assertEquals(19, actualizado.getEdad());
+        assertEquals("2DAM", actualizado.getCurso());
+    }
+
+    @Test
+    void deleteAlumnoExistenteEliminaElemento() {
+        assertTrue(service.deleteAlumno("ALU001"));
+        assertNull(service.buscarAlumno("ALU001"));
+    }
+
+    private static class AlumnoRepositorioMemoria implements IAlumnoRepositorio {
+        private final List<Alumno> alumnos;
+
+        AlumnoRepositorioMemoria(List<Alumno> iniciales) {
+            this.alumnos = new ArrayList<>(iniciales);
+        }
+
+        @Override
+        public List<Alumno> obtenerAlumnos() {
+            return new ArrayList<>(alumnos);
+        }
+
+        @Override
+        public boolean guardarAlumnos(List<Alumno> alumnos) {
+            this.alumnos.clear();
+            this.alumnos.addAll(alumnos);
+            return true;
+        }
+    }
+}
+</file>
+
+<file path="src/test/java/com/docente/servicio/AsignaturaServiceTest.java">
+package com.docente.servicio;
+
+import com.docente.modelo.Asignatura;
+import com.docente.persistencia.IAsignaturaRepositorio;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class AsignaturaServiceTest {
+
+    private AsignaturaService service;
+
+    @BeforeEach
+    void setUp() {
+        service = new AsignaturaService(new AsignaturaRepositorioMemoria(List.of(
+                new Asignatura("PROG", "Programación", 8)
+        )));
+    }
+
+    @Test
+    void crearAsignaturaOk() {
+        assertTrue(service.crearAsignatura("BBDD", "Bases de Datos", 6));
+        assertNotNull(service.buscarAsignatura("BBDD"));
+    }
+
+    @Test
+    void crearAsignaturaDuplicadaDevuelveFalse() {
+        assertFalse(service.crearAsignatura("PROG", "Programación", 8));
+    }
+
+    @Test
+    void readDevuelveListaConAsignaturas() {
+        List<String> resultado = service.read();
+        assertEquals(1, resultado.size());
+        assertTrue(resultado.get(0).contains("Programación"));
+    }
+
+    @Test
+    void buscarAsignaturaExistenteDevuelveObjeto() {
+        Asignatura asignatura = service.buscarAsignatura("PROG");
+        assertNotNull(asignatura);
+        assertEquals(8, asignatura.getHorasSemanales());
+    }
+
+    @Test
+    void actualizarAsignaturaExistenteModificaDatos() {
+        assertTrue(service.actualizarAsignatura("PROG", "Programación Java", 9));
+        Asignatura actualizada = service.buscarAsignatura("PROG");
+        assertEquals("Programación Java", actualizada.getNombre());
+        assertEquals(9, actualizada.getHorasSemanales());
+    }
+
+    @Test
+    void deleteAsignaturaExistenteEliminaElemento() {
+        assertTrue(service.deleteAsignatura("PROG"));
+        assertNull(service.buscarAsignatura("PROG"));
+    }
+
+    private static class AsignaturaRepositorioMemoria implements IAsignaturaRepositorio {
+        private final List<Asignatura> asignaturas;
+
+        AsignaturaRepositorioMemoria(List<Asignatura> iniciales) {
+            this.asignaturas = new ArrayList<>(iniciales);
+        }
+
+        @Override
+        public List<Asignatura> obtenerAsignaturas() {
+            return new ArrayList<>(asignaturas);
+        }
+
+        @Override
+        public boolean guardarAsignaturas(List<Asignatura> asignaturas) {
+            this.asignaturas.clear();
+            this.asignaturas.addAll(asignaturas);
+            return true;
+        }
+    }
+}
+</file>
+
+<file path="src/test/resources/alumnos_matriculados.csv">
+AM001|Lucia|19|1DAM|PROG,BBDD
+AM002|Mario|20|1DAM|LM
+</file>
+
+<file path="src/test/resources/alumnos.csv">
+A001|Ana|20|1DAM
+A002|Luis|19|1DAW
+</file>
+
+<file path="src/test/resources/asignaturas.csv">
+PROG|Programación|8
+BBDD|Bases de Datos|6
+</file>
+
+<file path="pom.xml">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.docente</groupId>
+    <artifactId>crud-academia</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>CRUD Academia</name>
+    <description>Proyecto base Maven con paquetes com.docente y JaCoCo para trabajar testing y cobertura</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <junit.jupiter.version>5.10.2</junit.jupiter.version>
+        <jacoco.version>0.8.12</jacoco.version>
+        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>copiar-csv-para-tests</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/src/main/resources</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>backup/resources</directory>
+                                    <includes>
+                                        <include>**/*.csv</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <useModulePath>false</useModulePath>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+</file>
+
+<file path="README.md">
+# Plantilla del alumnado · CRUD Academia
+
+Este proyecto es la **base de examen/práctica** para trabajar una aplicación Java por capas con Maven.
+
+La plantilla ya deja **todo definido**:
+- paquetes
+- interfaces
+- clases
+- firmas de métodos
+- `Main` completo
+- tests de servicio
+
+Tu trabajo consiste en **terminar la implementación** de las funcionalidades nuevas sin romper lo que ya funciona de `Alumno`.
+
+---
+
+## Qué ya funciona
+
+Está completamente implementado el bloque de `Alumno`:
+- modelo `Alumno`
+- repositorio `AlumnoRepositorioCSV`
+- servicio `AlumnoService`
+- validaciones básicas
+- parte correspondiente del `Main`
+
+Puedes usar ese bloque como referencia para mantener el mismo estilo en el resto de capas.
+
+---
+
+## Qué debes implementar
+
+## 1. Gestión completa de `Asignatura`
+
+Debes completar:
+- `modelo/Asignatura.java`
+- `persistencia/IAsignaturaRepositorio.java`
+- `persistencia/impl/AsignaturaRepositorioCSV.java`
+- `servicio/IAsignaturaService.java`
+- `servicio/AsignaturaService.java`
+- validaciones asociadas en `Validaciones.java`
+
+### Requisitos de `Asignatura`
+- atributos: `codigo`, `nombre`, `horasSemanales`
+- constructores
+- getters y setters
+- `equals()` y `hashCode()` por `codigo`
+- `toString()`
+- `toCsv()`
+
+### Operaciones mínimas
+- crear asignatura
+- listar asignaturas
+- buscar asignatura por código
+- actualizar asignatura
+- eliminar asignatura
+
+Los datos deben persistirse en:
+
+```text
+src/main/resources/asignaturas.csv
+```
+
+---
+
+## 2. Gestión completa de `AlumnoMatriculado`
+
+Debes completar:
+- `modelo/AlumnoMatriculado.java`
+- `persistencia/IAlumnoMatriculadoRepositorio.java`
+- `persistencia/impl/AlumnoMatriculadoRepositorioCSV.java`
+- `servicio/IAlumnoMatriculadoService.java`
+- `servicio/AlumnoMatriculadoService.java`
+
+### Requisitos de `AlumnoMatriculado`
+- debe **extender** a `Alumno`
+- debe añadir `List<Asignatura> asignaturas`
+- debe incluir constructores
+- getters y setters
+- método para añadir asignaturas sin duplicados
+- método para eliminar asignaturas
+- `toString()`
+- `toCsv()`
+
+### Lógica de negocio obligatoria
+- un alumno no puede tener la misma asignatura dos veces
+- obtener el **número de asignaturas** como `int`
+- comprobar si está matriculado en una asignatura con `boolean`
+
+### Operaciones mínimas
+- crear alumno matriculado
+- listar alumnos matriculados
+- buscar alumno matriculado
+- actualizar alumno matriculado
+- eliminar alumno matriculado
+- matricular en asignatura
+- desmatricular de asignatura
+- consultar número de asignaturas
+- comprobar si está matriculado o no
+
+Los datos deben persistirse en:
+
+```text
+src/main/resources/alumnos_matriculados.csv
+```
+
+Formato orientativo:
+
+```text
+AM001|Lucia|19|1DAM|PROG,BBDD
+AM002|Mario|20|1DAM|LM
+```
+
+---
+
+## 3. Main
+
+La clase `Main` ya está preparada con el menú completo.
+
+Cuando termines las capas nuevas, las opciones del menú deberán funcionar:
+- crear asignatura
+- listar asignaturas
+- buscar asignatura
+- modificar asignatura
+- eliminar asignatura
+- crear alumno matriculado
+- listar alumnos matriculados
+- matricular en asignatura
+- desmatricular de asignatura
+- consultar número de asignaturas
+- consultar matrícula en una asignatura
+- buscar alumno matriculado
+
+---
+
+## Estructura del proyecto
+
+```text
+src/
+├─ main/
+│  ├─ java/com/docente/
+│  │  ├─ app/
+│  │  │  └─ Main.java
+│  │  ├─ ficheros/
+│  │  ├─ modelo/
+│  │  │  ├─ Alumno.java
+│  │  │  ├─ AlumnoMatriculado.java
+│  │  │  ├─ Asignatura.java
+│  │  │  └─ PersonaAbstracta.java
+│  │  ├─ persistencia/
+│  │  │  ├─ IAlumnoRepositorio.java
+│  │  │  ├─ IAlumnoMatriculadoRepositorio.java
+│  │  │  ├─ IAsignaturaRepositorio.java
+│  │  │  └─ impl/
+│  │  │     ├─ AlumnoRepositorioCSV.java
+│  │  │     ├─ AlumnoMatriculadoRepositorioCSV.java
+│  │  │     └─ AsignaturaRepositorioCSV.java
+│  │  ├─ servicio/
+│  │  │  ├─ AlumnoService.java
+│  │  │  ├─ AlumnoMatriculadoService.java
+│  │  │  ├─ AsignaturaService.java
+│  │  │  ├─ IAlumnoService.java
+│  │  │  ├─ IAlumnoMatriculadoService.java
+│  │  │  └─ IAsignaturaService.java
+│  │  ├─ utils/
+│  │  └─ validacion/
+│  └─ resources/
+│     ├─ alumnos.csv
+│     ├─ alumnos_matriculados.csv
+│     └─ asignaturas.csv
+└─ test/
+   ├─ java/
+   │  └─ com/docente/
+   │     ├─ modelo/
+   │     └─ servicio/
+   └─ resources/
+      ├─ alumnos.csv
+      ├─ alumnos_matriculados.csv
+      └─ asignaturas.csv
+```
+
+---
+
+## Ejecución del proyecto
+
+## Requisitos
+- Java 17
+- Maven 3.9 o superior
+
+## Compilar
+
+```bash
+mvn clean compile
+```
+
+## Ejecutar tests
+
+```bash
+mvn clean test
+```
+
+### Importante sobre los CSV de tests
+Cada vez que ejecutes `mvn test`, el `pom.xml` está configurado para copiar los ficheros `*.csv` de:
+
+```text
+src/test/resources
+```
+
+a:
+
+```text
+src/main/resources
+```
+
+Esto permite que los tests partan siempre de un estado conocido.
+
+---
+
+## Ejecutar la aplicación
+
+```bash
+mvn exec:java
+```
+
+También puedes ejecutar directamente la clase:
+
+```text
+com.docente.app.Main
+```
+
+desde tu IDE.
+
+---
+
+## Sobre los tests
+
+Se incluyen tests de ejemplo a nivel de servicio:
+- `AlumnoServiceTest`
+- `AsignaturaServiceTest`
+- `AlumnoMatriculadoServiceTest`
+
+### Qué debes esperar al principio
+- los tests de `Alumno` deben servirte como referencia
+- los tests de `Asignatura` y `AlumnoMatriculado` **pueden fallar** hasta que completes la implementación
+
+Tu objetivo es que, al final, todo el proyecto compile y todos los tests pasen.
+
+---
+
+## Sugerencia de trabajo
+
+Sigue este orden:
+1. completa `Asignatura` modelo
+2. completa repositorio CSV de `Asignatura`
+3. completa `AsignaturaService`
+4. completa `AlumnoMatriculado` modelo
+5. completa repositorio CSV de `AlumnoMatriculado`
+6. completa `AlumnoMatriculadoService`
+7. revisa validaciones
+8. prueba el menú en `Main`
+9. ejecuta `mvn test`
+
+---
+
+## Pistas
+- usa `Alumno` y `AlumnoService` como patrón
+- en `equals()` y `hashCode()` de `Asignatura`, trabaja con `codigo`
+- para evitar duplicados de asignaturas, puedes usar `contains()` si `equals()` está bien hecho
+- al guardar `AlumnoMatriculado`, solo necesitas persistir los **códigos** de las asignaturas en el CSV
+</file>
+
+</files>

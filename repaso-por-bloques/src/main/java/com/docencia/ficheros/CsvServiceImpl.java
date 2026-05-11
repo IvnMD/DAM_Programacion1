@@ -61,18 +61,16 @@ public class CsvServiceImpl implements CsvService {
 
     @Override
     public void escribirLineasCsv(Path ruta, List<String> lineas) {
-        if (ruta == null || !Files.exists(ruta) || lineas == null || lineas.isEmpty()) {
+        if (ruta == null || lineas == null || lineas.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        List<String> filas = new ArrayList<>();
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta.toString()))) {
-            for (String fila : filas) {
-                bw.write(fila);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta.toFile()))) {
+            for (String linea : lineas) {
+                bw.write(linea);
                 bw.newLine();
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
-
         }
     }
 
@@ -92,16 +90,22 @@ public class CsvServiceImpl implements CsvService {
             throw new IllegalArgumentException();
         }
 
-        List<String[]> registrosFiltrados = new ArrayList<>();
-        List<String[]> todos = leerRegistrosCsv(ruta);
+        List<String[]> registros = leerRegistrosCsv(ruta);
 
-        for (String[] registro : todos) {
-            if (registro.length > columna &&
-                    (registro[columna] != null && registro[columna].equals(valor))) {
-                registrosFiltrados.add(registro);
+        for (String[] registro : registros) {
+            if (columna >= registro.length) {
+                throw new IllegalArgumentException("Columna invalida");
             }
         }
-        return registrosFiltrados;
+
+        List<String[]> filtrados = new ArrayList<>();
+        for (String[] registro : registros) {
+            if (registro[columna].equals(valor)) {
+                filtrados.add(registro);
+            }
+        }
+
+        return filtrados;
     }
 
     @Override
@@ -113,8 +117,8 @@ public class CsvServiceImpl implements CsvService {
             throw new IllegalArgumentException();
         }
 
-        Map<String, Integer> frecuencia = new LinkedHashMap<>(); 
-        
+        Map<String, Integer> frecuencia = new LinkedHashMap<>();
+
         List<String[]> registros = leerRegistrosCsv(ruta);
 
         for (String[] registro : registros) {

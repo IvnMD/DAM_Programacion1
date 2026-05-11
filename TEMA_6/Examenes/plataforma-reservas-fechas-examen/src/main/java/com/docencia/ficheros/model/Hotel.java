@@ -7,7 +7,8 @@ public class Hotel {
     private String nombre;
     private double precioNoche;
 
-    public Hotel() {}
+    public Hotel() {
+    }
 
     public Hotel(int id, String nombre, double precioNoche) {
         this.id = id;
@@ -15,14 +16,24 @@ public class Hotel {
         this.precioNoche = precioNoche;
     }
 
-    public int getId() { return id; }
-    public String getNombre() { return nombre; }
-    public double getPrecioNoche() { return precioNoche; }
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPrecioNoche() {
+        return precioNoche;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Hotel hotel)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Hotel hotel))
+            return false;
         return id == hotel.id;
     }
 

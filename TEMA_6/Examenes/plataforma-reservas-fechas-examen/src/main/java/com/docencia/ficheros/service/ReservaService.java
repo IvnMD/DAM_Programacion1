@@ -1,13 +1,16 @@
 package com.docencia.ficheros.service;
 
-import com.docencia.ficheros.model.ReservaCompleta;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.docencia.ficheros.model.Cliente;
 import com.docencia.ficheros.model.Hotel;
 import com.docencia.ficheros.model.Reserva;
+import com.docencia.ficheros.model.ReservaCompleta;
 import com.docencia.ficheros.repo.interfaces.IClienteRepository;
 import com.docencia.ficheros.repo.interfaces.IHotelRepository;
 import com.docencia.ficheros.repo.interfaces.IReservaRepository;
 import com.docencia.ficheros.service.interfaces.IReservaService;
-import java.util.List;
 
 public class ReservaService implements IReservaService {
 
@@ -15,7 +18,8 @@ public class ReservaService implements IReservaService {
     private final IClienteRepository clienteRepository;
     private final IHotelRepository hotelRepository;
 
-    public ReservaService(IReservaRepository reservaRepository, IClienteRepository clienteRepository, IHotelRepository hotelRepository) {
+    public ReservaService(IReservaRepository reservaRepository, IClienteRepository clienteRepository,
+            IHotelRepository hotelRepository) {
         this.reservaRepository = reservaRepository;
         this.clienteRepository = clienteRepository;
         this.hotelRepository = hotelRepository;
@@ -23,20 +27,38 @@ public class ReservaService implements IReservaService {
 
     @Override
     public List<ReservaCompleta> getReservasCompletas() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getReservasCompletas'");
+        List<ReservaCompleta> resultado = new ArrayList<>();
+        for (Reserva reserva : reservaRepository.findAll()) {
+            Cliente cliente = clienteRepository.findById(reserva.getClienteId());
+            Hotel hotel = hotelRepository.findById(reserva.getHotelId());
+            ReservaCompleta rc = new ReservaCompleta(
+                    reserva.getId(),
+                    cliente.getNombre(),
+                    hotel.getNombre(),
+                    reserva.getNoches(),
+                    calcularPrecio(reserva));
+            resultado.add(rc);
+        }
+        return resultado;
     }
 
     @Override
     public ReservaCompleta getReservaCompletaById(int reservaId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getReservaCompletaById'");
+        for (ReservaCompleta rc : getReservasCompletas()) {
+            if (rc.reservaId() == reservaId) {
+                return rc;
+            }
+        }
+        throw new IllegalArgumentException("Reserva no encontrada: " + reservaId);
     }
 
     @Override
     public double calcularPrecio(Reserva reserva) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calcularPrecio'");
+        if (reserva == null) {
+            throw new IllegalArgumentException();
+        }
+        Hotel hotel = hotelRepository.findById(reserva.getHotelId());
+        return reserva.getNoches() * hotel.getPrecioNoche();
     }
 
     @Override
@@ -75,5 +97,4 @@ public class ReservaService implements IReservaService {
         throw new UnsupportedOperationException("Unimplemented method 'totalReservasPorHotel'");
     }
 
-    
 }

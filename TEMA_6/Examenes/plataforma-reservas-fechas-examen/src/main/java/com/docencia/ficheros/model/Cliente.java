@@ -6,20 +6,28 @@ public class Cliente {
     private int id;
     private String nombre;
 
-    public Cliente() {}
+    public Cliente() {
+    }
 
     public Cliente(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public int getId() { return id; }
-    public String getNombre() { return nombre; }
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Cliente cliente)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Cliente cliente))
+            return false;
         return id == cliente.id;
     }
 

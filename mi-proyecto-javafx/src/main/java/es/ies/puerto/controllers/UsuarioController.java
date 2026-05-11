@@ -29,8 +29,6 @@ public class UsuarioController {
     @FXML
     private ListView<Usuario> usuariosListView;
 
-    
-
     private ObservableList<Usuario> usuariosObservableList = FXCollections.observableArrayList();
 
     @FXML
@@ -46,7 +44,7 @@ public class UsuarioController {
             String nombre = nombreField.getText();
             int edad = Integer.parseInt(edadField.getText());
             Usuario usuario = usuarioService.crearUsuario(nombre, edad);
-            if (usuario == null){
+            if (usuario == null) {
                 resultadoLabel.setText("Usuario NO añadido");
                 return;
             }
@@ -61,15 +59,17 @@ public class UsuarioController {
     }
 
     @FXML
-    public void deleteUsuario(){
+    public void deleteUsuario() {
         Usuario usuarioSeleccionado = usuariosListView.getSelectionModel()
-        .getSelectedItem();
+                .getSelectedItem();
         System.out.println("Eliminando usuario");
         boolean eliminado = usuarioService.eliminar((usuarioSeleccionado));
-        if (eliminado){
-            resultadoLabel.setText("Usuario eliminado");
+        if (eliminado) {
+            usuariosObservableList.remove(usuarioSeleccionado);
+            resultadoLabel.setText("Usuario eliminado correctamente");
+        } else {
+            resultadoLabel.setText("No se ha podido eliminar el usuario");
         }
-        resultadoLabel.setText("No se ha podido eliminar el usuario");
     }
 
     private void mostrarError(String mensaje) {

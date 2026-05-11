@@ -65,6 +65,7 @@ public class ClienteSqliteRepository implements ClienteRepository {
 
     @Override
     public List<Cliente> findAll() {
+<<<<<<< Updated upstream
 
         String sql = "SELECT * FROM cliente";
         List<Cliente> clientes = new ArrayList<>();
@@ -79,6 +80,17 @@ public class ClienteSqliteRepository implements ClienteRepository {
         } catch (Exception e) {
             return new ArrayList<>();
         }
+=======
+        String sql = "SELECT *  FROM cliente";
+        List<Cliente> clientes = new ArrayList<>();
+        try (Connection cn = getConnection();
+            PreparedStatement ps = cn.prepareStatement(sql)){
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        
+>>>>>>> Stashed changes
     }
 
     @Override
